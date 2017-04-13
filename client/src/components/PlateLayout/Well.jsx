@@ -7,7 +7,7 @@ class Well extends Component {
 
 	render() {
 		return (
-			<circle r="10" cx={this.props.i*25} cy="0" transform="translate(30,30)" fill="steelblue">>
+			<circle r="10" cx={this.props.i*25} cy={this.props.j*30} transform="translate(30,30)" fill="steelblue">>
 			</circle>
 		);
 	}

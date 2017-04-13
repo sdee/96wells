@@ -26,11 +26,12 @@ class PlateLayout extends Component {
 
 	}
 
-	makeRow(rowData) {
+	makeRow(rowData, j) {
 		console.log("make row");
 		console.log(rowData[0]);
+		console.log(j);
 		return (
-			rowData.map((well,index) => <Well i={index}/>)
+			rowData.map((well,i) => <Well i={i} j={j}/>)
 		);
 	}
 
@@ -40,7 +41,7 @@ class PlateLayout extends Component {
 				Plate<br/>
 			<svg width="800" height="600">
 				<g className = "plate">
-					{this.data.map(this.makeRow)}
+					{this.data.map((e, index) =>  this.makeRow(e, index))}
 				</g>
 			</svg>
 
