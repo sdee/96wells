@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
+import PlateLayout from '../PlateLayout/PlateLayout'
 
 class Plate extends Component {
     constructor() {
@@ -15,8 +16,12 @@ class Plate extends Component {
 
         d3.csv(this.props.url)
           .row((d) => {
-
-              return {};
+							console.log(">>>"+d['sample']);
+							console.log(">>>"+d.sample);
+              return {
+								patient: d['patient'],
+								sample: d['sample']
+							};
           })
           .get((error, rows) => {
               if (error) {
@@ -35,9 +40,7 @@ class Plate extends Component {
     render() {
 
         return (
-            <div>
-							Plate
-            </div>
+            <PlateLayout/>
         );
     }
 }

@@ -6,7 +6,7 @@ import Plate from './components/Plate/index';
 class App extends Component {
   render() {
     return (
-     <Plate/>
+     <Plate url="data/test.csv"/>
     );
   }
 }

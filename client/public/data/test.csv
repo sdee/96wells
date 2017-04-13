@@ -1,0 +1,4 @@
+patient,sample,time point,well
+Patient A,Sample 1,t1,A01
+Patient A,Sample 2,t1,A02
+Patient B,Sample 2,t1,A01
