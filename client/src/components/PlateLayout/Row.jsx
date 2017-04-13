@@ -7,7 +7,6 @@ class Row extends Component {
 
 		render() {
         return (
-
 					<div></div>
         );
     }
