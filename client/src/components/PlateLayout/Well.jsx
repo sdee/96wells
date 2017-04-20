@@ -12,7 +12,6 @@ class Well extends Component {
 			</circle>
 		);
 	}
-
 }
 
 export default Well;
