@@ -10,7 +10,6 @@ class Row extends Component {
 					<div></div>
         );
     }
-
 }
 
 export default Row;
