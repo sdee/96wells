@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Well from './Well'
-const testData = require('../../../../data/test.json');
+const testData = require('../../../../data/test2.json');
 
 class PlateLayout extends Component {
 	constructor() {
@@ -16,15 +16,23 @@ class PlateLayout extends Component {
 		this.data = testData;
 
 		let samples = new Set();
+		let attributes = new Set();
+		let keys = new Set(["sample"]);
+
 		this.data.forEach(function(row) {
 			row.forEach(function (data) {
-				samples.add(data);
+				samples.add(data.sample);
+				Object.keys(data).map(a => {
+					if (!keys.has(a)) {
+					attributes.add(a)
+				}
+				})
 			});
 		});
-		let sampleList = [...samples]; //hack, ordered by insertion order but not gauranteed by ECMA standards
+
+		let sampleList = [...samples]; //slight hack, ordered by insertion order but not gauranteed by ECMA standards
 
 		let sampleToColorMap = new Map();
-
 		const numColors = this.colors.length;
 		const colors = this.colors;
 		sampleList.forEach(function(sample, i) {
@@ -36,7 +44,7 @@ class PlateLayout extends Component {
 
 	makeRow(rowData, j) {
 		return (
-			rowData.map((well, i) => <Well i={i} j={j} wellData={well} color={this.sampleToColorMap.get(well)}/>)
+			rowData.map((well, i) => <Well i={i} j={j} wellData={well} color={this.sampleToColorMap.get(well.sample)}/>)
 		);
 	}
 
