@@ -14,21 +14,6 @@ class Plate extends Component {
 
 	loadRawData() {
 
-		d3.csv(this.props.url)
-		.row((d) => {
-			return {
-				patient: d['patient'],
-				sample: d['sample']
-			};
-		})
-		.get((error, rows) => {
-			if (error) {
-				console.error(error);
-				console.error(error.stack);
-			} else{
-				this.setState({rawData: rows});
-			}
-		});
 	}
 
 	componentWillMount() {
