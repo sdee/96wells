@@ -6,26 +6,8 @@ class PlateLayout extends Component {
 	constructor() {
 		super();
 
-		this.colors = ["#21f0b6", "#0a4f4e", "#9acfd8", "#25919d", "#a7d64e", "#5c922f", "#f1bb99", "#a55153", "#e71761", "#d64405"];
-
-		let samples = new Set();
-		let attributes = new Set();
 		let keys = new Set(["sample"]);
 		this.plateGrid = [];
-
-		//make list of attributes
-		// this.data.forEach(function(row) {
-		// 	row.forEach(function (data) {
-		// 		samples.add(data.sample);
-		// 		Object.keys(data).map(a => {
-		// 			if (!keys.has(a)) {
-		// 				attributes.add(a)
-		// 			}
-		// 		})
-		// 	});
-		// });
-
-		let sampleList = [...samples]; //slight hack, ordered by insertion order but not gauranteed by ECMA standards
 }
 	placeSamplesInListOrder(datalist) {
 		let plateGrid = [];
@@ -109,6 +91,7 @@ class PlateLayout extends Component {
 	componentWillMount() {
 		console.log(this.props.samples);
 		console.log(this.props.colorMap);
+		console.log(this.props.attributes);
 		this.plateGrid = this.implementLayout(this.props.dataList, this.props.layout);
 	}
 

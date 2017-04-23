@@ -1,8 +1,8 @@
 [
-{"sample": "Sample 1", "val": 0.5, "timepoint": 1},
-{"sample": "Sample 2", "val": 0.1},
+{"sample": "Sample 7", "val": 0.5, "q": 1},
+{"sample": "Sample 2", "val": 0.1, "y": 2},
 {"sample": "Sample 3", "val": 0.2},
-{"sample": "Sample 1", "val": 0.9},
+{"sample": "Sample 1", "val": 0.9, "timepoint": 2},
 {"sample": "Sample 2", "val": 0.1},
 {"sample": "Sample 3", "val": 0.9},
 {"sample": "Sample 1", "val": 0.7}
