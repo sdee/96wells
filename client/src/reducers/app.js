@@ -1,4 +1,3 @@
-
 const layouts = ['listorder', 'random']
 
 const sizes = {
@@ -13,7 +12,25 @@ const initialState = {
 };
 
 const app = (state = initialState, action) => {
+	switch (action.type) {
+		case CHANGE_LAYOUT: {
+			Object.assign({}, state, {
 
+			});
+		}
+		case LOAD_DATA: {
+			Object.assign({}, state, {
+
+			});
+		}
+		case SHOW_LAYER: {
+			Object.assign({}, state, {
+
+			});
+		}
+	}
 };
+
+
 
 export default app;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import * as d3 from 'd3';
 import PlateLayout from '../PlateLayout/PlateLayout'
 
 class Plate extends Component {
