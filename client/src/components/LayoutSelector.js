@@ -19,7 +19,6 @@ function LayoutSelector ({ handleSubmit }) {
 		</div>
 		</form>
 	);
-
 }
 
 export default reduxForm({

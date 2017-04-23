@@ -4,14 +4,14 @@ import { LOAD_DATA } from '../actions';
 
 const initialState = {
 	datasource: 'test1', //source of sample list
-	samplelist: testList
+	dataList: testList
 };
 
 const app = (state = initialState, action) => {
 	switch (action.type) {
 		case LOAD_DATA: {
 			return Object.assign({}, state, {
-
+				dataList: testList
 			});
 		}
 		default: {

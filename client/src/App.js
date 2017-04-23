@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
 import './App.css';
-//import Plate from './components/Plate/index';
+import { connect } from 'react-redux';
 import LayoutSelector from './components/LayoutSelector';
 import LayoutForm from './containers/LayoutForm';
-import Plate from './containers/Plate'
+import Plate from './containers/Plate';
+import { loadData } from './actions';
 
 class App extends Component {
 
-  render() {
-    return (
-			<div>
-     <Plate/>
-		 <LayoutForm/>
-		 </div>
+	componentDidMount() {
+		const { dispatch } = this.props;
+		dispatch(loadData());
+	}
 
-    );
-  }
+	render() {
+		return (
+			<div>
+				<Plate/>
+				<LayoutForm/>
+			</div>
+
+		);
+	}
 }
 
-export default App;
+const mapStateToProps = state => ({
+	app: state.app
+});
+
+export default connect(mapStateToProps)(App);

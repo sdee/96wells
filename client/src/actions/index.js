@@ -18,5 +18,5 @@ export function showLayer(layer) {
 }
 
 export function loadData(dataSet = 'default') {
-
+	return {type: LOAD_DATA, dataSet};
 }

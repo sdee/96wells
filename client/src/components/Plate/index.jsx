@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PlateLayout from '../PlateLayout/PlateLayout'
 
+
+
 class Plate extends Component {
 	constructor() {
 		super();
@@ -11,12 +13,8 @@ class Plate extends Component {
 		};
 	}
 
-	loadRawData() {
-
-	}
-
 	componentWillMount() {
-		this.loadRawData();
+
 	}
 
 	render() {

@@ -3,7 +3,7 @@ import PlateLayout from '../components/PlateLayout/PlateLayout'
 
 const mapStateToProps = (state, ownProps) => ({
 	layout: state.plate.layout,
-	dataList: state.app.sampleList
+	dataList: state.app.dataList
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -8,8 +8,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSubmit: (values) => {
-		console.log("DISPATH");
-		console.log(ownProps);
 		dispatch(changeLayout(values['layout']));
 	}
 });
