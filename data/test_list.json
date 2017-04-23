@@ -5,7 +5,5 @@
 {"sample": "Sample 1", "val": 0.9},
 {"sample": "Sample 2", "val": 0.1},
 {"sample": "Sample 3", "val": 0.9},
-{"sample": "Sample 1", "val": 0.7},
-{"sample": "Sample 3", "val": 1.0},
-{"sample": "Sample 3", "val": 1.0}
+{"sample": "Sample 1", "val": 0.7}
 ]

@@ -36,7 +36,7 @@ function placeSamplesInRandomOrder(datalist) {
 	}
 
 	function getRandomCoord() {
-		let col = getRandomInt(0, numCols), row = getRandomInt(0, numRows);
+		let col = getRandomInt(0, numCols-1), row = getRandomInt(0, numRows-1);
 		let randCoord = [row, col];
 		return randCoord;
 	}
@@ -64,6 +64,8 @@ const app = (state = initialState, action) => {
 	switch (action.type) {
 		case CHANGE_LAYOUT: {
 			let newLayout = placeSamplesInRandomOrder(testList);
+			console.log("NEW LAYOUT");
+			console.table(newLayout);
 			return Object.assign({}, state, {
 				layout: action.layout,
 				plateLayout: newLayout
