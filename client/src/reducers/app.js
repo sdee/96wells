@@ -4,7 +4,7 @@ import { LOAD_DATA } from '../actions';
 
 const initialState = {
 	datasource: 'test1', //source of sample list
-
+	samplelist: testList
 };
 
 const app = (state = initialState, action) => {

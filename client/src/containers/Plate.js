@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import PlateLayout from '../components/PlateLayout/PlateLayout'
 
 const mapStateToProps = (state, ownProps) => ({
-	plateLayout: state.plate.plateLayout
+	layout: state.plate.layout,
+	dataList: state.app.sampleList
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
