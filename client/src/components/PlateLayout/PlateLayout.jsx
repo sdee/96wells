@@ -112,12 +112,12 @@ placeSamplesInRandomOrder(datalist) {
 	return plateGrid;
 }
 
-implementLayout(datalist, layout) {
+	implementLayout(datalist, layout) {
 		if (layout === 'listorder') {
-			self.placeSamplesInListOrder(datalist);
+			this.placeSamplesInListOrder(datalist);
 		}
 		else if (layout === 'random') {
-			self.placeSamplesInRandomOrder(datalist);
+			this.placeSamplesInRandomOrder(datalist);
 		}
 	}
 
@@ -130,7 +130,7 @@ implementLayout(datalist, layout) {
 	}
 
 	componentDidMount() {
-		this.implementLayout(this.props.dataList, this.props.layout);
+		this.implementLayout(this.dataList, this.layout);
 	 }
 
 	render() {
