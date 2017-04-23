@@ -21,11 +21,6 @@ class PlateLayout extends Component {
 		let attributes = new Set();
 		let keys = new Set(["sample"]);
 
-
-		//plateGrid = this.placeSamplesInListOrder(this.datalist);
-
-		let plateGrid = this.placeSamplesInRandomOrder(this.datalist);
-
 		//make list of attributes
 		this.data.forEach(function(row) {
 			row.forEach(function (data) {
@@ -55,74 +50,18 @@ class PlateLayout extends Component {
 
 	}
 
-	placeSamplesInListOrder(datalist) {
-		let plateGrid = [];
-		const numCols = 3;
-		let row = 0, col = 0;
-		datalist.forEach(function (datarow) {
-			if (col === numCols) {
-				row++;
-				col = 0;
-			}
-			if (plateGrid[row] === undefined) {
-				plateGrid[row] = [];
-			}
-			plateGrid[row][col] = datarow;
-			col++;
-		});
-		return plateGrid;
-	}
-
-	placeSamplesInRandomOrder(datalist) {
-		const numCols = 3;
-		const numRows = 3;
-		let plateGrid = [];
-
-		function getRandomInt(min, max) {
-			return Math.floor(Math.random() * (max - min + 1)) + min;
-		}
-
-		function checkMembership(arr, coord) {
-			let member = false;
-			arr.forEach(function(arrCoord) {
-				if (coord[0]===arrCoord[0] && coord[1]===arrCoord[1]) {
-					member = true;
-				}
-			});
-			return member;
-		}
-
-		function getRandomCoord() {
-			let col = getRandomInt(0, numCols), row = getRandomInt(0, numRows);
-			let randCoord = [row, col];
-			return randCoord;
-		}
-
-		let occupied = [];
-		datalist.forEach(function (datarow) {
-			let coord = getRandomCoord();
-
-			do {
-				coord = getRandomCoord();
-			} while (checkMembership(occupied, coord) === true);
-
-			let row = coord[0], col = coord[1];
-			if (plateGrid[row] === undefined) {
-				plateGrid[row] = [];
-			}
-			occupied.push(coord);
-			plateGrid[row][col] = datarow;
-
-		});
-		console.log(occupied);
-		console.table(plateGrid);
-	}
 
 	makeRow(rowData, j) {
+		console.log("MOUNTED");
+		console.log(this.props.plateLayout);
 		return (
 			rowData.map((well, i) => <Well i={i} j={j} wellData={well} color={this.sampleToColorMap.get(well.sample)}/>)
 		);
 	}
+
+	componentDidMount() {
+
+	 }
 
 	render() {
 		return (
