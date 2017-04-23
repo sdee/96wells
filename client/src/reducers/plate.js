@@ -15,7 +15,6 @@ const initialState = {
 	layout: 'listorder' //algorithm for placing samples in wells,
 };
 
-
 const plate = (state = initialState, action) => {
 	switch (action.type) {
 		case CHANGE_LAYOUT: {

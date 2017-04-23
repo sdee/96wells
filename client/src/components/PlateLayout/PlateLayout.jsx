@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Well from './Well'
-const testData = require('../../../../data/test2.json'); //move up higher
-const testList = require('../../../../data/test_list.json'); //move up higher
+import Well from './Well';
 
 class PlateLayout extends Component {
 
@@ -28,22 +26,7 @@ class PlateLayout extends Component {
 		// });
 
 		let sampleList = [...samples]; //slight hack, ordered by insertion order but not gauranteed by ECMA standards
-
-		//create color map
-		let sampleToColorMap = new Map();
-		const numColors = this.colors.length;
-		const colors = this.colors;
-		sampleList.forEach(function(sample, i) {
-			let colorIndex = i % numColors;
-			sampleToColorMap.set(sample, colors[colorIndex]);
-		});
-		this.sampleToColorMap = sampleToColorMap;
-	}
-
-	createColorMap() {
-
-	}
-
+}
 	placeSamplesInListOrder(datalist) {
 		let plateGrid = [];
 		const numCols = 3;
@@ -119,11 +102,17 @@ class PlateLayout extends Component {
 
 	makeRow(rowData, j) {
 		return (
-			rowData.map((well, i) => <Well i={i} j={j} wellData={well} color={this.sampleToColorMap.get(well.sample)}/>)
+			rowData.map((well, i) => <Well i={i} j={j} wellData={well} color={this.props.colorMap.get(well.sample)}/>)
 		);
 	}
 
 	componentWillMount() {
+		console.log(this.props.samples);
+		console.log(this.props.colorMap);
+		this.plateGrid = this.implementLayout(this.props.dataList, this.props.layout);
+	}
+
+	componentWillUpdate() {
 		this.plateGrid = this.implementLayout(this.props.dataList, this.props.layout);
 	}
 
