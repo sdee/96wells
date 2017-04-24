@@ -8,6 +8,11 @@ The code is designed to be modular so that custom layouts can be easily added.
 
 Note: This is a work in progress and currently exists as a proof concept for combining d3, redux, and react. 
 
+Features:
+
+* Sample automated layouts
+* Automatically assign colors to samples, showing how samples are distributed across the plate
+
 Proposed features:
 
 * Better labelling of wells
