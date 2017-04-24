@@ -20,20 +20,9 @@ export const getNumCols = createSelector(
 	(plateSize) =>  sizes[plateSize][1]
 );
 
-function ifRandom(layout){
-	if (layout==='random'){
-		return Math.random();
-	}
-	else {
-		return 1;
-	}
-}
-
 export const calculateLayout = createSelector(
 	[dataList, layout, getNumRows, getNumCols, (state) => {return state.plate.layout==='random' ? Math.random() : 1}], //final function forces reload when layout is random
 	(dataList, layout, rows, cols) => {
-		console.log('>>EEE');
-		console.log(layout==='random');
 		switch (layout) {
 			case 'listorder':
 				return placeSamplesInListOrder(dataList, rows, cols);
@@ -91,7 +80,10 @@ function placeSamplesInRandomOrder(datalist, numRows, numCols) {
 function placeSamplesInListOrder(datalist, numRows, numCols) {
 	let plateGrid = [];
 	let row = 0, col = 0;
+	console.log("-----");
+	let count =0;
 	datalist.forEach(function (datarow) {
+
 		if (col === numCols) {
 			row++;
 			col = 0;
@@ -100,7 +92,9 @@ function placeSamplesInListOrder(datalist, numRows, numCols) {
 			plateGrid[row] = [];
 		}
 		plateGrid[row][col] = datarow;
+		count++;
 		col++;
 	});
+
 	return plateGrid;
 };

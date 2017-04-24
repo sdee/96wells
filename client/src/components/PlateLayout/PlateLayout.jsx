@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Well from './Well';
 
 class PlateLayout extends Component {
-	
+
 	makeRow(rowData, j) {
+		console.log("row");
 		return (
+
 			rowData.map((well, i) => <Well i={i} j={j} wellData={well} color={this.props.colorMap.get(well.sample)}/>)
 		);
 	}
@@ -23,8 +25,7 @@ class PlateLayout extends Component {
 	render() {
 		return (
 			<div>
-				Plate2<br/>
-			<svg width="800" height="600">
+			<svg width="800" height="500">
 				<g className="plate">
 					{this.props.grid.map((e, index) => this.makeRow(e, index))}
 				</g>

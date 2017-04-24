@@ -6,7 +6,7 @@ import { CHANGE_LAYOUT, SHOW_LAYER } from '../actions';
 
 const initialState = {
 	name: 'name',
-	plateSize: 'test', //number of wells
+	plateSize: '96wells', //number of wells
 	datasource: 'test1', //source of sample list
 	layout: 'listorder' //algorithm for placing samples in wells,
 };
@@ -14,11 +14,8 @@ const initialState = {
 const plate = (state = initialState, action) => {
 	switch (action.type) {
 		case CHANGE_LAYOUT: {
-			console.log("change layout");
-			console.log(action.layout);
 			return Object.assign({}, state, {
-				layout: action.layout,
-				plateSize: "test"
+				layout: action.layout
 		});
 		}
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import d3 from 'd3';
 
 class Well extends Component {
 
@@ -8,8 +9,10 @@ class Well extends Component {
 
 	render() {
 		return (
-			<circle r="10" cx={this.props.i*25} cy={this.props.j*30} transform="translate(30,30)" fill={this.props.color}>>
+			<g>
+			<circle r="25" cx={this.props.i*55} cy={this.props.j*55} transform="translate(55,55)" fill={this.props.color}>>
 			</circle>
+		</g>
 		);
 	}
 }
