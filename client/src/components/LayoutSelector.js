@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+//TODO: rename to avoid confusion between selectors and selection menu
 function LayoutSelector ({ handleSubmit }) {
 	return (
 		<form onSubmit={handleSubmit}>

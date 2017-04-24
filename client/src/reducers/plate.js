@@ -4,13 +4,9 @@ const layouts = ['listorder', 'random'];
 
 import { CHANGE_LAYOUT, SHOW_LAYER } from '../actions';
 
-const sizes = {
-	'96': [8, 12],
-	'284': [24, 16]
-};
-
 const initialState = {
-	size: '96', //number of wells
+	name: 'name',
+	plateSize: 'test', //number of wells
 	datasource: 'test1', //source of sample list
 	layout: 'listorder' //algorithm for placing samples in wells,
 };
@@ -18,8 +14,11 @@ const initialState = {
 const plate = (state = initialState, action) => {
 	switch (action.type) {
 		case CHANGE_LAYOUT: {
+			console.log("change layout");
+			console.log(state);
 			return Object.assign({}, state, {
-				layout: action.layout
+				layout: action.layout,
+				plateSize: "test"
 		});
 		}
 
