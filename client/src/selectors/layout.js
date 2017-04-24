@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
 
-
 const sizes = {
 	'96wells': [8, 12],
 	'284wells': [24, 16],
@@ -10,7 +9,6 @@ const sizes = {
 const dataList = (state) => state.app.dataList;
 const plateSize = (state) => state.plate.plateSize;
 const layout =  (state) => state.plate.layout;
-
 
 export const getNumRows = createSelector(
 	[plateSize],
@@ -22,9 +20,20 @@ export const getNumCols = createSelector(
 	(plateSize) =>  sizes[plateSize][1]
 );
 
+function ifRandom(layout){
+	if (layout==='random'){
+		return Math.random();
+	}
+	else {
+		return 1;
+	}
+}
+
 export const calculateLayout = createSelector(
-	[dataList, layout, getNumRows, getNumCols],
+	[dataList, layout, getNumRows, getNumCols, (state) => {return state.plate.layout==='random' ? Math.random() : 1}], //final function forces reload when layout is random
 	(dataList, layout, rows, cols) => {
+		console.log('>>EEE');
+		console.log(layout==='random');
 		switch (layout) {
 			case 'listorder':
 				return placeSamplesInListOrder(dataList, rows, cols);
@@ -80,8 +89,6 @@ function placeSamplesInRandomOrder(datalist, numRows, numCols) {
 };
 
 function placeSamplesInListOrder(datalist, numRows, numCols) {
-	console.log("place samples in order");
-	console.log(numCols);
 	let plateGrid = [];
 	let row = 0, col = 0;
 	datalist.forEach(function (datarow) {

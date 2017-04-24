@@ -15,7 +15,7 @@ const plate = (state = initialState, action) => {
 	switch (action.type) {
 		case CHANGE_LAYOUT: {
 			console.log("change layout");
-			console.log(state);
+			console.log(action.layout);
 			return Object.assign({}, state, {
 				layout: action.layout,
 				plateSize: "test"

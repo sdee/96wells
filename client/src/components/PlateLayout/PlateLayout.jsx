@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Well from './Well';
 
 class PlateLayout extends Component {
-
+	
 	makeRow(rowData, j) {
 		return (
 			rowData.map((well, i) => <Well i={i} j={j} wellData={well} color={this.props.colorMap.get(well.sample)}/>)
