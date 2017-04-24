@@ -32,8 +32,6 @@ function ifRandom(layout){
 export const calculateLayout = createSelector(
 	[dataList, layout, getNumRows, getNumCols, (state) => {return state.plate.layout==='random' ? Math.random() : 1}], //final function forces reload when layout is random
 	(dataList, layout, rows, cols) => {
-		console.log('>>EEE');
-		console.log(layout==='random');
 		switch (layout) {
 			case 'listorder':
 				return placeSamplesInListOrder(dataList, rows, cols);
