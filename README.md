@@ -18,7 +18,8 @@ Proposed features:
 * Better labelling of wells
 * Ability to overlay wells with attributes parsed from sample list
 * Layouts for grouping like wells and ones for keeping like wells apart (based on attributes such as time point and sample type)
-* Export and synchronization with Google Sheets 
+* Export and synchronization with Google Sheets
+* Additional plate sizes (eg 384 wells)
 
 ![Screenshot](/example.png "Screenshot")
 
