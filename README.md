@@ -22,4 +22,6 @@ Proposed features:
 
 ![Screenshot](/example.png "Screenshot")
 
+Colors are from http://www.paletton.com/, customized for visualizations. 
+
 <a name="myfootnote1">1</a>: A research tool commonly used in molecular biology consisting of a rectangular matrix with 96 wells, each of which can hold a sample or mixture. 
