@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
 import { getSamples } from '../selectors/samples';
-import { range } from 'underscore';
 
 const sizes = {
 	'96wells': [8, 12],
@@ -39,20 +38,19 @@ export const calculateLayout = createSelector(
 	}
 );
 
+/*
+* Assign experiment to well, rotating between samples
+*/
 function roundRobinLayout (datalist, samples, numRows, numCols) {
-	console.log("ROUND ROBIN");
-
 	let plateGrid = [];
 	let sampleList = Array.from(samples);
 	let numSamples = samples.size;
 	let dataBySample = new Map();
-	console.log(sampleList);
-
 	for (let sample of Array.from(samples)){
 		let data = datalist.filter((x) => x["sample"]===sample);
 		dataBySample.set(sample, data);
 	}
-	let row = 0, col = 0, cnt=0, sampleIdx=0;
+	let row = 0, col = 0, sampleIdx=0;
 	datalist.forEach(function(sample, i) {
 		let nextWell = undefined
 		while (!nextWell) {
@@ -76,6 +74,9 @@ function roundRobinLayout (datalist, samples, numRows, numCols) {
 	return plateGrid;
 }
 
+/*
+* Places experiments at a well randomly chosen from unoccupied wells
+*/
 function placeSamplesInRandomOrder(datalist, numRows, numCols) {
 
 	let plateGrid = [];
@@ -103,7 +104,6 @@ function placeSamplesInRandomOrder(datalist, numRows, numCols) {
 	let occupied = [];
 	datalist.forEach(function (datarow) {
 		let coord = getRandomCoord();
-
 		do {
 			coord = getRandomCoord();
 		} while (checkMembership(occupied, coord) === true);
@@ -118,11 +118,12 @@ function placeSamplesInRandomOrder(datalist, numRows, numCols) {
 	return plateGrid;
 };
 
+/*
+*Place experiments to plate in order they appear in the data list-left to right, top to bottom.
+*/
 function placeSamplesInListOrder(datalist, numRows, numCols) {
 	let plateGrid = [];
 	let row = 0, col = 0;
-	console.log("-----");
-	let count = 0;
 	datalist.forEach(function (datarow) {
 		if (col === numCols) {
 			row++;
@@ -132,7 +133,6 @@ function placeSamplesInListOrder(datalist, numRows, numCols) {
 			plateGrid[row] = [];
 		}
 		plateGrid[row][col] = datarow;
-		count++;
 		col++;
 	});
 
