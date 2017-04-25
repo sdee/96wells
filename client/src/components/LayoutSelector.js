@@ -12,6 +12,7 @@ function LayoutSelector ({ handleSubmit }) {
 					<option></option>
 					<option value="listorder">List Order</option>
 					<option value="random">Random</option>
+					<option value="roundrobin">Round Robin</option>
 				</Field>
 				</div>
 			</div>

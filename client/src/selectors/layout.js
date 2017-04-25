@@ -1,4 +1,6 @@
 import { createSelector } from 'reselect';
+import { getSamples } from '../selectors/samples';
+import { range } from 'underscore';
 
 const sizes = {
 	'96wells': [8, 12],
@@ -8,7 +10,7 @@ const sizes = {
 
 const dataList = (state) => state.app.dataList;
 const plateSize = (state) => state.plate.plateSize;
-const layout =  (state) => state.plate.layout;
+const layout = (state) => state.plate.layout;
 
 export const getNumRows = createSelector(
 	[plateSize],
@@ -17,22 +19,62 @@ export const getNumRows = createSelector(
 
 export const getNumCols = createSelector(
 	[plateSize],
-	(plateSize) =>  sizes[plateSize][1]
+	(plateSize) => sizes[plateSize][1]
 );
 
 export const calculateLayout = createSelector(
-	[dataList, layout, getNumRows, getNumCols, (state) => {return state.plate.layout==='random' ? Math.random() : 1}], //final function forces reload when layout is random
-	(dataList, layout, rows, cols) => {
+	[dataList, layout, getNumRows, getNumCols, getSamples,
+	(state) => {return state.plate.layout==='random' ? Math.random() : 1}], //final function forces reload when layout is random
+	(dataList, layout, rows, cols, samples) => {
 		switch (layout) {
 			case 'listorder':
 				return placeSamplesInListOrder(dataList, rows, cols);
 			case 'random':
 				return placeSamplesInRandomOrder(dataList, rows, cols);
+			case 'roundrobin':
+				return roundRobinLayout (dataList, samples, rows, cols);
 			default:
 				return placeSamplesInListOrder(dataList, rows, cols);
 		}
 	}
 );
+
+function roundRobinLayout (datalist, samples, numRows, numCols) {
+	console.log("ROUND ROBIN");
+
+	let plateGrid = [];
+	let sampleList = Array.from(samples);
+	let numSamples = samples.size;
+	let dataBySample = new Map();
+	console.log(sampleList);
+
+	for (let sample of Array.from(samples)){
+		let data = datalist.filter((x) => x["sample"]===sample);
+		dataBySample.set(sample, data);
+	}
+	let row = 0, col = 0, cnt=0, sampleIdx=0;
+	datalist.forEach(function(sample, i) {
+		let nextWell = undefined
+		while (!nextWell) {
+			let currSample = sampleList[sampleIdx % numSamples];
+			nextWell = dataBySample.get(currSample).pop();
+			sampleIdx++;
+		}
+		if (nextWell) {
+			//needs refactoring/repetive code
+			if (col === numCols) {
+				row++;
+				col = 0;
+			}
+			if (plateGrid[row] === undefined) {
+				plateGrid[row] = [];
+			}
+			plateGrid[row][col] = nextWell;
+			col++;
+		}
+	});
+	return plateGrid;
+}
 
 function placeSamplesInRandomOrder(datalist, numRows, numCols) {
 
@@ -72,7 +114,6 @@ function placeSamplesInRandomOrder(datalist, numRows, numCols) {
 		}
 		occupied.push(coord);
 		plateGrid[row][col] = datarow;
-
 	});
 	return plateGrid;
 };
@@ -81,9 +122,8 @@ function placeSamplesInListOrder(datalist, numRows, numCols) {
 	let plateGrid = [];
 	let row = 0, col = 0;
 	console.log("-----");
-	let count =0;
+	let count = 0;
 	datalist.forEach(function (datarow) {
-
 		if (col === numCols) {
 			row++;
 			col = 0;

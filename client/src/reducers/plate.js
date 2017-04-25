@@ -1,6 +1,6 @@
 const testList = require('../../../data/test_list.json'); //move up higher
 
-const layouts = ['listorder', 'random'];
+const layouts = ['listorder', 'random', 'roundrobin'];
 
 import { CHANGE_LAYOUT, SHOW_LAYER } from '../actions';
 

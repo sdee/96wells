@@ -11,7 +11,6 @@ const mapStateToProps = (state, ownProps) => ({
 	colorMap: getColorMap(state),
 	attributes: getAttributes(state),
 	grid: calculateLayout(state)
-
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -4,9 +4,7 @@ import Well from './Well';
 class PlateLayout extends Component {
 
 	makeRow(rowData, j) {
-		console.log("row");
 		return (
-
 			rowData.map((well, i) => <Well i={i} j={j} wellData={well} color={this.props.colorMap.get(well.sample)}/>)
 		);
 	}
