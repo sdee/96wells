@@ -31,7 +31,7 @@ export const calculateLayout = createSelector(
 			case 'random':
 				return placeSamplesInRandomOrder(dataList, rows, cols);
 			case 'roundrobin':
-				return roundRobinLayout (dataList, samples, rows, cols);
+				return roundRobinLayout(dataList, samples, rows, cols);
 			default:
 				return placeSamplesInListOrder(dataList, rows, cols);
 		}

@@ -24,7 +24,6 @@ export const getColorMap = createSelector(
 	function (samples) {
 		const colors = ["#21f0b6", "#0a4f4e", "#9acfd8", "#25919d", "#a7d64e", "#5c922f", "#f1bb99", "#a55153", "#e71761", "#d64405"];
 		const numColors = colors.length;
-		console.log(numColors);
 		let sampleToColorMap = new Map();
 		Array.from(samples).forEach (function(sample, i) {
 			let colorIndex = i % numColors;
