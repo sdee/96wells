@@ -2,6 +2,12 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+	"babel": {
+	 "presets": [
+		 "es2015",
+		 "stage-0"
+	 ]
+ },
   "dependencies": {
 		"babel-cli": "6.14.0",
 	 "babel-plugin-transform-runtime": "^6.22.0",
@@ -28,5 +34,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "engines": {
+    "node": "6.9.x"
   }
+
 }
