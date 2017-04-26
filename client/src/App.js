@@ -12,6 +12,7 @@ class App extends Component {
 		dispatch(loadData());
 	}
 
+
 	render() {
 		return (
 			<div>
