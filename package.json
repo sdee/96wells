@@ -36,7 +36,6 @@
   },
   "scripts": {
 		"start": "npm run client",
-    "client": "babel-node start-client.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
