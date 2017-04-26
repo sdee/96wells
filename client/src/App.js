@@ -9,9 +9,8 @@ class App extends Component {
 
 	componentDidMount() {
 		const { dispatch } = this.props;
-		dispatch(loadData());
+		dispatch (loadData());
 	}
-
 
 	render() {
 		return (
