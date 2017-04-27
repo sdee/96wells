@@ -22,6 +22,8 @@
     "react": "^15.5.3",
 		"debug": "~2.2.0",
 		"ejs": "~2.5.2",
+		"cookie-parser": "~1.4.3",
+		"body-parser": "~1.15.2",
 		"express": "~4.14.0",
     "react-dom": "^15.5.3",
     "redux-devtools-extension": "^2.13.0",
