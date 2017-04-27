@@ -1,1 +1,1 @@
-web: babel-node ./client/src/index.js
+web: node ./bin/www
