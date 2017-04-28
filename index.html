@@ -21,22 +21,33 @@ var height = 800,
 var svg = d3.select('body').append('svg')
     .attr('height', height)
     .attr('width', width)
-  .append('g')
-    .attr('transform', 'translate(30, 30)');
+  .append('g');
 
 var circleRow = svg.selectAll('.row')
     .data(data)
   .enter().append('g')
     .attr('transform', function(d, i) {
-        return 'translate(0,' + i * 30 + ')';
+        return 'translate(0,' + i * 55 + ')';
     });
 
 circleRow.selectAll('.circle')
     .data(function(d, i) { return data[i]; })
     .enter().append('circle')
     .style("fill", "steelblue")
-    .attr('r', function(d) { return 10; })
-    .attr('cx', function(d, i) { return i * 25; })
+    .attr('r', function(d) { return 25; })
+    .attr('cx', function(d, i) { return i * 55; })
     .attr('cy', 0);
+
+		var text = circleRow.selectAll("text").data(function(d, i) { return data[i]; }).enter().append("text");
+
+		//Add SVG Text Element Attributes
+var textLabels = text
+                .attr("x", function(d,i) { return i*55; })
+                 .attr("y", function(d) { return 0; })
+                 .text( function (d, i) { return "text_"+i})
+								 .attr("text-anchor", "middle")
+                 .attr("font-family", "sans-serif")
+                 .attr("font-size", "13px")
+                 .attr("fill", "red");
 
 </script>
