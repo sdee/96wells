@@ -5,7 +5,7 @@ class PlateLayout extends Component {
 
 	makeRow(rowData, j) {
 		return (
-			rowData.map((well, i) => <Well i={i} j={j} wellData={well} color={this.props.colorMap.get(well.sample)}/>)
+			rowData.map((well, i) => <Well i={i} j={j} wellData={well} color={this.props.colorMap.get(well.sample)} sample={well.sample}/>)
 		);
 	}
 
@@ -23,7 +23,7 @@ class PlateLayout extends Component {
 	render() {
 		return (
 			<div>
-			<svg width="800" height="500">
+			<svg width="1000" height="800">
 				<g className="plate">
 					{this.props.grid.map((e, index) => this.makeRow(e, index))}
 				</g>
