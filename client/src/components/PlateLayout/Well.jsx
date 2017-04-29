@@ -13,7 +13,7 @@ class Well extends Component {
 			</circle>
 			<text x={this.props.i*75}
 				y={this.props.j*75}
-				fontFamily="sans-serif"
+				fontFamily="helvetica"
 				textAnchor="middle"
 				fontSize="13px"
 				fontWeight="bold"

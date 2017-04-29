@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => ({
 	samples: getSamples(state),
 	colorMap: getColorMap(state),
 	attributes: getAttributes(state),
+	visibleAttributes: state.plate.visibleAttributes,
 	grid: calculateLayout(state)
 });
 

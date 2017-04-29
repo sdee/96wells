@@ -15,7 +15,7 @@ export const getAttributes = createSelector(
 	(dataRows) => {
 		let attributes = new Set(dataRows.reduce((prev, curr) => [...prev, ...Object.getOwnPropertyNames(curr)],[] ));
 		attributes.delete('sample');
-		return attributes;
+		return Array.from(attributes);
 	}
 )
 

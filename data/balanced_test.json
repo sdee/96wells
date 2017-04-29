@@ -1,6 +1,7 @@
 [
     {
-        "sample": "sample_2"
+        "sample": "sample_2",
+				"patient": "Patient 0"
     },
     {
         "sample": "sample_3"

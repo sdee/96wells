@@ -1,14 +1,27 @@
 import { connect } from 'react-redux';
-import { changeLayout } from '../actions';
+import { changeLayout, showLayer } from '../actions';
 import LayoutSelector from '../components/LayoutSelector'
+import { getAttributes } from '../selectors/samples';
+
+function handleForm(values, dispatch){
+	if ("layout" in values) {
+		console.log('dispatch');
+		dispatch(changeLayout(values['layout']));
+	}
+
+	if ("attributes" in values) {
+		dispatch(showLayer(values['attributes']));
+	}
+
+}
 
 const mapStateToProps = (state, ownProps) => ({
-
+	attributes: getAttributes(state)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSubmit: (values) => {
-		dispatch(changeLayout(values['layout']));
+		handleForm(values, dispatch);
 	}
 });
 
