@@ -5,7 +5,6 @@ import { getAttributes } from '../selectors/samples';
 
 function handleForm(values, dispatch){
 	if ("layout" in values) {
-		console.log('dispatch');
 		dispatch(changeLayout(values['layout']));
 	}
 
@@ -14,14 +13,13 @@ function handleForm(values, dispatch){
 	}
 
 	if ("showSample" in values) {
-		console.log("show samples");
-		console.log(values);
 		dispatch(showSample(values['showSample']));
 	}
 }
 
 const mapStateToProps = (state, ownProps) => ({
-	attributes: getAttributes(state)
+	attributes: getAttributes(state),
+	showSample: state.plate.showSample
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

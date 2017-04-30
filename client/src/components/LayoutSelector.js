@@ -1,8 +1,19 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+const onChangeSubmit = (onChange, handleSubmit) => e => {
+   onChange(e);
+   handleSubmit( );
+};
+
 //TODO: rename to avoid confusion between selectors and selection menu
-function LayoutSelector ({ attributes, handleSubmit }) {
+function LayoutSelector ({ attributes, handleSubmit, showSample }) {
+	console.log("showSample");
+	console.log(showSample);
+	const onChangeSubmit = (onChange, handleSubmit) => e => {
+	   onChange(e);
+	   handleSubmit( );
+	};
 	return (
 		<form onSubmit={handleSubmit}>
 			<div>
@@ -26,7 +37,7 @@ function LayoutSelector ({ attributes, handleSubmit }) {
       </div>
 			<div>
 				<label>Show Samples</label>
-				<Field name="showSample" id="showSample" component="input" type="checkbox"/>
+				<Field name="showSample" id="showSample" component="input" checked={showSample} type="checkbox" onChange={onChangeSubmit(onChange, handleSubmit)}/>
 			</div>
 			<div>
 				<button type="submit">Submit</button>
