@@ -16,16 +16,18 @@ function LayoutSelector ({ attributes, handleSubmit }) {
 					</Field>
 				</div>
 			</div>
-			<br/>
-			<div id ="attributes">
+			<div id="attributes">
 			<label>Overlay Attributes</label>
 			<br/>
-			<label><Field name="attributes" component="input" type="radio" value="None" checked/>None</label>
+			<label><Field name="attributes" component="input" type="radio" value="None" />None</label>
 				{attributes.map(attribute =>
 					<label><Field name="attributes" component="input" type="radio" value={attribute}/>{attribute}</label>
 				)}
       </div>
-			<br/>
+			<div>
+				<label>Show Samples</label>
+				<Field name="showSample" id="showSample" component="input" type="checkbox"/>
+			</div>
 			<div>
 				<button type="submit">Submit</button>
 			</div>

@@ -11,16 +11,17 @@ const dataList = (state) => state.app.dataList;
 const plateSize = (state) => state.plate.plateSize;
 const layout = (state) => state.plate.layout;
 
-export const getNumRows = createSelector(
+export const getNumRows=createSelector(
 	[plateSize],
 	(plateSize) => sizes[plateSize][0]
 );
 
-export const getNumCols = createSelector(
+export const getNumCols=createSelector(
 	[plateSize],
 	(plateSize) => sizes[plateSize][1]
 );
 
+//how to use variables inside function that don't trigger selector
 export const calculateLayout = createSelector(
 	[dataList, layout, getNumRows, getNumCols, getSamples,
 	(state) => {return state.plate.layout==='random' ? Math.random() : 1}], //final function forces reload when layout is random
@@ -80,11 +81,10 @@ function roundRobinLayout (datalist, samples, numRows, numCols) {
 function placeSamplesInRandomOrder(datalist, numRows, numCols) {
 
 	let plateGrid = [];
-
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-
+	
 	function checkMembership(arr, coord) {
 		let member = false;
 		arr.forEach(function(arrCoord) {
@@ -135,6 +135,5 @@ function placeSamplesInListOrder(datalist, numRows, numCols) {
 		plateGrid[row][col] = datarow;
 		col++;
 	});
-
 	return plateGrid;
 };

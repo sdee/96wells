@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { changeLayout, showLayer } from '../actions';
+import { changeLayout, showLayer, showSample } from '../actions';
 import LayoutSelector from '../components/LayoutSelector'
 import { getAttributes } from '../selectors/samples';
 
@@ -13,6 +13,11 @@ function handleForm(values, dispatch){
 		dispatch(showLayer(values['attributes']));
 	}
 
+	if ("showSample" in values) {
+		console.log("show samples");
+		console.log(values);
+		dispatch(showSample(values['showSample']));
+	}
 }
 
 const mapStateToProps = (state, ownProps) => ({

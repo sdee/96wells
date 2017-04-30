@@ -4,6 +4,7 @@
 export const CHANGE_LAYOUT = 'CHANGE_LAYOUT';
 export const LOAD_DATA = 'LOAD_DATA';
 export const SHOW_LAYER = 'SHOW_LAYER';
+export const SHOW_SAMPLE = 'SHOW_SAMPLE';
 
 /*
 *Action creators
@@ -19,4 +20,8 @@ export function showLayer(layer) {
 
 export function loadData(dataSet = 'default') {
 	return {type: LOAD_DATA, dataSet};
+}
+
+export function showSample(showSample=true) {
+	return {type: SHOW_SAMPLE, showSample};
 }

@@ -17,7 +17,7 @@ class Well extends Component {
 				textAnchor="middle"
 				fontSize="13px"
 				fontWeight="bold"
-				>{this.props.sample}</text>
+				>{this.props.label}</text>
 		</g>
 		);
 	}

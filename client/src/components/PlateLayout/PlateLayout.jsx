@@ -11,27 +11,28 @@ class PlateLayout extends Component {
 			j={j}
 			wellData={well}
 			color={this.props.colorMap.get(well.sample)}
+			label={this.props.wellLabels.get(well.idx)}
 			sample={well.sample}/>)
 		);
 	}
 
 	componentWillMount() {
 		console.log(this.props.samples);
+		console.log(this.props.dataList);
 		console.log(this.props.colorMap);
-		console.log("ATTR");
-		console.log(this.props.attributes);
+		console.log(this.well);
 		console.log(this.props.grid);
 	}
 
 	componentWillUpdate() {
-		console.log("ATTR");
 		console.log(this.props.attributes);
+		console.log(this.props.visibleAttributes);
 	}
 
 	render() {
 		return (
 			<div>
-			<svg width="1000" height="700">
+			<svg width="1000" height="620">
 				<g className="plate">
 					{this.props.grid.map((e, index) => this.makeRow(e, index))}
 				</g>

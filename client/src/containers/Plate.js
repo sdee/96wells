@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import PlateLayout from '../components/PlateLayout/PlateLayout';
 import { getSamples, getAttributes, getColorMap } from '../selectors/samples';
+import { getWellLabels } from '../selectors/labels'
 import { calculateLayout } from '../selectors/layout';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -11,7 +12,8 @@ const mapStateToProps = (state, ownProps) => ({
 	colorMap: getColorMap(state),
 	attributes: getAttributes(state),
 	visibleAttributes: state.plate.visibleAttributes,
-	grid: calculateLayout(state)
+	grid: calculateLayout(state),
+	wellLabels: getWellLabels(state)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

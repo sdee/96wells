@@ -1,15 +1,15 @@
-import { CHANGE_LAYOUT, SHOW_LAYER } from '../actions';
+import { CHANGE_LAYOUT, SHOW_LAYER, SHOW_SAMPLE } from '../actions';
 
 const initialState = {
 	name: 'name',
 	plateSize: '96wells', //number of wells
 	datasource: 'test1', //source of sample list
 	layout: 'listorder', //algorithm for placing samples in wells,
-	visibleAttributes: []
+	visibleAttributes: '',
+	showSample: true
 };
 
 const plate = (state = initialState, action) => {
-	console.log(action);
 	switch (action.type) {
 		case CHANGE_LAYOUT: {
 			return Object.assign({}, state, {
@@ -19,9 +19,16 @@ const plate = (state = initialState, action) => {
 
 		case SHOW_LAYER: {
 			return Object.assign({}, state, {
-				visibleAttributes: action.attributes
+				visibleAttributes: action.layer
 			});
 		}
+
+		case SHOW_SAMPLE: {
+			return Object.assign({}, state, {
+				showSample: action.showSample
+			});
+		}
+
 		default: {
 			return state;
 		}
