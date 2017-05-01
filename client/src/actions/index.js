@@ -11,17 +11,17 @@ export const SHOW_SAMPLE = 'SHOW_SAMPLE';
 */
 
 export function changeLayout(layout) {
-	return {type: CHANGE_LAYOUT, layout};
+	return { type: CHANGE_LAYOUT, layout };
 }
 
 export function showLayer(layer, value) {
-	return {type: SHOW_LAYER, layer, value};
+	return { type: SHOW_LAYER, layer, value };
 }
 
 export function loadData(dataSet = 'default') {
-	return {type: LOAD_DATA, dataSet};
+	return { type: LOAD_DATA, dataSet };
 }
 
-export function showSample(showSample=true) {
-	return {type: SHOW_SAMPLE, showSample};
+export function showSample(showSample = true) {
+	return { type: SHOW_SAMPLE, showSample };
 }

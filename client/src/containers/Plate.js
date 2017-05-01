@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import PlateLayout from '../components/PlateLayout/PlateLayout';
 import { getSamples, getAttributes, getColorMap } from '../selectors/samples';
-import { getWellLabels } from '../selectors/labels'
+import { getWellLabels } from '../selectors/labels';
 import { calculateLayout } from '../selectors/layout';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -25,4 +25,4 @@ const Plate = connect(
 	mapDispatchToProps
 )(PlateLayout);
 
-export default Plate ;
+export default Plate;

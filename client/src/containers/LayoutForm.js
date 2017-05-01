@@ -1,37 +1,31 @@
 import { connect } from 'react-redux';
 import { changeLayout, showLayer, showSample } from '../actions';
-import LayoutSelector from '../components/LayoutSelector'
+import LayoutSelector from '../components/LayoutSelector';
 import { getAttributes } from '../selectors/samples';
 
-function handleForm(values, dispatch){
-	if ("layout" in values) {
+function handleForm(values, dispatch) {
+	if ('layout' in values) {
 		dispatch(changeLayout(values['layout']));
 	}
 
-	if ("attributes" in values) {
+	if ('attributes' in values) {
 		dispatch(showLayer(values['attributes']));
 	}
 
-	if ("showSample" in values) {
+	if ('showSample' in values) {
 		dispatch(showSample(values['showSample']));
 	}
 }
 
 function handleLayoutChange(e, dispatch) {
-	console.log("handle layout change");
 	dispatch(changeLayout(e.target.value));
 }
 
 function handleSampleVisChange(e, dispatch) {
-	console.log("handle vis change");
-	console.log(e.target.checked);
 	dispatch(showSample(e.target.checked));
 }
 
 function handleAttrVisChange(e, dispatch) {
-	console.log("handle attr vis change");
-	console.log(e.target.checked);
-	console.log(e.target.value);
 	dispatch(showLayer(e.target.value, e.target.checked));
 }
 
@@ -62,4 +56,4 @@ const LayoutForm = connect(
 	mapDispatchToProps
 )(LayoutSelector);
 
-export default LayoutForm ;
+export default LayoutForm;
