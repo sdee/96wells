@@ -5,7 +5,6 @@ function LayoutSelector ({ attributes,  showSample, visibleAttribute, layout, ha
 		<div>
 			<form>
 				<select value={layout} onChange={handleLayoutChange}>
-					<option></option>
 					<option value="listorder">List Order</option>
 					<option value="random">Random</option>
 					<option value="roundrobin">Round Robin</option>
