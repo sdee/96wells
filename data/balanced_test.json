@@ -4,7 +4,8 @@
 				"patient": "Patient 0"
     },
     {
-        "sample": "sample_3"
+        "sample": "sample_3",
+				"x": "0.0"
     },
     {
         "sample": "sample_3"

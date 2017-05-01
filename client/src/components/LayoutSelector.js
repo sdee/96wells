@@ -1,51 +1,34 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-
-const onChangeSubmit = (onChange, handleSubmit) => e => {
-   onChange(e);
-   handleSubmit( );
-};
-
 //TODO: rename to avoid confusion between selectors and selection menu
-function LayoutSelector ({ attributes, handleSubmit, showSample }) {
-	console.log("showSample");
-	console.log(showSample);
-	const onChangeSubmit = (onChange, handleSubmit) => e => {
-	   onChange(e);
-	   handleSubmit( );
-	};
+function LayoutSelector ({ attributes,  showSample, visibleAttribute, layout, handleSubmit, handleLayoutChange, handleSampleVisChange, handleAttrVisChange}) {
 	return (
-		<form onSubmit={handleSubmit}>
-			<div>
-				<label>Layout</label>
-				<div>
-					<Field name="layout" component="select">
-						<option></option>
-						<option value="listorder">List Order</option>
-						<option value="random">Random</option>
-						<option value="roundrobin">Round Robin</option>
-					</Field>
-				</div>
-			</div>
-			<div id="attributes">
-			<label>Overlay Attributes</label>
+		<div>
+			<form>
+				<select value={layout} onChange={handleLayoutChange}>
+					<option></option>
+					<option value="listorder">List Order</option>
+					<option value="random">Random</option>
+					<option value="roundrobin">Round Robin</option>
+				</select>
+			</form>
 			<br/>
-			<label><Field name="attributes" component="input" type="radio" value="None" />None</label>
-				{attributes.map(attribute =>
-					<label><Field name="attributes" component="input" type="radio" value={attribute}/>{attribute}</label>
+			<form>
+				<input type="checkbox" name="visible" value="showSample"
+					checked={showSample}
+					onChange={handleSampleVisChange}/>Show Sample Name<br/>
+			</form>
+			<br/>
+			Choose an attribute to overlay:
+			<br/>
+			<form>
+				{attributes.map(attribute =><div>
+					<input type="checkbox" name={attribute} value={attribute}
+						checked={visibleAttribute.includes(attribute)}
+						onChange={handleAttrVisChange}/>Show {attribute}<br/></div>
 				)}
-      </div>
-			<div>
-				<label>Show Samples</label>
-				<Field name="showSample" id="showSample" component="input" checked={showSample} type="checkbox" onChange={onChangeSubmit(onChange, handleSubmit)}/>
-			</div>
-			<div>
-				<button type="submit">Submit</button>
-			</div>
-		</form>
+			</form>
+		</div>
 	);
 }
 
-export default reduxForm({
-	form: 'simple'  // a unique identifier for this form
-})(LayoutSelector)
+export default LayoutSelector;

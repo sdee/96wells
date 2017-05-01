@@ -14,8 +14,8 @@ export function changeLayout(layout) {
 	return {type: CHANGE_LAYOUT, layout};
 }
 
-export function showLayer(layer) {
-	return {type: SHOW_LAYER, layer};
+export function showLayer(layer, value) {
+	return {type: SHOW_LAYER, layer, value};
 }
 
 export function loadData(dataSet = 'default') {

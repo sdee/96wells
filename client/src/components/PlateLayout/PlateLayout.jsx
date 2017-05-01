@@ -11,7 +11,7 @@ class PlateLayout extends Component {
 			j={j}
 			wellData={well}
 			color={this.props.colorMap.get(well.sample)}
-			label={this.props.wellLabels.get(well.idx)}
+			labels={this.props.wellLabels.get(well.idx)}
 			sample={well.sample}/>)
 		);
 	}
@@ -25,8 +25,7 @@ class PlateLayout extends Component {
 	}
 
 	componentWillUpdate() {
-		console.log(this.props.attributes);
-		console.log(this.props.visibleAttributes);
+		console.log(this.props.label);
 	}
 
 	render() {

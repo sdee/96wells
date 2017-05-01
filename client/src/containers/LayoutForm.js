@@ -17,14 +17,43 @@ function handleForm(values, dispatch){
 	}
 }
 
+function handleLayoutChange(e, dispatch) {
+	console.log("handle layout change");
+	dispatch(changeLayout(e.target.value));
+}
+
+function handleSampleVisChange(e, dispatch) {
+	console.log("handle vis change");
+	console.log(e.target.checked);
+	dispatch(showSample(e.target.checked));
+}
+
+function handleAttrVisChange(e, dispatch) {
+	console.log("handle attr vis change");
+	console.log(e.target.checked);
+	console.log(e.target.value);
+	dispatch(showLayer(e.target.value, e.target.checked));
+}
+
 const mapStateToProps = (state, ownProps) => ({
 	attributes: getAttributes(state),
-	showSample: state.plate.showSample
+	showSample: state.plate.showSample,
+	layout: state.plate.layout,
+	visibleAttribute: state.plate.visibleAttribute
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSubmit: (values) => {
 		handleForm(values, dispatch);
+	},
+	handleLayoutChange: (values) => {
+		handleLayoutChange(values, dispatch);
+	},
+	handleSampleVisChange: (values) => {
+		handleSampleVisChange(values, dispatch);
+	},
+	handleAttrVisChange: (values) => {
+		handleAttrVisChange(values, dispatch);
 	}
 });
 

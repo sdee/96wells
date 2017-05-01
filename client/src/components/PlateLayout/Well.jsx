@@ -17,7 +17,9 @@ class Well extends Component {
 				textAnchor="middle"
 				fontSize="13px"
 				fontWeight="bold"
-				>{this.props.label}</text>
+				>
+				{this.props.labels.map((l,x)=><tspan x={this.props.i*75} dy={(0.2+(x*0.9)).toString()+"em"}>{l}</tspan>)}
+			</text>
 		</g>
 		);
 	}
