@@ -6,6 +6,7 @@ const balancedTest = require('../../../data/balanced_test.json');
 
 const initialState = {
 	datasource: 'test1', // source of sample list
+	googlesheet: '1Ewgyv4EayonkOHaa6Q8N_63jrjt7vQF-NFOCZRPQuU4',
 	dataList: testList.map(function (v, i) {
 		v.idx = i;
 		return v;
