@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import LayoutForm from './containers/LayoutForm';
+import DatasheetField from './containers/DatasheetField';
 import Plate from './containers/Plate';
 import { loadData } from './actions';
 
@@ -17,8 +18,8 @@ class App extends Component {
 			<div>
 				<Plate />
 				<LayoutForm />
+				<DatasheetField/>
 			</div>
-
 		);
 	}
 }

@@ -5,6 +5,7 @@ export const CHANGE_LAYOUT = 'CHANGE_LAYOUT';
 export const LOAD_DATA = 'LOAD_DATA';
 export const SHOW_LAYER = 'SHOW_LAYER';
 export const SHOW_SAMPLE = 'SHOW_SAMPLE';
+export const SET_GOOGLE_SHEET = '';
 
 /*
 *Action creators
@@ -24,4 +25,8 @@ export function loadData(dataSet = 'default') {
 
 export function showSample(showSample = true) {
 	return { type: SHOW_SAMPLE, showSample };
+}
+
+export function setGoogleSheet(key) {
+	return { type: SET_GOOGLE_SHEET, key };
 }
