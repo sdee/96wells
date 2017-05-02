@@ -11,20 +11,24 @@ const dataList = state => state.app.dataList;
 const plateSize = state => state.plate.plateSize;
 const layout = state => state.plate.layout;
 
-export const getNumRows=createSelector(
+export const getNumRows = createSelector(
 	[plateSize],
 	plateSize => sizes[plateSize][0]
 );
 
-export const getNumCols=createSelector(
+export const getNumCols = createSelector(
 	[plateSize],
 	plateSize => sizes[plateSize][1]
 );
 
 //how to use variables inside function that don't trigger selector
 export const calculateLayout = createSelector(
-	[dataList, layout, getNumRows, getNumCols, getSamples,
-		state => { return state.plate.layout === 'random' ? Math.random() : 1 }], //final function forces reload when layout is random
+	[dataList,
+		layout,
+		getNumRows,
+		getNumCols,
+		getSamples,
+		state =>  state.plate.layout === 'random' ? Math.random() : 1 ], //final function forces reload when layout is random
 		(dataList, layout, rows, cols, samples) => {
 		switch (layout) {
 		case 'listorder':
