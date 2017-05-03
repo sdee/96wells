@@ -1,7 +1,4 @@
 import { LOAD_DATA, LOAD_GOOGLE_SUCCESS } from '../actions';
-import loadGoogleSuccess from '../actions';
-
-var Miso = require("miso.dataset");
 
 const testList = require('../../../data/test_list.json');
 const fullPlate = require('../../../data/full_plate.json');

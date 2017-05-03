@@ -8,6 +8,7 @@ function handleSubmit(values, dispatch) {
 	if (values.length < 1) { //for testing only
 		gkey = '1Ewgyv4EayonkOHaa6Q8N_63jrjt7vQF-NFOCZRPQuU4';
 	}
+
 	const ds = new Miso.Dataset({
 		importer : Miso.Dataset.Importers.GoogleSpreadsheet,
 		parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
@@ -31,10 +32,8 @@ function handleSubmit(values, dispatch) {
 						if (attribute!=="Sample") {
 							d[attribute] = row[attribute];
 						};
-
 					});
 					googleData.push(d);
-
 				});
 				if (googleData.length > 0) {
 					resolve();
