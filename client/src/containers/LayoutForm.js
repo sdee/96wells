@@ -3,20 +3,6 @@ import { changeLayout, showLayer, showSample } from '../actions';
 import LayoutSelector from '../components/LayoutSelector';
 import { getAttributes } from '../selectors/samples';
 
-function handleForm(values, dispatch) {
-	if ('layout' in values) {
-		dispatch(changeLayout(values['layout']));
-	}
-
-	if ('attributes' in values) {
-		dispatch(showLayer(values['attributes']));
-	}
-
-	if ('showSample' in values) {
-		dispatch(showSample(values['showSample']));
-	}
-}
-
 function handleLayoutChange(e, dispatch) {
 	dispatch(changeLayout(e.target.value));
 }
@@ -37,9 +23,6 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	onSubmit: (values) => {
-		handleForm(values, dispatch);
-	},
 	handleLayoutChange: (values) => {
 		handleLayoutChange(values, dispatch);
 	},
