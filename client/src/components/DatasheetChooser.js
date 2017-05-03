@@ -4,7 +4,8 @@ class DatasheetChooser extends Component {
 	render(){
 		return (
 			<div>
-			Current: {this.props.googlesheet}
+				<br/>
+			Current key: {this.props.googlesheet}
 			<form onSubmit = {e => {e.preventDefault(); this.props.onSubmit(this.textInput.value);}} >
 			<input
 				type="text"

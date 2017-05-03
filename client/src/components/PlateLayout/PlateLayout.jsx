@@ -26,6 +26,7 @@ class PlateLayout extends Component {
 	}
 
 	componentWillUpdate() {
+
 	}
 
 	render() {

@@ -1,4 +1,5 @@
-import { LOAD_DATA, SET_GOOGLE_SHEET } from '../actions';
+import { LOAD_DATA, LOAD_GOOGLE_SUCCESS } from '../actions';
+import loadGoogleSuccess from '../actions';
 
 var Miso = require("miso.dataset");
 
@@ -9,54 +10,31 @@ const balancedTest = require('../../../data/balanced_test.json');
 const initialState = {
 	datasource: 'test1', // source of sample list
 	googlesheet: '',
-	dataList: testList.map(function (v, i) {
-		v.idx = i;
-		return v;
-	})
-};
-
-function createDataset(googlesheet) {
-	var ds = new Miso.Dataset({
-  importer : Miso.Dataset.Importers.GoogleSpreadsheet,
-  parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-  key : googlesheet,
-  worksheet : "1"
-});
-
-ds.fetch({
-  success : function() {
-    console.log(ds.columnNames());
-  },
-  error : function() {
-    console.log("Connection error");
-  }
-});
+	dataList: []
 }
 
 const app = (state = initialState, action) => {
 	switch (action.type) {
-	case LOAD_DATA: {
-		return Object.assign({}, state, {
-			dataList: balancedTest.map(function (v,i) {
-				v.idx = i;
-				return v;
-			}) // adds id
-		});
-	}
+		case LOAD_DATA: {
+			return Object.assign({}, state, {
+				dataList: balancedTest.map(function (v, i) {
+					v.idx = i;
+					return v;
+				}) // adds id
 
-	case SET_GOOGLE_SHEET: {
-		console.log("SET googlesheet");
-		console.log(action.key);
-		createDataset(action.key);
-		return Object.assign({}, state, {
-			googlesheet: action.key
-		});
-	}
+			});
+		}
+		case LOAD_GOOGLE_SUCCESS: {
+			return Object.assign({}, state, {
+				googlesheet: action.key,
+				dataList: action.resp
+			});
+		}
 
-	default: {
-		return state;
+		default: {
+			return state;
+		}
 	}
-	}
-};
+	};
 
-export default app;
+	export default app;

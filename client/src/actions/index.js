@@ -5,7 +5,8 @@ export const CHANGE_LAYOUT = 'CHANGE_LAYOUT';
 export const LOAD_DATA = 'LOAD_DATA';
 export const SHOW_LAYER = 'SHOW_LAYER';
 export const SHOW_SAMPLE = 'SHOW_SAMPLE';
-export const SET_GOOGLE_SHEET = '';
+export const LOAD_GOOGLE_SUCCESS = 'LOAD_GOOGLE_SUCCESS';
+export const SET_GOOGLE_SHEET = 'LOAD_GOOGLE_SHEET';
 
 /*
 *Action creators
@@ -29,4 +30,8 @@ export function showSample(showSample = true) {
 
 export function setGoogleSheet(key) {
 	return { type: SET_GOOGLE_SHEET, key };
+}
+
+export function loadGoogleSuccess(resp, key) {
+	return { type: LOAD_GOOGLE_SUCCESS, resp, key };
 }

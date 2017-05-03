@@ -1,29 +1,68 @@
 import { connect } from 'react-redux';
 import DatasheetChooser from '../components/DatasheetChooser';
-import { setGoogleSheet } from '../actions';
+import { setGoogleSheet, loadGoogleSuccess } from '../actions';
+var Miso = require("miso.dataset");
 
 function handleSubmit(values, dispatch) {
-	if (values.length<1) { //for testing only
-		values = '1Ewgyv4EayonkOHaa6Q8N_63jrjt7vQF-NFOCZRPQuU4';
+	let gkey;
+	if (values.length < 1) { //for testing only
+		gkey = '1Ewgyv4EayonkOHaa6Q8N_63jrjt7vQF-NFOCZRPQuU4';
 	}
-	dispatch(setGoogleSheet(values));
-}
+	const ds = new Miso.Dataset({
+		importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+		parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
+		key : gkey,
+		worksheet : "1",
+		sync : true
+	});
 
-const mapStateToProps = (state, ownProps) => ({
-	googlesheet: state.app.googlesheet
-});
+	let googleData = [];
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-	onSubmit: (values) => {
-		handleSubmit(values, dispatch);
+	let dataPromise = new Promise((resolve, reject) => {
+		ds.fetch({
+			success : function () {
+				//check for sample col??
+				let cols = ds.columnNames();
+				ds.each(function(row, rowIndex) {
+					let d = {};
+					d.sample = row.Sample;
+					d.idx = row._id;
+					cols.forEach(function(attribute){
+						if (attribute!=="Sample") {
+							d[attribute] = row[attribute];
+						};
+
+					});
+					googleData.push(d);
+
+				});
+				if (googleData.length > 0) {
+					resolve();
+				}
+			},
+			error : function() {
+				console.log("Connection error");
+			}
+		})}, 250);
+
+		dataPromise.then((successMessage) => {
+			dispatch(loadGoogleSuccess(googleData, gkey));
+		});
 	}
-});
 
-console.log(DatasheetChooser);
+	const mapStateToProps = (state, ownProps) => ({
+		googlesheet: state.app.googlesheet
+	});
 
-const DatasheetField = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(DatasheetChooser);
+	const mapDispatchToProps = (dispatch, ownProps) => ({
+		onSubmit: (values) => {
+			handleSubmit(values, dispatch);
+		}
+	});
 
-export default DatasheetField;
+	const DatasheetField = connect(
+		mapStateToProps,
+		mapDispatchToProps
+	)(DatasheetChooser);
+
+	export default DatasheetField;
