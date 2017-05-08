@@ -36,7 +36,7 @@ function LayoutSelector({ attributes,
 			<br />
 			<form>
 				{attributes.map(attribute =>
-					<div>
+					<div key={'attr_' + attribute}>
 						<input
 							type="checkbox"
 							name={attribute}

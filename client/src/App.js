@@ -18,7 +18,7 @@ class App extends Component {
 			<div>
 				<Plate />
 				<LayoutForm />
-				<DatasheetField/>
+				<DatasheetField />
 			</div>
 		);
 	}

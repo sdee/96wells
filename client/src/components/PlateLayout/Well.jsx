@@ -31,7 +31,7 @@ class Well extends Component {
 					fontSize="10px"
 					fontWeight="bold"
 				>
-					{this.props.labels.map((l, x) => <tspan x={i * spacing} dy={(0.2 + (x * 0.9)).toString() + 'em'}>{l}</tspan>)}
+					{this.props.labels.map((l, x) => <tspan x={i * spacing} dy={(0.2 + (x * 0.9)).toString() + 'em'} key={'text'+i+'_'+j}>{l}</tspan>)}
 				</text>
 			</g>
 		);

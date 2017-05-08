@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import DatasheetChooser from '../components/DatasheetChooser';
-import { setGoogleSheet, loadGoogleSuccess } from '../actions';
+import { loadGoogleSuccess } from '../actions';
 var Miso = require("miso.dataset");
 
 function handleSubmit(values, dispatch) {

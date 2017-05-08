@@ -5,17 +5,17 @@ class DatasheetChooser extends Component {
 		return (
 			<div>
 				<br />
-				<b>To sync with Google docs, paste in key.< /b><br/>
-				<br/>
+				<b>To sync with Google docs, paste in key.< /b><br />
+				<br />
 				Current key: {this.props.googlesheet}
-				<form onSubmit = {e => {e.preventDefault(); this.props.onSubmit(this.textInput.value);}} >
+				<form onSubmit={e => {e.preventDefault(); this.props.onSubmit(this.textInput.value);}} >
 					<input
 						type="text"
 						name="googlesheet"
-						ref={(input) => { this.textInput = input; } }
-						placeholder = "1Ewgyv4EayonkOHaa6Q8N_63jrjt7vQF-NFOCZRPQuU4"
+						ref={(input) => { this.textInput = input; }}
+						placeholder="1Ewgyv4EayonkOHaa6Q8N_63jrjt7vQF-NFOCZRPQuU4"
 					/>
-			 		<input type="submit" value="Submit"/>
+					<input type="submit" value="Submit" />
 				</form>
 			</div>
 		);
