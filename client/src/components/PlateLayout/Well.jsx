@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 class Well extends Component {
 
@@ -7,28 +7,40 @@ class Well extends Component {
 	}
 
 	render() {
+		const i = this.props.i;
+		const j = this.props.j;
+		const color = this.props.color;
+		const spacing = 75;
+
 		return (
 			<g transform="translate(55,55)">
 				<circle
 					r="35"
-					cx={this.props.i * 75}
-					cy={this.props.j * 75}
-					fill={this.props.color}
+					cx={i * spacing}
+					cy={j * spacing}
+					fill={color}
 					fillOpacity="0.6"
 				/>
 				<text
-					x={this.props.i * 75}
-					y={this.props.j * 75}
+					x={i * spacing}
+					y={j * spacing}
 					fontFamily="helvetica"
 					textAnchor="middle"
 					fontSize="10px"
 					fontWeight="bold"
 				>
-					{this.props.labels.map((l, x) => <tspan x={this.props.i * 75} dy={(0.2 + (x * 0.9)).toString() + "em"}>{l}</tspan>)}
+					{this.props.labels.map((l, x) => <tspan x={i * spacing} dy={(0.2 + (x * 0.9)).toString() + "em"}>{l}</tspan>)}
 				</text>
 			</g>
 		);
 	}
 }
+
+Well.propTypes = {
+	i: PropTypes.number,
+	j: PropTypes.number,
+	labels: PropTypes.array,
+	color: PropTypes.string
+};
 
 export default Well;

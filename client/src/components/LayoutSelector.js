@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 // TODO: rename to avoid confusion between selectors and selection menu
-function LayoutSelector({ attributes, showSample, visibleAttribute, layout, handleSubmit, handleLayoutChange, handleSampleVisChange, handleAttrVisChange}) {
+function LayoutSelector({ attributes,
+	showSample,
+	visibleAttribute,
+	layout, handleSubmit,
+	handleLayoutChange,
+	handleSampleVisChange,
+	handleAttrVisChange }) {
 	return (
 		<div>
 			<form>
@@ -43,5 +49,16 @@ function LayoutSelector({ attributes, showSample, visibleAttribute, layout, hand
 		</div>
 	);
 }
+
+LayoutSelector.propTypes = {
+	attributes: PropTypes.array,
+	showSample: PropTypes.boolean,
+	visibleAttribute: PropTypes.array,
+	layout: PropTypes.string,
+	handleSubmit: PropTypes.function,
+	handleLayoutChange: PropTypes.function,
+	handleSampleVisChange: PropTypes.function,
+	handleAttrVisChange: PropTypes.function
+};
 
 export default LayoutSelector;

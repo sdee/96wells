@@ -1,7 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Well from './Well';
 
 class PlateLayout extends Component {
+
+	componentWillMount() {
+		// console.log(this.props.samples);
+		// console.log(this.props.dataList);
+		// console.log(this.props.colorMap);
+		// console.log(this.well);
+		// console.log(this.props.grid);
+	}
+
+	componentWillUpdate() {
+
+	}
 
 	makeRow(rowData, j) {
 		return (
@@ -17,18 +29,6 @@ class PlateLayout extends Component {
 		);
 	}
 
-	componentWillMount() {
-		// console.log(this.props.samples);
-		// console.log(this.props.dataList);
-		// console.log(this.props.colorMap);
-		// console.log(this.well);
-		// console.log(this.props.grid);
-	}
-
-	componentWillUpdate() {
-
-	}
-
 	render() {
 		return (
 			<div>
@@ -40,7 +40,11 @@ class PlateLayout extends Component {
 			</div>
 		);
 	}
-
 }
+
+PlateLayout.propTypes = {
+	colorMap: PropTypes.colorMap,
+	wellLabels: PropTypes.object
+};
 
 export default PlateLayout;
