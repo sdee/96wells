@@ -10,7 +10,8 @@ class Well extends Component {
 		const i = this.props.i;
 		const j = this.props.j;
 		const color = this.props.color;
-		const spacing = 75;
+		const spacing = 72;
+		const opacity = 0.4;
 
 		return (
 			<g transform="translate(55,55)">
@@ -19,7 +20,7 @@ class Well extends Component {
 					cx={i * spacing}
 					cy={j * spacing}
 					fill={color}
-					fillOpacity="0.6"
+					fillOpacity={opacity}
 				/>
 				<text
 					x={i * spacing}
@@ -29,7 +30,7 @@ class Well extends Component {
 					fontSize="10px"
 					fontWeight="bold"
 				>
-					{this.props.labels.map((l, x) => <tspan x={i * spacing} dy={(0.2 + (x * 0.9)).toString() + "em"}>{l}</tspan>)}
+					{this.props.labels.map((l, x) => <tspan x={i * spacing} dy={(0.2 + (x * 0.9)).toString() + 'em'}>{l}</tspan>)}
 				</text>
 			</g>
 		);

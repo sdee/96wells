@@ -32,7 +32,7 @@ class PlateLayout extends Component {
 	render() {
 		return (
 			<div>
-				<svg width="1000" height="620">
+				<svg width="1000" height="600">
 					<g className="plate">
 						{this.props.grid.map((e, index) => this.makeRow(e, index))}
 					</g>

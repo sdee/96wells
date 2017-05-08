@@ -3,7 +3,8 @@ import React, { PropTypes } from 'react';
 function LayoutSelector({ attributes,
 	showSample,
 	visibleAttribute,
-	layout, handleSubmit,
+	layout,
+	handleSubmit,
 	handleLayoutChange,
 	handleSampleVisChange,
 	handleAttrVisChange }) {
