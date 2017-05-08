@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Well from './Well';
+import PropTypes from 'prop-types';
 
 class PlateLayout extends Component {
 
@@ -33,7 +34,7 @@ class PlateLayout extends Component {
 		return (
 			<div>
 				<svg width="1000" height="600">
-					<g className="plate">
+					<g className="plate" style={{border: 3+'px'}}>
 						{this.props.grid.map((e, index) => this.makeRow(e, index))}
 					</g>
 				</svg>
@@ -43,7 +44,7 @@ class PlateLayout extends Component {
 }
 
 PlateLayout.propTypes = {
-	colorMap: PropTypes.colorMap,
+	colorMap: PropTypes.object,
 	wellLabels: PropTypes.object
 };
 

@@ -1,4 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 // TODO: rename to avoid confusion between selectors and selection menu
 function LayoutSelector({ attributes,
 	showSample,
@@ -53,13 +55,13 @@ function LayoutSelector({ attributes,
 
 LayoutSelector.propTypes = {
 	attributes: PropTypes.array,
-	showSample: PropTypes.boolean,
-	visibleAttribute: PropTypes.array,
+	showSample: PropTypes.bool,
+	visibleAttribute: PropTypes.string,
 	layout: PropTypes.string,
-	handleSubmit: PropTypes.function,
-	handleLayoutChange: PropTypes.function,
-	handleSampleVisChange: PropTypes.function,
-	handleAttrVisChange: PropTypes.function
+	handleSubmit: PropTypes.func,
+	handleLayoutChange: PropTypes.func,
+	handleSampleVisChange: PropTypes.func,
+	handleAttrVisChange: PropTypes.func
 };
 
 export default LayoutSelector;
