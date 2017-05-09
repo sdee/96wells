@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -19,6 +20,7 @@ const MaterialApp = () => (
 	</MuiThemeProvider>
 );
 
+injectTapEventPlugin();
 
 ReactDOM.render(
 	<Provider store={store}>
