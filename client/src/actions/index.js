@@ -7,6 +7,7 @@ export const SHOW_LAYER = 'SHOW_LAYER';
 export const SHOW_SAMPLE = 'SHOW_SAMPLE';
 export const LOAD_GOOGLE_SUCCESS = 'LOAD_GOOGLE_SUCCESS';
 export const SET_GOOGLE_SHEET = 'LOAD_GOOGLE_SHEET';
+export const SELECT_STEP = 'SELECT_STEP';
 
 /*
 *Action creators
@@ -33,4 +34,8 @@ export function setGoogleSheet(key) {
 
 export function loadGoogleSuccess(resp, key) {
 	return { type: LOAD_GOOGLE_SUCCESS, resp, key };
+}
+
+export function selectStep(step) {
+	return { type: SELECT_STEP, step };
 }

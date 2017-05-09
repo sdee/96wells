@@ -4,19 +4,19 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 class LayoutSelector extends Component {
-	  handleChange = (event, index, value) => this.props.handleLayoutChange(value);
+	handleChange = (event, index, value) => this.props.handleLayoutChange(value);
 	render() {
 		return (
 			<div style={{marginLeft:'20px', topPadding:'0px', topMargin:'0px'}}>
-				<SelectField
-					floatingLabelText="Layout"
-					value={this.props.layout}
-					onChange={this.handleChange}
-					>
-					<MenuItem value={"listorder"} primaryText="List Order" />
-					<MenuItem value={"roundrobin"} primaryText="Round Robin" />
-					<MenuItem value={"random"} primaryText="Random" />
-				</SelectField>
+			<SelectField
+			floatingLabelText="Layout"
+			value={this.props.layout}
+			onChange={this.handleChange}
+			>
+			<MenuItem value={"listorder"} primaryText="List Order" />
+			<MenuItem value={"roundrobin"} primaryText="Round Robin" />
+			<MenuItem value={"random"} primaryText="Random" />
+			</SelectField>
 			</div>
 		);
 	}

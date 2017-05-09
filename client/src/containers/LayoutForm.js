@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { changeLayout, showLayer, showSample } from '../actions';
-import LayoutSelector from '../components/LayoutSelector';
+import LayoutSelector from '../components/Stepper/LayoutSelector';
 import { getAttributes } from '../selectors/samples';
 
 function handleLayoutChange(value, dispatch) {
