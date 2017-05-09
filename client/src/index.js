@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
@@ -12,9 +13,16 @@ const store = createStore(rootReducer,
 	composeWithDevTools(applyMiddleware(thunk))
 );
 
+const MaterialApp = () => (
+	<MuiThemeProvider>
+		<App />
+	</MuiThemeProvider>
+);
+
+
 ReactDOM.render(
 	<Provider store={store}>
-  <App />
+	<MaterialApp />
 	</Provider>,
-  document.getElementById('root')
+	document.getElementById('root')
 );

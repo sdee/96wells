@@ -33,11 +33,9 @@ class PlateLayout extends Component {
 	render() {
 		return (
 			<div>
-				<svg width="1000" height="600">
+				<svg width="1000" height="620">
 					<g className="plate">
-						<rect width="1000" height="600">
-							{this.props.grid.map((e, index) => this.makeRow(e, index))}
-						</rect>
+						{this.props.grid.map((e, index) => this.makeRow(e, index))}
 					</g>
 				</svg>
 			</div>
