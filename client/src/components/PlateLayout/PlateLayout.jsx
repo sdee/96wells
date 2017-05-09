@@ -34,8 +34,10 @@ class PlateLayout extends Component {
 		return (
 			<div>
 				<svg width="1000" height="600">
-					<g className="plate" style={{border: 3+'px'}}>
-						{this.props.grid.map((e, index) => this.makeRow(e, index))}
+					<g className="plate">
+						<rect width="1000" height="600">
+							{this.props.grid.map((e, index) => this.makeRow(e, index))}
+						</rect>
 					</g>
 				</svg>
 			</div>
@@ -45,7 +47,8 @@ class PlateLayout extends Component {
 
 PlateLayout.propTypes = {
 	colorMap: PropTypes.object,
-	wellLabels: PropTypes.object
+	wellLabels: PropTypes.object,
+	grid: PropTypes.array
 };
 
 export default PlateLayout;

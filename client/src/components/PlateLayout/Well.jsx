@@ -11,7 +11,7 @@ class Well extends Component {
 		const i = this.props.i;
 		const j = this.props.j;
 		const color = this.props.color;
-		const spacing = 72;
+		const spacing = 73;
 		const opacity = 0.4;
 
 		return (
@@ -28,7 +28,7 @@ class Well extends Component {
 					y={j * spacing}
 					fontFamily="helvetica"
 					textAnchor="middle"
-					fontSize="10px"
+					fontSize="12px"
 					fontWeight="bold"
 				>
 					{this.props.labels.map((l, x) => <tspan x={i * spacing} dy={(0.2 + (x * 0.9)).toString() + 'em'} key={'text'+i+'_'+j+l}>{l}</tspan>)}

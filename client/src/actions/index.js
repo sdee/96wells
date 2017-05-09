@@ -11,7 +11,6 @@ export const SET_GOOGLE_SHEET = 'LOAD_GOOGLE_SHEET';
 /*
 *Action creators
 */
-
 export function changeLayout(layout) {
 	return { type: CHANGE_LAYOUT, layout };
 }
