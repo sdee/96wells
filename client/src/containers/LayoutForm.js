@@ -3,8 +3,8 @@ import { changeLayout, showLayer, showSample } from '../actions';
 import LayoutSelector from '../components/LayoutSelector';
 import { getAttributes } from '../selectors/samples';
 
-function handleLayoutChange(e, dispatch) {
-	dispatch(changeLayout(e.target.value));
+function handleLayoutChange(value, dispatch) {
+	dispatch(changeLayout(value));
 }
 
 function handleSampleVisChange(e, dispatch) {

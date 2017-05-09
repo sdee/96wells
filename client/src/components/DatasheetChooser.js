@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class DatasheetChooser extends Component {
-	render(){
+	render() {
 		return (
 			<div>
 				<br />

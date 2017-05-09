@@ -18,9 +18,8 @@ class App extends Component {
 		return (
 			<div>
 				<AppStepper />
-				<Plate />
 				<LayoutForm />
-				<DatasheetField />
+				<Plate />
 			</div>
 		);
 	}
