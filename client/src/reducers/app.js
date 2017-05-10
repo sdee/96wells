@@ -38,7 +38,6 @@ const app = (state = initialState, action) => {
 					v.idx = i;
 					return v;
 				}) // adds id
-
 			});
 		}
 
