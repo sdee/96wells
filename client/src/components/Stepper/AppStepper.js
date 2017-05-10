@@ -4,7 +4,6 @@ import {
 	Stepper,
 	StepButton,
 } from 'material-ui/Stepper';
-import RaisedButton from 'material-ui/RaisedButton';
 import PropTypes from 'prop-types';
 
 class AppStepper extends Component {

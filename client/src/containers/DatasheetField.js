@@ -7,18 +7,17 @@ var Miso = require("miso.dataset");
 function handleSubmit(value, dispatch) {
 	let gkey;
 	if (value.length < 1) { //for testing only
-		gkey = '1Ewgyv4EayonkOHaa6Q8N_63jrjt7vQF-NFOCZRPQuU4';
-	}
+		gkey = '1Ewgyv4EayonkOHaa6Q8N_63jrjt7vQF-NFOCZRPQuU4'; }
 	else {
 		gkey = value;
 	}
 
 	const ds = new Miso.Dataset({
-		importer : Miso.Dataset.Importers.GoogleSpreadsheet,
-		parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-		key : gkey,
-		worksheet : "1",
-		sync : true
+		importer: Miso.Dataset.Importers.GoogleSpreadsheet,
+		parser: Miso.Dataset.Parsers.GoogleSpreadsheet,
+		key: gkey,
+		worksheet: '1',
+		sync: true
 	});
 
 	let googleData = [];
@@ -60,8 +59,6 @@ function handleSubmit(value, dispatch) {
 
 	function handleDataSetChange(value, dispatch) {
 		dispatch(loadData(value));
-		console.log("value");
-		console.log(value);
 		dispatch(postNotification("Loaded new data set: "+value));
 	}
 

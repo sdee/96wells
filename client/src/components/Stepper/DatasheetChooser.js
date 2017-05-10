@@ -9,29 +9,29 @@ import MenuItem from 'material-ui/MenuItem';
 
 class DatasheetChooser extends Component {
 
-	componentWillMount() {
-		console.log(this.props.datasource);
-	}
-
 	handleChange = (event, index, value) => this.props.onDataSetChange(value);
 	render() {
 		const style = {
 			height: 130,
 			width: 500,
-			margin: 20,
+			marginLeft: 5,
+			marginTop: 0,
+			marginBottom: 0,
 			textAlign: 'left',
 			display: 'inline-block'
 		};
 		const style2 = {
 			height: 130,
-			width: 300,
-			margin: 30,
+			width: 280,
+			marginLeft: 20,
+			marginTop: 0,
+			marginBottom: 0,
 			textAlign: 'left',
 			display: 'inline-block'
 		};
 
 		return (
-			<div>
+			<div style={{marginLeft:'20px', marginTop:'0px', marginBottom:'0px', padding:'0px'}}>
 				<Grid>
 					<Row>
 						<Paper zDepth={1} style={style}>
@@ -57,7 +57,7 @@ class DatasheetChooser extends Component {
 									onClick={this.props.useSampleKey}/>
 							</form>
 						</Paper>
-						<div style={{verticalAlign:'middle', height:'130px'}}><br/><br/><br/><br/>OR</div>
+						<div style={{verticalAlign:'middle', height:'130px', paddingLeft:'20px', paddingRight: '0px'}}><br/><br/><br/>OR</div>
 						<Paper zDepth={1} style={style2}>
 							<SelectField
 								floatingLabelText="Load Sample Dataset"

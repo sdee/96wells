@@ -11,7 +11,7 @@ class LayoutSelector extends Component {
 		const style = {
 			height: 130,
 			width: 650,
-			margin: 20,
+			margin: 10,
 			textAlign: 'left',
 			display: 'inline-block'
 		};

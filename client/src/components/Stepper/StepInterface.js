@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {List, ListItem} from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
-import Divider from 'material-ui/Divider';
 import LayoutForm from '../../containers/LayoutForm';
 import DatasheetField from '../../containers/DatasheetField'
 
@@ -14,7 +11,6 @@ class StepInterface extends Component {
 
 	showContent(currentStep) {
 		let content;
-
 
 		switch(currentStep) {
 			case 0:
@@ -29,17 +25,7 @@ class StepInterface extends Component {
 		return content;
 	}
 
-
 	render(){
-
-		const styles = {
-			root: {
-				display: 'flex',
-				flexWrap: 'wrap',
-			},
-		};
-		const currentStep = this.props.currentStep;
-
 		return (
 			<div>
 				{this.showContent(this.props.currentStep)}
@@ -47,7 +33,6 @@ class StepInterface extends Component {
 		);
 	}
 }
-
 
 //
 export default StepInterface;
