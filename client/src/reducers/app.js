@@ -22,6 +22,9 @@ function selectData(dataset) {
 		case 'default': {
 			return balancedTest;
 		}
+		case 'empty': {
+			return [];
+		}
 	}
 }
 

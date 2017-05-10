@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
-import { changeLayout, showLayer, showSample } from '../actions';
+import { changeLayout, showLayer, showSample, postNotification } from '../actions';
 import LayoutSelector from '../components/Stepper/LayoutSelector';
 import { getAttributes } from '../selectors/samples';
 
 function handleLayoutChange(value, dispatch) {
 	dispatch(changeLayout(value));
+	dispatch(postNotification('Layout chosen'));
 }
 
 function handleSampleVisChange(e, dispatch) {
