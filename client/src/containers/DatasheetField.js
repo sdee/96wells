@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 import DatasheetChooser from '../components/Stepper/DatasheetChooser';
-import { loadGoogleSuccess } from '../actions';
+import { loadGoogleSuccess, loadData } from '../actions';
+
 var Miso = require("miso.dataset");
 
 function handleSubmit(value, dispatch) {
-	console.log("handleSubmit");
-	console.log(value);
 	let gkey;
 	if (value.length < 1) { //for testing only
 		gkey = '1Ewgyv4EayonkOHaa6Q8N_63jrjt7vQF-NFOCZRPQuU4';
@@ -54,13 +53,34 @@ function handleSubmit(value, dispatch) {
 		});
 	}
 
+	function useSampleKey(dispatch) {
+		handleSubmit('1Ewgyv4EayonkOHaa6Q8N_63jrjt7vQF-NFOCZRPQuU4', dispatch);
+	}
+
+	function handleDataSetChange(value, dispatch) {
+		console.log("data change");
+		console.log("value");
+		console.log(value);
+		dispatch(loadData(value));
+	}
+
 	const mapStateToProps = (state, ownProps) => ({
-		googlesheet: state.app.googlesheet
+		googlesheet: state.app.googlesheet,
+		datasource: state.app.datasource
 	});
 
 	const mapDispatchToProps = (dispatch, ownProps) => ({
-		onSubmit: (values) => {
-			handleSubmit(values, dispatch);
+		onSubmit:
+		(value) => {
+			handleSubmit(value, dispatch);
+		},
+		useSampleKey:
+		() => {
+			useSampleKey(dispatch);
+		},
+		onDataSetChange:
+		(value) => {
+			handleDataSetChange(value, dispatch);
 		}
 	});
 

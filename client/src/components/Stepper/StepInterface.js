@@ -4,7 +4,7 @@ import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
 import LayoutForm from '../../containers/LayoutForm';
-import DatasheetChooser from '../../containers/DatasheetField'
+import DatasheetField from '../../containers/DatasheetField'
 
 class StepInterface extends Component {
 
@@ -18,7 +18,7 @@ class StepInterface extends Component {
 
 		switch(currentStep) {
 			case 0:
-			content = <DatasheetChooser />;
+			content = <DatasheetField />;
 			break;
 
 			case 1:
@@ -39,9 +39,6 @@ class StepInterface extends Component {
 			},
 		};
 		const currentStep = this.props.currentStep;
-		console.log(currentStep);
-
-
 
 		return (
 			<div>
