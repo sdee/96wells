@@ -5,7 +5,7 @@ import { getAttributes } from '../selectors/samples';
 
 function handleLayoutChange(value, dispatch) {
 	dispatch(changeLayout(value));
-	dispatch(postNotification('Layout chosen'));
+	dispatch(postNotification('New layout chosen: '+value));
 }
 
 function handleSampleVisChange(e, dispatch) {

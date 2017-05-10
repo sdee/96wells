@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import DatasheetChooser from '../components/Stepper/DatasheetChooser';
-import { loadGoogleSuccess, loadData } from '../actions';
+import { loadGoogleSuccess, loadData, postNotification } from '../actions';
 
 var Miso = require("miso.dataset");
 
@@ -50,6 +50,7 @@ function handleSubmit(value, dispatch) {
 
 		dataPromise.then((successMessage) => {
 			dispatch(loadGoogleSuccess(googleData, gkey));
+			dispatch(postNotification("Successfully imported data from Google sheet."));
 		});
 	}
 
@@ -59,6 +60,9 @@ function handleSubmit(value, dispatch) {
 
 	function handleDataSetChange(value, dispatch) {
 		dispatch(loadData(value));
+		console.log("value");
+		console.log(value);
+		dispatch(postNotification("Loaded new data set: "+value));
 	}
 
 	const mapStateToProps = (state, ownProps) => ({
