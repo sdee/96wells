@@ -7,7 +7,9 @@ import { Grid, Row, Cell } from 'react-inline-grid';
 
 class LayoutSelector extends Component {
 	handleChange = (event, index, value) => this.props.handleLayoutChange(value);
+
 	render() {
+
 		const style = {
 			height: 130,
 			width: 650,
