@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import StepContent from './containers/StepContent';
-import SettingsPane from './components/Settings/SettingsPane';
+import VisibilityFilters from './containers/VisibilityFilters';
 import Plate from './containers/Plate';
 import Stepper from './containers/Stepper';
 import Notifier from './containers/Notifier';
@@ -21,8 +21,9 @@ class App extends Component {
 			<div>
 				<Stepper />
 				<StepContent />
-				<SettingsPane />
+				<VisibilityFilters />
 				<Plate />
+				<Notifier />
 			</div>
 		);
 	}

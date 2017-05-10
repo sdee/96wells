@@ -20,7 +20,7 @@ const plate = (state = initialState, action) => {
 	case SHOW_LAYER: {
 		const attribute = action.layer;
 		const value = action.value;
-		let visible = state.visibleAttribute.slice(0);
+		let visible = state.visibleAttribute;
 		if (value) {
 			visible = attribute;
 		} else {
