@@ -1,9 +1,12 @@
 import { connect } from 'react-redux';
 import AppStepper from '../components/Stepper/AppStepper';
-import { selectStep } from '../actions';
+import { selectStep, postNotification } from '../actions';
 
 function handleChange(value, dispatch) {
 	dispatch(selectStep(value));
+	if (value === 2 || value === 3) {
+		dispatch(postNotification('Coming soon!'));
+	}
 }
 
 const mapStateToProps = (state, ownProps) => ({
