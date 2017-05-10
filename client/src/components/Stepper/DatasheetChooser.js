@@ -41,6 +41,7 @@ class DatasheetChooser extends Component {
 									floatingLabelText="Google Api Key"
 									floatingLabelFixed={true}
 									multiLine={true}
+									value={this.props.googlesheet}
 									style={{marginLeft:'20px', topPadding:'0px', topMargin:'0px', width:'450px'}}
 									ref="key_field"
 									/><br />

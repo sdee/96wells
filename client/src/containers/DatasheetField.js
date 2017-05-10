@@ -58,9 +58,6 @@ function handleSubmit(value, dispatch) {
 	}
 
 	function handleDataSetChange(value, dispatch) {
-		console.log("data change");
-		console.log("value");
-		console.log(value);
 		dispatch(loadData(value));
 	}
 
