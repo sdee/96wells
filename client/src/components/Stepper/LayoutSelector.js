@@ -17,28 +17,27 @@ class LayoutSelector extends Component {
 		};
 		return (
 			<div style={{marginLeft:'20px', topPadding:'0px', topMargin:'0px'}}>
-			<Paper zDepth={1} style={style}>
-				<Grid>
-					<Row>
-			<SelectField
-				floatingLabelText="Layout"
-				value={this.props.layout}
-				onChange={this.handleChange}
-				style={{marginLeft:'20px', topPadding:'0px', topMargin:'0px'}}
-			>
-				<MenuItem value={"listorder"} primaryText="List Order" />
-				<MenuItem value={"roundrobin"} primaryText="Round Robin" />
-				<MenuItem value={"random"} primaryText="Random" />
-			</SelectField>
-			<p style={{marginLeft:'10px', verticalAlign:'middle', topMargin:'30px'}}>{this.props.description}</p>
-			</Row>
-			</Grid>
-		</Paper>
+				<Paper zDepth={1} style={style}>
+					<Grid>
+						<Row>
+							<SelectField
+								floatingLabelText="Layout"
+								value={this.props.layout}
+								onChange={this.handleChange}
+								style={{marginLeft:'20px', topPadding:'0px', topMargin:'0px'}}
+							>
+								<MenuItem value={"listorder"} primaryText="List Order" />
+								<MenuItem value={"roundrobin"} primaryText="Round Robin" />
+								<MenuItem value={"random"} primaryText="Random" />
+							</SelectField>
+							<p style={{marginLeft:'10px', verticalAlign:'middle', topMargin:'30px'}}><i>{this.props.description}</i> </p>
+						</Row>
+					</Grid>
+				</Paper>
 			</div>
 		);
 	}
 }
-
 
 // const styles = {
 //   customWidth: {

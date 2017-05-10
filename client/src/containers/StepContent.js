@@ -14,7 +14,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	handleChange: (value) => {
 		handleChange(value, dispatch);
 	}
-
 });
 
 const StepContent = connect(
