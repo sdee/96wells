@@ -25,7 +25,7 @@ class DatasheetChooser extends Component {
 		const style2 = {
 			height: 130,
 			width: 300,
-			margin: 20,
+			margin: 30,
 			textAlign: 'left',
 			display: 'inline-block'
 		};

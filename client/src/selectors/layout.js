@@ -21,6 +21,22 @@ export const getNumCols = createSelector(
 	plateSize => sizes[plateSize][1]
 );
 
+export const getDescription = createSelector(
+	[layout],
+	layout => {
+		switch (layout) {
+		case 'listorder':
+			return 'Places sample left to right, top to bottom based on the order in the imported data set.'
+		case 'random':
+			return 'Places each experiment at a random well position.';
+		case 'roundrobin':
+			return 'Places experiments one at a time, alternating between samples.';
+		default:
+			return 'Choose a layout.'
+		}
+	}
+);
+
 //how to use variables inside function that don't trigger selector
 export const calculateLayout = createSelector(
 	[dataList,

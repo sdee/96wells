@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { changeLayout, showLayer, showSample, postNotification } from '../actions';
 import LayoutSelector from '../components/Stepper/LayoutSelector';
 import { getAttributes } from '../selectors/samples';
+import { getDescription } from '../selectors/layout'
 
 function handleLayoutChange(value, dispatch) {
 	dispatch(changeLayout(value));
@@ -20,7 +21,8 @@ const mapStateToProps = (state, ownProps) => ({
 	attributes: getAttributes(state),
 	showSample: state.plate.showSample,
 	layout: state.plate.layout,
-	visibleAttribute: state.plate.visibleAttribute
+	visibleAttribute: state.plate.visibleAttribute,
+	description: getDescription(state)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
