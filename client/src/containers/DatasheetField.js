@@ -1,12 +1,17 @@
 import { connect } from 'react-redux';
-import DatasheetChooser from '../components/DatasheetChooser';
+import DatasheetChooser from '../components/Stepper/DatasheetChooser';
 import { loadGoogleSuccess } from '../actions';
 var Miso = require("miso.dataset");
 
-function handleSubmit(values, dispatch) {
+function handleSubmit(value, dispatch) {
+	console.log("handleSubmit");
+	console.log(value);
 	let gkey;
-	if (values.length < 1) { //for testing only
+	if (value.length < 1) { //for testing only
 		gkey = '1Ewgyv4EayonkOHaa6Q8N_63jrjt7vQF-NFOCZRPQuU4';
+	}
+	else {
+		gkey = value;
 	}
 
 	const ds = new Miso.Dataset({

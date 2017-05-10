@@ -11,7 +11,7 @@ const initialState = {
 	currentStep: 0
 }
 
-const app = (state = initialState, action) => {
+const app = (state = initialState, action) => {	
 	switch (action.type) {
 		case LOAD_DATA: {
 			return Object.assign({}, state, {
