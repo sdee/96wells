@@ -1,25 +1,44 @@
 import { createSelector } from 'reselect';
 import { getSamples } from '../selectors/samples';
+import { pluck, range, filter, reject, isEmpty } from 'underscore';
 
-const sizes = {
+export const dataList = state => state.app.dataList;
+export const plateSize = state => state.plate.plateSize;
+export const layout = state => state.plate.layout;
+
+export const sizes = {
 	'96wells': [8, 12],
 	'284wells': [24, 16],
 	'test': [3, 3]
 };
 
-const dataList = state => state.app.dataList;
-const plateSize = state => state.plate.plateSize;
-const layout = state => state.plate.layout;
-
 export const getNumRows = createSelector(
 	[plateSize],
-	plateSize => sizes[plateSize][0]
+	size => sizes[size][0]
 );
 
 export const getNumCols = createSelector(
 	[plateSize],
-	plateSize => sizes[plateSize][1]
+	size => sizes[size][1]
 );
+
+export const plateGrid = createSelector(
+	[getNumRows, getNumCols],
+	(rows, cols) => Array(rows).fill(Array(cols).fill({}))
+);
+
+export const emptyLayout = createSelector(
+	[plateGrid],
+	(plateGrid) => {let cnt=0;
+		console.log(plateGrid);
+		let grid = Object.assign([], plateGrid);
+		console.log("unoccupied");
+		console.log(unoccupiedWells(plateGrid));
+		unoccupiedWells(plateGrid).forEach(([row, col]) => grid[row][col] = { sample: 'empty', idx: cnt++ });
+		console.log("grid");
+		console.log(grid);
+		return grid;
+});
 
 export const getDescription = createSelector(
 	[layout],
@@ -31,11 +50,14 @@ export const getDescription = createSelector(
 			return 'Places each experiment at a random well position.';
 		case 'roundrobin':
 			return 'Places experiments one at a time, alternating between samples.';
+		case 'empty':
+			return 'empty layout'
 		default:
 			return 'Choose a layout.'
 		}
 	}
 );
+
 
 //how to use variables inside function that don't trigger selector
 export const calculateLayout = createSelector(
@@ -44,18 +66,23 @@ export const calculateLayout = createSelector(
 		getNumRows,
 		getNumCols,
 		getSamples,
+		emptyLayout,
 		state =>  state.plate.layout === 'random' ? Math.random() : 1 ], //final function forces reload when layout is random
-		(dataList, layout, rows, cols, samples) => {
-		switch (layout) {
-		case 'listorder':
-			return placeSamplesInListOrder(dataList, rows, cols);
-		case 'random':
-			return placeSamplesInRandomOrder(dataList, rows, cols);
-		case 'roundrobin':
-			return roundRobinLayout(dataList, samples, rows, cols);
-		default:
-			return placeSamplesInListOrder(dataList, rows, cols);
-		}
+		(dataList, layout, rows, cols, samples, empty) => {
+			switch (layout) {
+			case 'listorder':
+				return placeSamplesInListOrder(dataList, rows, cols);
+			case 'random':
+				return placeSamplesInRandomOrder(dataList, rows, cols);
+			case 'roundrobin':
+				return roundRobinLayout(dataList, samples, rows, cols);
+			case 'empty':
+				console.log("EMPTY");
+				console.log(empty);
+				return empty;
+			default:
+				return placeSamplesInListOrder(dataList, rows, cols);
+			}
 		}
 );
 
@@ -134,7 +161,7 @@ function placeSamplesInRandomOrder(datalist, numRows, numCols){
 		plateGrid[row][col] = datarow;
 	});
 	return plateGrid;
-};
+}
 
 /*
 *Place experiments to plate in order they appear in the data list-left to right, top to bottom.
@@ -154,4 +181,28 @@ function placeSamplesInListOrder(datalist, numRows, numCols) {
 		col++;
 	});
 	return plateGrid;
+}
+function isOccupied(row, col, plate) {
+	console.log("is occupied?"+[row, col]);
+	if (typeof plate[row] !== 'undefined' && plate[row][col] !== undefined) {
+		console.log(!isEmpty(plate[row][col]));
+		return !isEmpty(plate[row][col])
+	}
+	return false;
+}
+function occupiedWells(plategrid) {
+	return filter(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
+}
+
+function unoccupiedWells(plategrid) {
+	return reject(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
+}
+
+function allWells(){
+	let wells = [];
+	range(0, 8).map(row =>
+		range(0, 12).map(col => wells.push([row, col])
+	)
+);
+	return wells;
 }
