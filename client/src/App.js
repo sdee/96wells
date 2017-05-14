@@ -7,7 +7,9 @@ import Plate from './containers/Plate';
 import Stepper from './containers/Stepper';
 import Notifier from './containers/Notifier';
 import { loadData } from './actions';
-import { Grid, Row, Cell } from 'react-inline-grid';
+
+import Grid from 'material-ui/Grid';
+
 
 class App extends Component {
 
@@ -19,11 +21,13 @@ class App extends Component {
 	render() {
 		return (
 			<div>
+				<Grid>
 				<Stepper />
 				<StepContent />
 				<VisibilityFilters />
 				<Plate />
 				<Notifier />
+				</Grid>
 			</div>
 		);
 	}
