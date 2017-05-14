@@ -7,11 +7,15 @@ import Plate from './containers/Plate';
 import Stepper from './containers/Stepper';
 import Notifier from './containers/Notifier';
 import { loadData } from './actions';
+import { Grid, Row, Cell } from 'react-inline-grid';
 
-import Grid from 'material-ui/Grid';
 
 
 class App extends Component {
+
+	constructor(props) {
+		super(props);
+	}
 
 	componentDidMount() {
 		const { dispatch } = this.props;
@@ -22,11 +26,13 @@ class App extends Component {
 		return (
 			<div>
 				<Grid>
+					<div>
 				<Stepper />
 				<StepContent />
 				<VisibilityFilters />
 				<Plate />
 				<Notifier />
+				</div>
 				</Grid>
 			</div>
 		);

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {List, ListItem, ListSubheader} from 'material-ui/List';
+import {List, ListItem} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
 
 import Divider from 'material-ui/Divider';
 import Drawer from 'material-ui/Drawer';
@@ -29,7 +30,7 @@ class SettingsPane extends Component {
 				</List>
 				<Divider/>
 				<List>
-					<ListSubheader inset={true}>Overlay Attributes</ListSubheader>
+					<Subheader inset={true}>Overlay Attributes</Subheader>
 					{attributes.map(attribute =>
 						<div>
 							<ListItem
