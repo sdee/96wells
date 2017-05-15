@@ -13,9 +13,7 @@ class PlateLayout extends Component {
 	}
 
 	componentWillUpdate() {
-		console.log("GRID");
-		console.log(this.props.grid);
-
+		
 	}
 
 	makeRow(rowData, j) {

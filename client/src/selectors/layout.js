@@ -29,15 +29,28 @@ export const plateGrid = createSelector(
 
 export const emptyLayout = createSelector(
 	[plateGrid],
-	(plateGrid) => {let cnt=0;
-		console.log(plateGrid);
+	(plateGrid) => {
+		let cnt=0;
 		let grid = Object.assign([], plateGrid);
-		console.log("unoccupied");
-		console.log(unoccupiedWells(plateGrid));
 		unoccupiedWells(plateGrid).forEach(([row, col]) => grid[row][col] = { sample: 'empty', idx: cnt++ });
-		console.log("grid");
-		console.log(grid);
 		return grid;
+});
+
+export const listOrder = createSelector(
+	[plateGrid, dataList],
+	(plateGrid, dlist) => {
+		let grid2 = Object.assign([], plateGrid);
+		dlist.forEach( function(datarow) {
+			let row, col;
+			let well = nextUnoccupiedWell(plateGrid);
+			// [row, col] = well.next();
+			console.log("next");
+			let val = well.next().value;
+			[row, col] = val;
+			console.log(row, col);
+			grid2[row][col] = datarow;
+		});
+		return grid2;
 });
 
 export const getDescription = createSelector(
@@ -66,20 +79,17 @@ export const calculateLayout = createSelector(
 		getNumRows,
 		getNumCols,
 		getSamples,
-		emptyLayout,
+		listOrder,
 		state =>  state.plate.layout === 'random' ? Math.random() : 1 ], //final function forces reload when layout is random
-		(dataList, layout, rows, cols, samples, empty) => {
+		(dataList, layout, rows, cols, samples, listorder) => {
 			switch (layout) {
 			case 'listorder':
-				return placeSamplesInListOrder(dataList, rows, cols);
+				console.log(listorder);
+				return listorder;
 			case 'random':
 				return placeSamplesInRandomOrder(dataList, rows, cols);
 			case 'roundrobin':
 				return roundRobinLayout(dataList, samples, rows, cols);
-			case 'empty':
-				console.log("EMPTY");
-				console.log(empty);
-				return empty;
 			default:
 				return placeSamplesInListOrder(dataList, rows, cols);
 			}
@@ -183,9 +193,8 @@ function placeSamplesInListOrder(datalist, numRows, numCols) {
 	return plateGrid;
 }
 function isOccupied(row, col, plate) {
-	console.log("is occupied?"+[row, col]);
 	if (typeof plate[row] !== 'undefined' && plate[row][col] !== undefined) {
-		console.log(!isEmpty(plate[row][col]));
+
 		return !isEmpty(plate[row][col])
 	}
 	return false;
@@ -197,6 +206,15 @@ function occupiedWells(plategrid) {
 function unoccupiedWells(plategrid) {
 	return reject(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
 }
+
+function *nextUnoccupiedWell(plategrid) {
+	console.log("unoccupied");
+	console.log(unoccupiedWells(plategrid));
+    let i = 0;
+    while(i < unoccupiedWells(plategrid).length)
+			yield unoccupiedWells(plategrid)[i];
+}
+
 
 function allWells(){
 	let wells = [];

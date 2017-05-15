@@ -11,7 +11,7 @@ import { Grid, Row, Cell } from 'react-inline-grid';
 
 class App extends Component {
 
-	componentDidMount() {
+	componentWillMount() {
 		const { dispatch } = this.props;
 		dispatch(loadData());
 	}
