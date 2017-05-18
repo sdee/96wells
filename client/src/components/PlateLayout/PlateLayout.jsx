@@ -13,7 +13,7 @@ class PlateLayout extends Component {
 	}
 
 	componentWillUpdate() {
-		
+
 	}
 
 	makeRow(rowData, j) {

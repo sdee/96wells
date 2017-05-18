@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "material-ui": "^0.18.0",
+    "ndarray": "^1.0.18",
     "prop-types": "^15.5.8",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
