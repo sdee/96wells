@@ -1,8 +1,7 @@
 
-import { pluck, range, filter, reject, isEmpty } from 'underscore';
+import { pluck, range, filter, reject, sample, isEmpty, shuffle } from 'underscore';
 import { createSelector } from 'reselect';
 import { getSamples } from '../selectors/samples';
-var ndarray = require("ndarray");
 
 export const dataList = state => state.app.dataList;
 export const plateSize = state => state.plate.plateSize;
@@ -29,26 +28,43 @@ export const getNumWells = createSelector(
 	(rows, cols) => rows * cols
 );
 
-export const emptyGrid = createSelector(
-	[getNumRows, getNumCols],
-	(rows, cols) => range(rows).map(() => range(cols).map(() => {}))
-);
-
 export const listOrder = createSelector(
-	[dataList, getNumRows, getNumCols, getNumWells, emptyGrid],
-	(dlist, rows, cols, numWells, empty) => {
-		let listOrderGrid = empty;
-		dlist.forEach( function(datarow) {
+	[dataList, getNumRows, getNumCols, getNumWells, layout],
+	(dlist, rows, cols, numWells) => {
+		// let listOrderGrid = Object.assign([], empty);
+
+		let listOrderGrid = getEmptyLayout(rows, cols);
+		console.log(listOrderGrid);
+		dlist.forEach( function (datarow) {
 			let row, col;
 			let well = nextUnoccupiedWell(listOrderGrid, numWells);
 			let val = well.next().value;
 			if (val) {
 				[row, col] = val;
-				listOrderGrid[parseInt(row)][parseInt(col)] = datarow;
+				listOrderGrid[row][col] = datarow;
 			}
 		});
 		return listOrderGrid;
 });
+
+export const randomLayout = createSelector(
+	[dataList, getNumRows, getNumCols, getNumWells, layout],
+	(dlist, rows, cols, numWells, layout) => {
+			//let randomGrid = Object.assign([], empty);
+			let randomGrid = getEmptyLayout(rows, cols);
+			dlist.forEach( function(datarow) {
+				let row, col;
+				let well = nextRandomWell(randomGrid);
+				let val = well.next().value;
+				if (val) {
+					[row, col] = val;
+					randomGrid[row][col] = datarow;
+				}
+			});
+			console.log("rando");
+			console.log(randomGrid);
+			return randomGrid;
+	});
 
 export const getDescription = createSelector(
 	[layout],
@@ -56,8 +72,8 @@ export const getDescription = createSelector(
 		switch (layout) {
 		case 'listorder':
 			return 'Places sample left to right, top to bottom based on the order in the imported data set.'
-		// case 'random':
-		// 	return 'Places each experiment at a random well position.';
+		case 'random':
+			return 'Places each experiment at a random well position.';
 		// case 'roundrobin':
 		// 	return 'Places experiments one at a time, alternating between samples.';
 		// case 'empty':
@@ -76,13 +92,15 @@ export const calculateLayout = createSelector(
 		getNumCols,
 		getSamples,
 		listOrder,
+		randomLayout,
 		state =>  state.plate.layout === 'random' ? Math.random() : 1 ], //final function forces reload when layout is random
-		(dataList, layout, rows, cols, samples, listorder) => {
+		(dataList, layout, rows, cols, samples, listorder, rando) => {
 
 			switch (layout) {
 			case 'listorder':
-		 	return listorder;
-			// case 'random':
+		 		return listorder;
+			case 'random':
+				return rando;
 			// 	return placeSamplesInRandomOrder(dataList, rows, cols);
 			// case 'roundrobin':
 			// 	return roundRobinLayout(dataList, samples, rows, cols);
@@ -98,6 +116,8 @@ export const calculateLayout = createSelector(
 		// return grid;
 }
 );
+
+export const getEmptyLayout = (rows, cols) => range(rows).map(() => range(cols).map(() => {}));
 
 function isOccupied(row, col, plate) {
 		return !isEmpty(plate[row][col]);
@@ -118,6 +138,11 @@ function * nextUnoccupiedWell(plategrid, numWells) {
 			yield unoccupied[i];
 			i+=1;
 		}
+}
+
+function * nextRandomWell(plategrid) {
+	let unoccupied = shuffle(unoccupiedWells(plategrid));
+	yield sample(unoccupied);
 }
 
 function allWells(){

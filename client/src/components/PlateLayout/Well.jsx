@@ -13,8 +13,6 @@ class Well extends Component {
 		const color = this.props.color;
 		const spacing = 73;
 		const opacity = 0.4;
-		console.log("labels");
-		console.log(this.props.labels);
 
 		return (
 			<g transform="translate(55,55)">
