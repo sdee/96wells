@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Paper from 'material-ui/Paper';
-import { Grid, Row, Cell } from 'react-inline-grid';
+import { Grid, Row } from 'react-inline-grid';
 
 class LayoutSelector extends Component {
 	handleChange = (event, index, value) => this.props.handleLayoutChange(value);
@@ -31,7 +31,6 @@ class LayoutSelector extends Component {
 								<MenuItem value={"listorder"} primaryText="List Order" />
 								<MenuItem value={"roundrobin"} primaryText="Round Robin" />
 								<MenuItem value={"random"} primaryText="Random" />
-								<MenuItem value={"empty"} primaryText="Empty Layout" />
 							</SelectField>
 							<p style={{marginLeft:'10px', verticalAlign:'middle', topMargin:'30px'}}><i>{this.props.description}</i> </p>
 						</Row>

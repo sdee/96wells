@@ -8,6 +8,11 @@ export const getSamples = createSelector(
 	dataRows => new Set(pluck(dataRows, 'sample'))
 )
 
+export const getSampleList = createSelector(
+	[getSamples],
+	samples => Array.from(samples)
+)
+
 export const getAttributes = createSelector(
 	[dataList],
 	(dataRows) => {
