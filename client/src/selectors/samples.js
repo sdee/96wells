@@ -6,18 +6,17 @@ const dataList = (state) => state.app.dataList;
 export const getSamples = createSelector(
 	[dataList],
 	dataRows => new Set(pluck(dataRows, 'sample'))
-)
+);
 
-<<<<<<< HEAD
 export const getSampleList = createSelector(
 	[getSamples],
 	samples => Array.from(samples)
-=======
+);
+
 export const getNumOfExperiments = createSelector(
 	[dataList],
 	dataRows => dataRows.length
->>>>>>> master
-)
+);
 
 export const getAttributes = createSelector(
 	[dataList],
@@ -27,7 +26,7 @@ export const getAttributes = createSelector(
 		attributes.delete('idx');
 		return Array.from(attributes);
 	}
-)
+);
 
 export const getColorMap = createSelector(
 	[getSamples],

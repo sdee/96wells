@@ -13,7 +13,7 @@ import {Grid, Row, Column} from 'react-cellblock';
 class App extends Component {
 
 
-	componentDidMount() {
+	componentWillMount() {
 		const { dispatch } = this.props;
 		dispatch(loadData());
 	}
