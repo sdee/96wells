@@ -2,24 +2,32 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
+
 import Divider from 'material-ui/Divider';
 import Drawer from 'material-ui/Drawer';
 import Checkbox from 'material-ui/Checkbox';
 
+import Paper from 'material-ui/Paper';
+
+
 class SettingsPane extends Component {
 
 	render() {
-		const styles = {
-			width: '250px'
-		};
 		let attributes = this.props.attributes;
 		let visibleAttribute = this.props.visibleAttribute;
 		let handleAttrVisChange = this.props.handleAttrVisChange;
 		let handleSampleVisChange = this.props.handleSampleVisChange;
 		let showSample = this.props.showSample;
+		let numSamples = this.props.numSamples;
 		return (
-
-			<Drawer width={300} openSecondary={true} open={true}>
+			<Paper zDepth={1}>
+				<List>
+					<ListItem>
+					<Subheader inset={true}>Data Summary</Subheader>
+					{numSamples} Experiments
+					</ListItem>
+				</List>
+				<Divider/>
 				<List>
 					<Subheader inset={true}>Sample Info</Subheader>
 					<ListItem
@@ -43,7 +51,7 @@ class SettingsPane extends Component {
 						</div>
 					)}
 				</List>
-			</Drawer>
+			</Paper>
 		);
 	}
 }

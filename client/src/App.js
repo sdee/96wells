@@ -7,11 +7,13 @@ import Plate from './containers/Plate';
 import Stepper from './containers/Stepper';
 import Notifier from './containers/Notifier';
 import { loadData } from './actions';
-import { Grid, Row, Cell } from 'react-inline-grid';
+import {Grid, Row, Column} from 'react-cellblock';
+
 
 class App extends Component {
 
-	componentWillMount() {
+
+	componentDidMount() {
 		const { dispatch } = this.props;
 		dispatch(loadData());
 	}
@@ -19,11 +21,27 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<Stepper />
-				<StepContent />
-				<VisibilityFilters />
-				<Plate />
-				<Notifier />
+				<Grid gutterWidth={15}>
+					<div>
+						<Row>
+							<Stepper />
+						</Row>
+						<Row>
+							<Column>
+								<StepContent />
+							</Column>
+						</Row>
+						<Row>
+							<Column width="4/5">
+								<Plate />
+							</Column>
+							<Column width="1/5">
+								<VisibilityFilters />
+							</Column>
+						</Row>
+						<Notifier />
+					</div>
+				</Grid>
 			</div>
 		);
 	}

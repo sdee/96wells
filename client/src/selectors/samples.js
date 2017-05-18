@@ -8,9 +8,15 @@ export const getSamples = createSelector(
 	dataRows => new Set(pluck(dataRows, 'sample'))
 )
 
+<<<<<<< HEAD
 export const getSampleList = createSelector(
 	[getSamples],
 	samples => Array.from(samples)
+=======
+export const getNumOfExperiments = createSelector(
+	[dataList],
+	dataRows => dataRows.length
+>>>>>>> master
 )
 
 export const getAttributes = createSelector(

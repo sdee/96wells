@@ -17,7 +17,7 @@ class AppStepper extends Component {
 		const onChange = this.props.handleChange;
 
     return (
-      <div style={{width: '100%', maxWidth: 700}}>
+      <div style={{width: '100%', maxWidth: 700, marginLeft: '20px'}}>
         <Stepper linear={false} activeStep={currentStep}>
           <Step>
             <StepButton onClick={() => onChange(0)}>
