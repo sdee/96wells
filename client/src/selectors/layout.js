@@ -27,11 +27,11 @@ export const getNumCols = createSelector(
 export const getNumWells = createSelector(
 	[getNumRows, getNumCols],
 	(rows, cols) => rows * cols
-)
+);
 
 export const emptyGrid = createSelector(
 	[getNumRows, getNumCols],
-	(rows, cols) => {return range(rows).map(()=>range(cols).map(()=>{}))}
+	(rows, cols) => range(rows).map(() => range(cols).map(() => {}))
 );
 
 export const listOrder = createSelector(

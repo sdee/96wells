@@ -9,6 +9,7 @@ export const getWellLabels = createSelector(
 	[dataList, sampleVisible, visibleAttribute],
 	function (dataList, sampleVisible, visibleAttribute) {
 		const wellLabels = new Map();
+		console.log(dataList);
 		dataList.forEach(function(d) {
 			const labels = [];
 			if (sampleVisible) {
@@ -20,6 +21,7 @@ export const getWellLabels = createSelector(
 			}
 			wellLabels.set(d.idx, labels);
 		});
+		console.log(wellLabels);
 		return wellLabels;
 	}
 );
