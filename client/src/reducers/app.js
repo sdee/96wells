@@ -1,6 +1,5 @@
 import { LOAD_DATA, LOAD_GOOGLE_SUCCESS, SELECT_STEP } from '../actions';
 
-// const testList = require('../../../data/test_list.json');
 const fullPlate = require('../../../data/full_plate.json');
 const balancedTest = require('../../../data/balanced_test.json');
 

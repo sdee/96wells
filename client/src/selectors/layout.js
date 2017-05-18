@@ -1,38 +1,127 @@
+import { range, filter, reject, sample, isEmpty, contains, shuffle } from 'underscore';
 import { createSelector } from 'reselect';
-import { getSamples } from '../selectors/samples';
+import { getSampleList } from '../selectors/samples';
 
-const sizes = {
+export const dataList = state => state.app.dataList;
+export const plateSize = state => state.plate.plateSize;
+export const layout = state => state.plate.layout;
+
+export const sizes = {
 	'96wells': [8, 12],
 	'284wells': [24, 16],
 	'test': [3, 3]
 };
 
-const dataList = state => state.app.dataList;
-const plateSize = state => state.plate.plateSize;
-const layout = state => state.plate.layout;
-
 export const getNumRows = createSelector(
 	[plateSize],
-	plateSize => sizes[plateSize][0]
+	size => sizes[size][0]
 );
 
 export const getNumCols = createSelector(
 	[plateSize],
-	plateSize => sizes[plateSize][1]
+	size => sizes[size][1]
 );
+
+export const getNumWells = createSelector(
+	[getNumRows, getNumCols],
+	(rows, cols) => rows * cols
+);
+
+function allWells() {
+	const wells = [];
+	range(0, 8).map(row =>
+		range(0, 12).map(col => wells.push([row, col])
+	)
+);
+	return wells;
+}
+
+const getEmptyLayout = (rows, cols) => range(rows).map(() => range(cols).map(() => {}));
+
+const isOccupied = (row, col, plate) => !isEmpty(plate[row][col]);
+
+const occupiedWells = plategrid => filter(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
+
+const unoccupiedWells = plategrid => reject(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
+
+function * nextUnoccupiedWell(plategrid, numWells) {
+	let i = 0;
+	while (i < numWells + 1) {
+		const unoccupied = unoccupiedWells(plategrid);
+		yield unoccupied[i];
+		i += 1;
+	}
+}
+
+function * nextRandomWell(plategrid) {
+	const unoccupied = shuffle(unoccupiedWells(plategrid));
+	yield sample(unoccupied);
+}
+
+function * nextSample(samples) {
+	let i = 0;
+	while (true) {
+		yield samples[i % samples.length];
+		i += 1;
+	}
+}
+
+export const listOrder = createSelector(
+	[dataList, getNumRows, getNumCols, getNumWells, layout],
+	(dlist, rows, cols, numWells) => {
+		let listOrderGrid = getEmptyLayout(rows, cols);
+		dlist.forEach((datarow) => {
+			const [row, col] = nextUnoccupiedWell(listOrderGrid, numWells).next().value;
+			listOrderGrid[row][col] = datarow;
+		});
+		return listOrderGrid;
+	});
+
+export const randomLayout = createSelector(
+	[dataList, getNumRows, getNumCols, layout],
+	(data, rows, cols) => {
+		const randomGrid = getEmptyLayout(rows, cols);
+		data.forEach((datarow) => {
+			const [row, col] = nextRandomWell(randomGrid).next().value;
+			randomGrid[row][col] = datarow;
+		});
+		return randomGrid;
+	});
+
+export const roundRobinLayout = createSelector(
+	[dataList, getSampleList, getNumRows, getNumCols, getNumWells, layout],
+	(data, samples, rows, cols, numWells) => {
+		const RRGrid = getEmptyLayout(rows, cols);
+		let count = 0;
+		let assignedIds = [];
+		let rotateSample = nextSample(samples);
+		while (count < data.length) {
+			let currSample = rotateSample.next().value;
+			let datarow = data
+										.filter((x) => x['sample']===currSample)
+										.filter((x) => !contains(assignedIds, x.idx));
+			if (datarow) {
+				const [row, col] = nextUnoccupiedWell(RRGrid, numWells).next().value;
+				RRGrid[row][col] = datarow.pop();
+				assignedIds.push(datarow.idx);
+				count+=1;
+			}
+		}
+		return RRGrid;
+	});
 
 export const getDescription = createSelector(
 	[layout],
 	layout => {
 		switch (layout) {
 		case 'listorder':
-			return 'Places sample left to right, top to bottom based on the order in the imported data set.'
+		return 'Places sample left to right, top to bottom based on the order in the imported data set.'
 		case 'random':
-			return 'Places each experiment at a random well position.';
+		return 'Places each experiment at a random well position.';
 		case 'roundrobin':
 			return 'Places experiments one at a time, alternating between samples.';
 		default:
-			return 'Choose a layout.'
+		return 'Choose a layout.'
 		}
 	}
 );
@@ -43,115 +132,20 @@ export const calculateLayout = createSelector(
 		layout,
 		getNumRows,
 		getNumCols,
-		getSamples,
+		listOrder,
+		randomLayout,
+		roundRobinLayout,
 		state =>  state.plate.layout === 'random' ? Math.random() : 1 ], //final function forces reload when layout is random
-		(dataList, layout, rows, cols, samples) => {
+		(dataList, layout, rows, cols, listorder, rando, roundrobin) => {
 		switch (layout) {
 		case 'listorder':
-			return placeSamplesInListOrder(dataList, rows, cols);
+			return listorder;
 		case 'random':
-			return placeSamplesInRandomOrder(dataList, rows, cols);
+			return rando;
 		case 'roundrobin':
-			return roundRobinLayout(dataList, samples, rows, cols);
+			return roundrobin;
 		default:
-			return placeSamplesInListOrder(dataList, rows, cols);
-		}
-		}
+			return 'listorder'
+	}
+	}
 );
-
-/*
-* Assign experiment to well, rotating between samples
-*/
-function roundRobinLayout(datalist, samples, numRows, numCols) {
-	const plateGrid = [];
-	const sampleList = Array.from(samples);
-	const numSamples = samples.size;
-	const dataBySample = new Map();
-	for (let sample of Array.from(samples)){
-		let data = datalist.filter((x) => x["sample"] === sample);
-		dataBySample.set(sample, data);
-	}
-	let row = 0, col = 0, sampleIdx=0;
-	datalist.forEach(function(sample, i) {
-		let nextWell;
-		while (!nextWell) {
-			let currSample = sampleList[sampleIdx % numSamples];
-			nextWell = dataBySample.get(currSample).pop();
-			sampleIdx++;
-		}
-		if (nextWell) {
-			// needs refactoring/repetive code
-			if (col === numCols) {
-				row++;
-				col = 0;
-			}
-			if (plateGrid[row] === undefined) {
-				plateGrid[row] = [];
-			}
-			plateGrid[row][col] = nextWell;
-			col++;
-		}
-	});
-	return plateGrid;
-}
-
-/*
-* Places experiments at a well randomly chosen from unoccupied wells
-*/
-function placeSamplesInRandomOrder(datalist, numRows, numCols){
-	let plateGrid = [];
-	function getRandomInt(min, max) {
-		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
-	function checkMembership(arr, coord) {
-		let member = false;
-		arr.forEach(function (arrCoord) {
-			if (coord[0] === arrCoord[0] && coord[1] === arrCoord[1]) {
-				member = true;
-			}
-		});
-		return member;
-	}
-
-	function getRandomCoord() {
-		let col = getRandomInt(0, numCols - 1), row = getRandomInt(0, numRows - 1);
-		let randCoord = [row, col];
-		return randCoord;
-	}
-
-	let occupied = [];
-	datalist.forEach(function (datarow) {
-		let coord = getRandomCoord();
-		do {
-			coord = getRandomCoord();
-		} while (checkMembership(occupied, coord) === true);
-
-		let row = coord[0], col = coord[1];
-		if (plateGrid[row] === undefined) {
-			plateGrid[row] = [];
-		}
-		occupied.push(coord);
-		plateGrid[row][col] = datarow;
-	});
-	return plateGrid;
-};
-
-/*
-*Place experiments to plate in order they appear in the data list-left to right, top to bottom.
-*/
-function placeSamplesInListOrder(datalist, numRows, numCols) {
-	let plateGrid = [];
-	let row = 0, col = 0;
-	datalist.forEach(function (datarow) {
-		if (col === numCols) {
-			row++;
-			col = 0;
-		}
-		if (plateGrid[row] === undefined) {
-			plateGrid[row] = [];
-		}
-		plateGrid[row][col] = datarow;
-		col++;
-	});
-	return plateGrid;
-}

@@ -12,11 +12,8 @@ import {Grid, Row, Column} from 'react-cellblock';
 
 class App extends Component {
 
-	constructor(props) {
-		super(props);
-	}
 
-	componentDidMount() {
+	componentWillMount() {
 		const { dispatch } = this.props;
 		dispatch(loadData());
 	}

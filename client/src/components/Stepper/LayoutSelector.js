@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Paper from 'material-ui/Paper';
-import { Grid, Row, Cell } from 'react-inline-grid';
+import { Grid, Row } from 'react-inline-grid';
 
 class LayoutSelector extends Component {
 	handleChange = (event, index, value) => this.props.handleLayoutChange(value);
