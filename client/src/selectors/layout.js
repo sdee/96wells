@@ -27,6 +27,45 @@ export const getNumWells = createSelector(
 	(rows, cols) => rows * cols
 );
 
+function allWells() {
+	const wells = [];
+	range(0, 8).map(row =>
+		range(0, 12).map(col => wells.push([row, col])
+	)
+);
+	return wells;
+}
+
+const getEmptyLayout = (rows, cols) => range(rows).map(() => range(cols).map(() => {}));
+
+const isOccupied = (row, col, plate) => !isEmpty(plate[row][col]);
+
+const occupiedWells = plategrid => filter(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
+
+const unoccupiedWells = plategrid => reject(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
+
+function * nextUnoccupiedWell(plategrid, numWells) {
+	let i = 0;
+	while (i < numWells + 1) {
+		const unoccupied = unoccupiedWells(plategrid);
+		yield unoccupied[i];
+		i += 1;
+	}
+}
+
+function * nextRandomWell(plategrid) {
+	const unoccupied = shuffle(unoccupiedWells(plategrid));
+	yield sample(unoccupied);
+}
+
+function * nextSample(samples) {
+	let i = 0;
+	while (true) {
+		yield samples[i % samples.length];
+		i += 1;
+	}
+}
+
 export const listOrder = createSelector(
 	[dataList, getNumRows, getNumCols, getNumWells, layout],
 	(dlist, rows, cols, numWells) => {
@@ -75,14 +114,14 @@ export const getDescription = createSelector(
 	[layout],
 	layout => {
 		switch (layout) {
-			case 'listorder':
-			return 'Places sample left to right, top to bottom based on the order in the imported data set.'
-			case 'random':
-			return 'Places each experiment at a random well position.';
-			case 'roundrobin':
-				return 'Places experiments one at a time, alternating between samples.';
-			default:
-			return 'Choose a layout.'
+		case 'listorder':
+		return 'Places sample left to right, top to bottom based on the order in the imported data set.'
+		case 'random':
+		return 'Places each experiment at a random well position.';
+		case 'roundrobin':
+			return 'Places experiments one at a time, alternating between samples.';
+		default:
+		return 'Choose a layout.'
 		}
 	}
 );
@@ -90,62 +129,23 @@ export const getDescription = createSelector(
 //how to use variables inside function that don't trigger selector
 export const calculateLayout = createSelector(
 	[dataList,
-	layout,
-	getNumRows,
-	getNumCols,
-	listOrder,
-	randomLayout,
-	roundRobinLayout,
-	state =>  state.plate.layout === 'random' ? Math.random() : 1 ], //final function forces reload when layout is random
-	(dataList, layout, rows, cols, listorder, rando, roundrobin) => {
+		layout,
+		getNumRows,
+		getNumCols,
+		listOrder,
+		randomLayout,
+		roundRobinLayout,
+		state =>  state.plate.layout === 'random' ? Math.random() : 1 ], //final function forces reload when layout is random
+		(dataList, layout, rows, cols, listorder, rando, roundrobin) => {
 		switch (layout) {
-			case 'listorder':
-				return listorder;
-			case 'random':
-				return rando;
-			case 'roundrobin':
-				return roundrobin;
-			default:
-				return 'listorder'
-		}
+		case 'listorder':
+			return listorder;
+		case 'random':
+			return rando;
+		case 'roundrobin':
+			return roundrobin;
+		default:
+			return 'listorder'
+	}
 	}
 );
-
-function allWells() {
-	const wells = [];
-	range(0, 8).map(row =>
-		range(0, 12).map(col => wells.push([row, col])
-	)
-);
-	return wells;
-}
-
-const getEmptyLayout = (rows, cols) => range(rows).map(() => range(cols).map(() => {}));
-
-const isOccupied = (row, col, plate) => !isEmpty(plate[row][col]);
-
-const occupiedWells = plategrid => filter(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
-
-const unoccupiedWells = plategrid => reject(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
-
-function * nextUnoccupiedWell(plategrid, numWells) {
-	let i = 0;
-	while (i < numWells + 1) {
-		const unoccupied = unoccupiedWells(plategrid);
-		yield unoccupied[i];
-		i += 1;
-	}
-}
-
-function * nextRandomWell(plategrid) {
-	const unoccupied = shuffle(unoccupiedWells(plategrid));
-	yield sample(unoccupied);
-}
-
-function * nextSample(samples) {
-	let i = 0;
-	while (true) {
-		yield samples[i % samples.length];
-		i += 1;
-	}
-}
