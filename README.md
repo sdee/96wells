@@ -8,18 +8,19 @@ Layouts can be used to optimize for constraints such as ordering samples by time
 
 The code is designed to be modular so that custom layouts can be easily added. 
 
-Note: This is a work in progress and currently exists as a proof concept for combining d3, redux, and react. 
+Note: This is a work in progress and currently exists as a proof concept for combining d3, svg, and react/redux to develop interfaces for LIMS components.
 
 Features:
 
-* Sample automated layouts
-* Automatically assign colors to samples, showing how samples are distributed across the plate
-* Ability to overlay wells with attributes parsed from sample list
+* Sample layouts that assign experiments to well to optimize for specific criteria.
+* Automatically assign colors to samples, showing how samples are distributed across the plate.
+* Ability to overlay wells with attributes parsed from sample list (any column that is not Sample Name)
+* Import data via Google Sheets
 
-Proposed features:
+Upcoming features:
 
-* Layouts for grouping like wells and ones for keeping like wells apart (based on attributes such as time point and sample type)
-* Export and synchronization with Google Sheets
+* Screen for manually editing well locations
+* Easy export
 * Additional plate sizes (eg 384 wells)
 
 ![Screenshot](/example.png "Screenshot")
