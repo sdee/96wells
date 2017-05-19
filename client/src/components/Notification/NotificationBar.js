@@ -9,7 +9,7 @@ class NotificationBar extends Component {
 			<Snackbar
 				open={this.props.visible}
 				message={this.props.message}
-				autoHideDuration={3000}
+				autoHideDuration={4000}
 		 		onRequestClose={this.props.handleCleanUp}
 		 />
 			</div>
