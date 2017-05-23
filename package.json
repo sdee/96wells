@@ -27,6 +27,7 @@
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
     "react-redux": "^5.0.4",
+    "react-router": "^4.1.1",
     "redux-devtools-extension": "^2.13.0",
     "redux-form": "^6.6.3",
     "redux-thunk": "^2.2.0",
