@@ -4,7 +4,7 @@ import { getSampleList } from '../selectors/samples';
 
 export const dataList = state => state.app.dataList;
 export const plateSize = state => state.plate.plateSize;
-export const layout = state => state.router.params.layout;
+export const layout = state => state.router.params.algo;
 
 export const sizes = {
 	'96wells': [8, 12],

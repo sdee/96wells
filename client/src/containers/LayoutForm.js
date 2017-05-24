@@ -3,9 +3,29 @@ import { changeLayout, showLayer, showSample, postNotification } from '../action
 import LayoutSelector from '../components/Stepper/LayoutSelector';
 import { getAttributes } from '../selectors/samples';
 import { getDescription } from '../selectors/layout'
+import { PUSH, push, replace} from 'redux-little-router';
 
 function handleLayoutChange(value, dispatch) {
-	dispatch(changeLayout(value));
+// 	console.log("handle layout change");
+// 	dispatch({
+//   type: PUSH,
+//   payload: {
+//     pathname: '/layout',
+//     query: {
+//      	algo: 'random'
+//     }
+//   }
+// });
+push('/layout/random');
+
+replace({
+  pathname: '/layout',
+  query: {
+    algo: 'random'
+  }
+});
+
+
 	dispatch(postNotification('New layout chosen: '+value));
 }
 

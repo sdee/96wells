@@ -15,11 +15,12 @@ import notification from './reducers/notification'
 
 import './index.css';
 import { routerForBrowser } from 'redux-little-router';
+import { RouterProvider } from 'redux-little-router';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const routes = {
-  '/layout/:layout': {
+  '/layout/:algo': {
     title: 'layout algorithm'
   }
 };
@@ -31,15 +32,11 @@ const {
 } = routerForBrowser({
   // The configured routes. Required.
   routes,
-  // The basename for all routes. Optional.
-  basename: '/example'
+  // // The basename for all routes. Optional.
+  basename: false
 });
 
 const middlewares = [middleware, thunk].filter(Boolean);
-
-// const store = createStore(combineReducers({ router: reducer, appReducer, plateReducer, notificationReducer }), /* preloadedState, */ composeEnhancers( enhancer,
-//     applyMiddleware(...middlewares)
-//   ));
 
 const reducers = combineReducers({ app, plate, notification, router: reducer });
 
@@ -59,7 +56,7 @@ const MaterialApp = () => (
 injectTapEventPlugin();
 
 ReactDOM.render(
-	<Provider store={store}>
+		<Provider store={store}>
 	<MaterialApp />
 	</Provider>,
 	document.getElementById('root')
