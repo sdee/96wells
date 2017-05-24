@@ -17,12 +17,6 @@ const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
     applyMiddleware(thunk)
   ));
 
-// const MaterialApp = () => (
-// 	<MuiThemeProvider>
-// 		<Router history={browserHistory} routes={routes} />
-// 	</MuiThemeProvider>
-// );
-
 injectTapEventPlugin();
 
 ReactDOM.render(

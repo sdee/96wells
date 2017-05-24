@@ -7,7 +7,7 @@ function handleChange(value, dispatch) {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-	currentStep: state.app.currentStep
+	currentStep: parseInt(ownProps.step)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

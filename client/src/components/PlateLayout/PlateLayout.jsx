@@ -9,7 +9,8 @@ class PlateLayout extends Component {
 		// console.log(this.props.dataList);
 		// console.log(this.props.colorMap);
 		// console.log(this.well);
-		// console.log(this.props.grid);
+
+
 	}
 
 	componentWillUpdate() {

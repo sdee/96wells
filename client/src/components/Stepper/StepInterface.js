@@ -11,6 +11,8 @@ class StepInterface extends Component {
 
 	showContent(currentStep) {
 		let content;
+		console.log("curr step");
+		console.log(currentStep);
 
 		switch(currentStep) {
 			case 0:
@@ -26,6 +28,8 @@ class StepInterface extends Component {
 	}
 
 	render(){
+		console.log("STEP");
+		console.log(this.props.currentStep);
 		return (
 			<div>
 				{this.showContent(this.props.currentStep)}
