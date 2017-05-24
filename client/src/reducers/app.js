@@ -1,4 +1,5 @@
 import { LOAD_DATA, LOAD_GOOGLE_SUCCESS, SELECT_STEP } from '../actions';
+import LOCATION_CHANGED from 'redux-little-router';
 
 const fullPlate = require('../../../data/full_plate.json');
 const balancedTest = require('../../../data/balanced_test.json');
@@ -52,6 +53,11 @@ const app = (state = initialState, action) => {
 				dataList: action.resp,
 				datasource: 'googlesheet'
 			});
+		}
+
+		case LOCATION_CHANGED: {
+			console.log("location changed");
+			console.log(action.url);
 		}
 
 		default: {

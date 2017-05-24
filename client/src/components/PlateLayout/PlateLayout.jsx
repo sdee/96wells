@@ -10,10 +10,12 @@ class PlateLayout extends Component {
 		// console.log(this.props.colorMap);
 		// console.log(this.well);
 		// console.log(this.props.grid);
+		console.log(this.props.location);
+		console.log(this.props.layout);
 	}
 
 	componentWillUpdate() {
-
+console.log(this.props.location);
 	}
 
 	makeRow(rowData, j) {

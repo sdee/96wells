@@ -5,7 +5,7 @@ import { getWellLabels } from '../selectors/labels';
 import { calculateLayout } from '../selectors/layout';
 
 const mapStateToProps = (state, ownProps) => ({
-	layout: state.plate.layout,
+	// layout: state.plate.layout,
 	plateSize: state.plate.plateSize,
 	dataList: state.app.dataList,
 	samples: getSamples(state),
@@ -13,7 +13,9 @@ const mapStateToProps = (state, ownProps) => ({
 	attributes: getAttributes(state),
 	visibleAttributes: state.plate.visibleAttributes,
 	grid: calculateLayout(state),
-	wellLabels: getWellLabels(state)
+	wellLabels: getWellLabels(state),
+	layout: state.router.params.layout,
+	location: state.router
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
