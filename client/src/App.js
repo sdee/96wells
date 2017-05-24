@@ -9,6 +9,7 @@ import Notifier from './containers/Notifier';
 import Container from './components/Container';
 import { loadData } from './actions';
 import {Grid, Row, Column} from 'react-cellblock';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
 
@@ -19,9 +20,24 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
-				<Container/>
-			</div>
+			<MuiThemeProvider>
+				<div>
+					<Grid gutterWidth={15}>
+						<div>
+							{this.props.children}
+							<Row>
+								<Column width="4/5">
+									<Plate />
+								</Column>
+								<Column width="1/5">
+									<VisibilityFilters />
+								</Column>
+							</Row>
+							<Notifier />
+						</div>
+					</Grid>
+				</div>
+		</MuiThemeProvider>
 		);
 	}
 }

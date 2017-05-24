@@ -8,19 +8,12 @@ import Notifier from '../containers/Notifier';
 import { loadData } from '../actions';
 import {Grid, Row, Column} from 'react-cellblock';
 
-function Container() {
+function Container(props) {
 	return (
 		<div>
 			<Grid gutterWidth={15}>
 				<div>
-					<Row>
-						<Stepper />
-					</Row>
-					<Row>
-						<Column>
-							<StepContent />
-						</Column>
-					</Row>
+					{props.children}
 					<Row>
 						<Column width="4/5">
 							<Plate />
