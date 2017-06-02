@@ -5,9 +5,6 @@ import Stepper from '../../containers/Stepper';
 import {Grid, Row, Column} from 'react-cellblock';
 
 function StepContainer({location, params}) {
-	console.log(location);
-	console.log("PARAMS");
-	console.log(params);
 	return(
 
 		<div>

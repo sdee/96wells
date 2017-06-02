@@ -28,8 +28,6 @@ class StepInterface extends Component {
 	}
 
 	render(){
-		console.log("STEP");
-		console.log(this.props.currentStep);
 		return (
 			<div>
 				{this.showContent(this.props.currentStep)}
