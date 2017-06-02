@@ -9,11 +9,10 @@ import Notifier from './containers/Notifier';
 import { loadData } from './actions';
 import {Grid, Row, Column} from 'react-cellblock';
 
-
-class App extends Component {
-
+export class App extends Component {
 
 	componentWillMount() {
+		console.log(this.props);
 		const { dispatch } = this.props;
 		dispatch(loadData());
 	}
