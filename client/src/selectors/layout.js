@@ -40,9 +40,17 @@ const getEmptyLayout = (rows, cols) => range(rows).map(() => range(cols).map(() 
 
 const isOccupied = (row, col, plate) => !isEmpty(plate[row][col]);
 
+const
+
+// const hasLikeNeighbors = (row, col, plategrid, attribute) => ;
+
+const neighborCoords = (row, col) => reject([[row-1, col-1], [row-1, col], [row-1, col+1], [row, col-1], [row, col+1], [row+1, col-1], [row+1, col], [row+1, col+1]], ([row, col]) => row<0 || col<0);
+
 const occupiedWells = plategrid => filter(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
 
 const unoccupiedWells = plategrid => reject(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
+
+const availableWells = (plategrid, attribute) => reject(unoccupiedWells(), ([row, col]) => hasLikeNeighbors(row, col, plategrid, attribute));
 
 function * nextUnoccupiedWell(plategrid, numWells) {
 	let i = 0;
@@ -51,6 +59,11 @@ function * nextUnoccupiedWell(plategrid, numWells) {
 		yield unoccupied[i];
 		i += 1;
 	}
+}
+
+function * nextAvailableWell(plategrid) {
+	const unoccupied = unoccupiedWells(plategrid);
+
 }
 
 function * nextRandomWell(plategrid) {
@@ -65,6 +78,7 @@ function * nextSample(samples) {
 		i += 1;
 	}
 }
+
 
 export const listOrder = createSelector(
 	[dataList, getNumRows, getNumCols, getNumWells, layout],
@@ -109,6 +123,13 @@ export const roundRobinLayout = createSelector(
 		}
 		return RRGrid;
 	});
+
+	export const spreadSampleLayout = createSelector(
+		[dataList, getNumRows, getNumCols, getNumWells, layout],
+		(data, rows, cols, numWells) => {
+
+
+		});
 
 export const getDescription = createSelector(
 	[layout],
