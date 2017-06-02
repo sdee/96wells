@@ -6,11 +6,12 @@ import VisibilityFilters from './containers/VisibilityFilters';
 import Plate from './containers/Plate';
 import Stepper from './containers/Stepper';
 import Notifier from './containers/Notifier';
+import Container from './components/Container';
 import { loadData } from './actions';
 import {Grid, Row, Column} from 'react-cellblock';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export class App extends Component {
-
 	componentWillMount() {
 		console.log(this.props);
 		const { dispatch } = this.props;
@@ -19,29 +20,24 @@ export class App extends Component {
 
 	render() {
 		return (
-			<div>
-				<Grid gutterWidth={15}>
-					<div>
-						<Row>
-							<Stepper />
-						</Row>
-						<Row>
-							<Column>
-								<StepContent />
-							</Column>
-						</Row>
-						<Row>
-							<Column width="4/5">
-								<Plate />
-							</Column>
-							<Column width="1/5">
-								<VisibilityFilters />
-							</Column>
-						</Row>
-						<Notifier />
-					</div>
-				</Grid>
-			</div>
+			<MuiThemeProvider>
+				<div>
+					<Grid gutterWidth={15}>
+						<div>
+							{this.props.children}
+							<Row>
+								<Column width="4/5">
+									<Plate />
+								</Column>
+								<Column width="1/5">
+									<VisibilityFilters />
+								</Column>
+							</Row>
+							<Notifier />
+						</div>
+					</Grid>
+				</div>
+		</MuiThemeProvider>
 		);
 	}
 }
