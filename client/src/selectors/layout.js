@@ -102,7 +102,7 @@ export const roundRobinLayout = createSelector(
 										.filter((x) => !contains(assignedIds, x.idx));
 			if (datarow) {
 				const [row, col] = nextUnoccupiedWell(RRGrid, numWells).next().value;
-				RRGrid[row][col] = datarow.pop();
+				RRGrid[row][col] = datarow;
 				assignedIds.push(datarow.idx);
 				count+=1;
 			}
