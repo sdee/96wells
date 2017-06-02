@@ -16,22 +16,33 @@ class Well extends Component {
 
 		return (
 			<g transform="translate(55,55)">
+				{ j===0 ? (
+					<text
+						x={i*spacing}
+						fontFamily="helvetica"
+						textAnchor="middle"
+						fontSize="26px"
+						fontWeight="lighter">{i+1}
+					</text>
+					)
+					: ('')
+				}
 				<circle
 					r="35"
-					cx={i * spacing}
-					cy={j * spacing}
+					cx={5+i * spacing}
+					cy={45+j * spacing}
 					fill={color}
 					fillOpacity={opacity}
 				/>
 				<text
 					x={i * spacing}
-					y={j * spacing}
+					y={45+j * spacing}
 					fontFamily="helvetica"
 					textAnchor="middle"
 					fontSize="12px"
 					fontWeight="bold"
 				>
-					{this.props.labels.map((l, x) => <tspan x={i * spacing} dy={(0.2 + (x * 0.9)).toString() + 'em'} key={'text'+i+'_'+j+l}>{l}</tspan>)}
+					{this.props.labels.map((l, x) => <tspan x={5+i * spacing} dy={(0.2 + (x * 0.9)).toString() + 'em'} key={'text'+i+'_'+j+l}>{l}</tspan>)}
 				</text>
 			</g>
 		);
