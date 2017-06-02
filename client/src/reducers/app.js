@@ -27,7 +27,7 @@ function selectData(dataset) {
 	}
 }
 
-const app = (state = initialState, action) => {
+export const app = (state = initialState, action) => {
 	switch (action.type) {
 		case LOAD_DATA: {
 			const data = selectData(action.dataSet);

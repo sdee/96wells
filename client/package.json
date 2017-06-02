@@ -22,12 +22,16 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "jest": "^20.0.4",
     "react-scripts": "0.9.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+		"test": "jest",
+    "test:watch": "npm test -- --watch"
   }
 }
