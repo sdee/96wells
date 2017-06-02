@@ -98,7 +98,7 @@ export const roundRobinLayout = createSelector(
 		while (count < data.length) {
 			let currSample = rotateSample.next().value;
 			let datarow = data
-										.filter((x) => x['sample']===currSample)
+										.filter((x) => x['sample'] === currSample)
 										.filter((x) => !contains(assignedIds, x.idx));
 			if (datarow) {
 				const [row, col] = nextUnoccupiedWell(RRGrid, numWells).next().value;
