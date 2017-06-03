@@ -41,7 +41,7 @@ const getEmptyLayout = (rows, cols) => range(rows).map(() => range(cols).map(() 
 const isOccupied = (row, col, plate) => !isEmpty(plate[row][col]);
 
 //currently matches by sample attribute, can later be generalized
-const hasLikeNeighbors = (row, col, plategrid, sample) => some(getWells(neighbors(row, col), plategrid), n => !!n && !!n.sample ? n.sample : undefined === sample)
+const hasLikeNeighbors = (row, col, plategrid, sample) => some(getWells(neighbors(row, col), plategrid), n => (!!n && !!n.sample ? n.sample : undefined) === sample)
 
 const getWells = (wells, plategrid) => wells.map(([row, col]) => plategrid[row][col]);
 
@@ -51,7 +51,7 @@ const occupiedWells = plategrid => filter(allWells(), ([row, col]) => isOccupied
 
 const unoccupiedWells = plategrid => reject(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
 
-const availableWells = (plategrid, attribute) => reject(unoccupiedWells(), ([row, col]) => hasLikeNeighbors(row, col, plategrid, attribute));
+const availableWells = (plategrid, attribute) => reject(unoccupiedWells(plategrid), ([row, col]) => hasLikeNeighbors(row, col, plategrid, attribute));
 
 function * nextUnoccupiedWell(plategrid, numWells) {
 	let i = 0;
@@ -118,8 +118,9 @@ export const roundRobinLayout = createSelector(
 										.filter((x) => !contains(assignedIds, x.idx));
 			if (datarow) {
 				const [row, col] = nextUnoccupiedWell(RRGrid, numWells).next().value;
-				RRGrid[row][col] = datarow.pop();
-				assignedIds.push(datarow.idx);
+				const datum = datarow.pop();
+				RRGrid[row][col] = datum;
+				assignedIds.push(datum.idx);
 				count+=1;
 			}
 		}
