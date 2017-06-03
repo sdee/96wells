@@ -1,4 +1,4 @@
-import { range, filter, reject, sample, isEmpty, contains, shuffle } from 'underscore';
+import { range, filter, reject, sample, isEmpty, contains, shuffle, some } from 'underscore';
 import { createSelector } from 'reselect';
 import { getSampleList } from '../selectors/samples';
 
@@ -40,11 +40,12 @@ const getEmptyLayout = (rows, cols) => range(rows).map(() => range(cols).map(() 
 
 const isOccupied = (row, col, plate) => !isEmpty(plate[row][col]);
 
-const
+//currently matches by sample attribute, can later be generalized
+const hasLikeNeighbors = (row, col, plategrid, sample) => some(getWells(neighbors(row, col), plategrid), n => !!n && !!n.sample ? n.sample : undefined === sample)
 
-// const hasLikeNeighbors = (row, col, plategrid, attribute) => ;
+const getWells = (wells, plategrid) => wells.map(([row, col]) => plategrid[row][col]);
 
-const neighborCoords = (row, col) => reject([[row-1, col-1], [row-1, col], [row-1, col+1], [row, col-1], [row, col+1], [row+1, col-1], [row+1, col], [row+1, col+1]], ([row, col]) => row<0 || col<0);
+const neighbors = (row, col) => reject([[row-1, col-1], [row-1, col], [row-1, col+1], [row, col-1], [row, col+1], [row+1, col-1], [row+1, col], [row+1, col+1]], ([row, col]) => row <0 || col < 0 || row > 7 || col > 11 );
 
 const occupiedWells = plategrid => filter(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
 
@@ -61,9 +62,11 @@ function * nextUnoccupiedWell(plategrid, numWells) {
 	}
 }
 
-function * nextAvailableWell(plategrid) {
-	const unoccupied = unoccupiedWells(plategrid);
-
+function * nextAvailableWell(plategrid, attribute) {
+	const available = availableWells(plategrid, attribute);
+	while (available.length > 0) {
+		yield available.shift();
+	}
 }
 
 function * nextRandomWell(plategrid) {
@@ -78,7 +81,6 @@ function * nextSample(samples) {
 		i += 1;
 	}
 }
-
 
 export const listOrder = createSelector(
 	[dataList, getNumRows, getNumCols, getNumWells, layout],
@@ -127,8 +129,12 @@ export const roundRobinLayout = createSelector(
 	export const spreadSampleLayout = createSelector(
 		[dataList, getNumRows, getNumCols, getNumWells, layout],
 		(data, rows, cols, numWells) => {
-
-
+			const SSGrid = getEmptyLayout(rows, cols);
+			data.forEach((datarow) => {
+				const [row, col] = nextAvailableWell(SSGrid, datarow.sample).next().value;
+				SSGrid[row][col] = datarow;
+			});
+			return SSGrid;
 		});
 
 export const getDescription = createSelector(
