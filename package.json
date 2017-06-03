@@ -24,6 +24,7 @@
     "express": "~4.14.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "miso.dataset": "^0.4.1",
+    "morgan": "^1.8.2",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
     "react-redux": "^5.0.4",
