@@ -11,7 +11,7 @@ const initialState = {
 }
 
 function selectData(dataset) {
-	switch(dataset) {
+	switch (dataset) {
 		case 'balanced': {
 			return balancedTest;
 		}
@@ -29,16 +29,16 @@ function selectData(dataset) {
 
 export const app = (state = initialState, action) => {
 	switch (action.type) {
-		case LOAD_DATA: {
-			const data = selectData(action.dataSet);
-			return Object.assign({}, state, {
-				datasource: action.dataSet === 'default'? 'balanced' : action.dataSet,
-				dataList: data.map(function (v, i) {
-					v.idx = i;
-					return v;
-				}) // adds id
-			});
-		}
+	case LOAD_DATA: {
+		const data = selectData(action.dataSet);
+		return Object.assign({}, state, {
+			datasource: action.dataSet === 'default' ? 'balanced' : action.dataSet,
+			dataList: data.map((v, i) => {
+				v.idx = i;
+				return v;
+			}) // adds id
+		});
+	}
 
 		case SELECT_STEP: {
 			return Object.assign({}, state, {
