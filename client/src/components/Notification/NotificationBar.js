@@ -6,12 +6,12 @@ class NotificationBar extends Component {
 	render() {
 		return (
 			<div>
-			<Snackbar
-				open={this.props.visible}
-				message={this.props.message}
-				autoHideDuration={4000}
-		 		onRequestClose={this.props.handleCleanUp}
-		 />
+				<Snackbar
+					open={this.props.visible}
+					message={this.props.message}
+					autoHideDuration={4000}
+			 		onRequestClose={this.props.handleCleanUp}
+			 />
 			</div>
 		);
 	}

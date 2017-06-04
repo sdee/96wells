@@ -7,9 +7,9 @@ const visibleAttribute = state => state.plate.visibleAttribute;
 
 export const getWellLabels = createSelector(
 	[dataList, sampleVisible, visibleAttribute],
-	function (dataList, sampleVisible, visibleAttribute) {
+	(dataList, sampleVisible, visibleAttribute) => {
 		const wellLabels = new Map();
-		dataList.forEach(function(d) {
+		dataList.forEach((d) => {
 			const labels = [];
 			if (sampleVisible) {
 				labels.push(d.sample);

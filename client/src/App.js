@@ -37,7 +37,7 @@ export class App extends Component {
 						</div>
 					</Grid>
 				</div>
-		</MuiThemeProvider>
+			</MuiThemeProvider>
 		);
 	}
 }

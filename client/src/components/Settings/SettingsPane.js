@@ -13,18 +13,18 @@ import Paper from 'material-ui/Paper';
 class SettingsPane extends Component {
 
 	render() {
-		let attributes = this.props.attributes;
-		let visibleAttribute = this.props.visibleAttribute;
-		let handleAttrVisChange = this.props.handleAttrVisChange;
-		let handleSampleVisChange = this.props.handleSampleVisChange;
-		let showSample = this.props.showSample;
-		let numSamples = this.props.numSamples;
+		const attributes = this.props.attributes;
+		const visibleAttribute = this.props.visibleAttribute;
+		const handleAttrVisChange = this.props.handleAttrVisChange;
+		const handleSampleVisChange = this.props.handleSampleVisChange;
+		const showSample = this.props.showSample;
+		const numSamples = this.props.numSamples;
 		return (
 			<Paper zDepth={1}>
 				<List>
 					<ListItem>
 					<Subheader inset={true}>Data Summary</Subheader>
-					{numSamples} Experiments
+						{numSamples} Experiments
 					</ListItem>
 				</List>
 				<Divider/>
@@ -41,13 +41,15 @@ class SettingsPane extends Component {
 					{attributes.map(attribute =>
 						<div>
 							<ListItem
-								leftCheckbox={<Checkbox
-									checked={visibleAttribute===attribute}
-									onCheck={handleAttrVisChange}
-									name={attribute}
-									value={attribute}/>}
+								leftCheckbox={
+									<Checkbox
+										checked={visibleAttribute === attribute}
+										onCheck={handleAttrVisChange}
+										name={attribute}
+										value={attribute}
+									/>}
 								primaryText={attribute}
-								/>
+							/>
 						</div>
 					)}
 				</List>
@@ -59,5 +61,5 @@ class SettingsPane extends Component {
 SettingsPane.propTypes = {
 
 };
-//
+
 export default SettingsPane;
