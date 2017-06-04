@@ -30,9 +30,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject",
-		"test": "jest",
     "test:watch": "npm test -- --watch"
   }
 }
