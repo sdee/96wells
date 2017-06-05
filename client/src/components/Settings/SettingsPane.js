@@ -18,13 +18,15 @@ class SettingsPane extends Component {
 		const handleAttrVisChange = this.props.handleAttrVisChange;
 		const handleSampleVisChange = this.props.handleSampleVisChange;
 		const showSample = this.props.showSample;
+		const numExperiments = this.props.numExperiments;
 		const numSamples = this.props.numSamples;
 		return (
 			<Paper zDepth={1}>
 				<List>
 					<ListItem>
-					<Subheader inset={true}>Data Summary</Subheader>
-						{numSamples} Experiments
+						<Subheader inset={true}>Data Summary</Subheader>
+						{numExperiments} Experiments<br/>
+						{numSamples} Samples
 					</ListItem>
 				</List>
 				<Divider/>

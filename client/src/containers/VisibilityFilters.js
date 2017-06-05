@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { changeLayout, showLayer, showSample, postNotification } from '../actions';
 import SettingsPane from '../components/Settings/SettingsPane';
-import { getAttributes, getColorMap, getNumOfExperiments } from '../selectors/samples';
+import { getAttributes, getColorMap, getNumOfExperiments, getSampleList } from '../selectors/samples';
 import { getDescription } from '../selectors/layout';
 
 function handleSampleVisChange(e, dispatch) {
@@ -17,7 +17,8 @@ const mapStateToProps = (state, ownProps) => ({
 	showSample: state.plate.showSample,
 	visibleAttribute: state.plate.visibleAttribute,
 	colorMap: getColorMap(state),
-	numSamples: getNumOfExperiments(state)
+	numExperiments: getNumOfExperiments(state),
+	numSamples: getSampleList(state).length
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
