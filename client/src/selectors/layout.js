@@ -1,4 +1,4 @@
-import { range, filter, reject, sample, isEmpty, contains, shuffle } from 'underscore';
+import { range, filter, reject, sample, isEmpty, contains, shuffle, some } from 'underscore';
 import { createSelector } from 'reselect';
 import { getSampleList } from '../selectors/samples';
 
@@ -40,9 +40,18 @@ const getEmptyLayout = (rows, cols) => range(rows).map(() => range(cols).map(() 
 
 const isOccupied = (row, col, plate) => !isEmpty(plate[row][col]);
 
+//currently matches by sample attribute, can later be generalized
+const hasLikeNeighbors = (row, col, plategrid, sample) => some(getWells(neighbors(row, col), plategrid), n => (!!n && !!n.sample ? n.sample : undefined) === sample)
+
+const getWells = (wells, plategrid) => wells.map(([row, col]) => plategrid[row][col]);
+
+const neighbors = (row, col) => reject([[row-1, col-1], [row-1, col], [row-1, col+1], [row, col-1], [row, col+1], [row+1, col-1], [row+1, col], [row+1, col+1]], ([row, col]) => row <0 || col < 0 || row > 7 || col > 11 );
+
 const occupiedWells = plategrid => filter(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
 
 const unoccupiedWells = plategrid => reject(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
+
+const availableWells = (plategrid, attribute) => reject(unoccupiedWells(plategrid), ([row, col]) => hasLikeNeighbors(row, col, plategrid, attribute));
 
 function* nextUnoccupiedWell(plategrid, numWells) {
 	let i = 0;
@@ -50,6 +59,13 @@ function* nextUnoccupiedWell(plategrid, numWells) {
 		const unoccupied = unoccupiedWells(plategrid);
 		yield unoccupied[i];
 		i += 1;
+	}
+}
+
+function* nextAvailableWell(plategrid, attribute) {
+	const available = availableWells(plategrid, attribute);
+	while (available.length > 0) {
+		yield available.shift();
 	}
 }
 
@@ -103,13 +119,25 @@ export const roundRobinLayout = createSelector(
 										.filter(x => !contains(assignedIds, x.idx));
 			if (datarow) {
 				const [row, col] = nextUnoccupiedWell(RRGrid, numWells).next().value;
-				RRGrid[row][col] = datarow.pop();
-				assignedIds.push(datarow.idx);
-				count += 1;
+				const datum = datarow.pop();
+				RRGrid[row][col] = datum;
+				assignedIds.push(datum.idx);
+				count+=1;
 			}
 		}
 		return RRGrid;
 	});
+
+	export const spreadSampleLayout = createSelector(
+		[dataList, getNumRows, getNumCols, getNumWells, layout],
+		(data, rows, cols, numWells) => {
+			const SSGrid = getEmptyLayout(rows, cols);
+			data.forEach((datarow) => {
+				const [row, col] = nextAvailableWell(SSGrid, datarow.sample).next().value;
+				SSGrid[row][col] = datarow;
+			});
+			return SSGrid;
+		});
 
 export const getDescription = createSelector(
 	[layout],
@@ -121,6 +149,8 @@ export const getDescription = createSelector(
 		return 'Places each experiment at a random well position.';
 		case 'roundrobin':
 			return 'Places experiments one at a time, alternating between samples.';
+		case 'spreadsample':
+			return 'Spread samples out so that neighboring experiments do not share same sample.'
 		default:
 		return 'Choose a layout.'
 		}
@@ -136,8 +166,9 @@ export const calculateLayout = createSelector(
 		listOrder,
 		randomLayout,
 		roundRobinLayout,
+		spreadSampleLayout,
 		state => state.plate.layout === 'random' ? Math.random() : 1 ], // final function forces reload when layout is random
-		(dataList, layout, rows, cols, listorder, rando, roundrobin) => {
+		(dataList, layout, rows, cols, listorder, rando, roundrobin, spreadsample) => {
 		switch (layout) {
 		case 'listorder':
 			return listorder;
@@ -145,6 +176,8 @@ export const calculateLayout = createSelector(
 			return rando;
 		case 'roundrobin':
 			return roundrobin;
+		case 'spreadsample':
+			return spreadsample;
 		default:
 			return 'listorder'
 	}

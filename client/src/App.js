@@ -13,9 +13,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export class App extends Component {
 	componentWillMount() {
-		console.log(this.props);
 		const { dispatch } = this.props;
-		dispatch(loadData());
+		dispatch(loadData("balanced"));
 	}
 
 	render() {
