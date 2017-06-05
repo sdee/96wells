@@ -1,0 +1,482 @@
+[
+    {
+        "sample": "sample_3",
+        "patient": "P7843",
+        "treatment": "Drug_R"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P4756",
+        "treatment": "Drug_D"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P4030",
+        "treatment": "Drug_Q"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P3855",
+        "treatment": "Drug_K"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P4702",
+        "treatment": "Drug_J"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P9642",
+        "treatment": "Drug_B"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P3588",
+        "treatment": "Drug_W"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P5474",
+        "treatment": "Drug_B"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P6212",
+        "treatment": "Drug_F"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P2123",
+        "treatment": "Drug_V"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P1985",
+        "treatment": "Drug_F"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P1329",
+        "treatment": "Drug_P"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P2719",
+        "treatment": "Drug_V"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P8973",
+        "treatment": "Drug_X"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P7236",
+        "treatment": "Drug_I"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P7523",
+        "treatment": "Drug_G"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P4595",
+        "treatment": "Drug_Z"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P1455",
+        "treatment": "Drug_V"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P9431",
+        "treatment": "Drug_L"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P1103",
+        "treatment": "Drug_E"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P9172",
+        "treatment": "Drug_W"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P6860",
+        "treatment": "Drug_E"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P6173",
+        "treatment": "Drug_G"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P1065",
+        "treatment": "Drug_K"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P1007",
+        "treatment": "Drug_E"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P7856",
+        "treatment": "Drug_C"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P1057",
+        "treatment": "Drug_C"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P3890",
+        "treatment": "Drug_H"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P9590",
+        "treatment": "Drug_Q"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P6580",
+        "treatment": "Drug_O"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P4189",
+        "treatment": "Drug_Q"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P1372",
+        "treatment": "Drug_K"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P7871",
+        "treatment": "Drug_E"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P8237",
+        "treatment": "Drug_R"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P2942",
+        "treatment": "Drug_O"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P3339",
+        "treatment": "Drug_G"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P5479",
+        "treatment": "Drug_B"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P7786",
+        "treatment": "Drug_V"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P8442",
+        "treatment": "Drug_I"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P2522",
+        "treatment": "Drug_N"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P5424",
+        "treatment": "Drug_G"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P6613",
+        "treatment": "Drug_V"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P3744",
+        "treatment": "Drug_W"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P5832",
+        "treatment": "Drug_I"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P5884",
+        "treatment": "Drug_F"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P7730",
+        "treatment": "Drug_K"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P8593",
+        "treatment": "Drug_P"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P3505",
+        "treatment": "Drug_C"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P2149",
+        "treatment": "Drug_Q"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P8839",
+        "treatment": "Drug_O"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P7277",
+        "treatment": "Drug_F"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P5757",
+        "treatment": "Drug_U"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P7438",
+        "treatment": "Drug_J"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P2187",
+        "treatment": "Drug_J"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P6033",
+        "treatment": "Drug_W"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P9266",
+        "treatment": "Drug_L"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P5644",
+        "treatment": "Drug_B"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P4269",
+        "treatment": "Drug_R"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P9336",
+        "treatment": "Drug_N"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P5157",
+        "treatment": "Drug_Z"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P4653",
+        "treatment": "Drug_X"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P9721",
+        "treatment": "Drug_Z"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P6507",
+        "treatment": "Drug_P"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P9736",
+        "treatment": "Drug_Z"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P6071",
+        "treatment": "Drug_R"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P1193",
+        "treatment": "Drug_N"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P9185",
+        "treatment": "Drug_P"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P6737",
+        "treatment": "Drug_U"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P4263",
+        "treatment": "Drug_W"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P6167",
+        "treatment": "Drug_I"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P1880",
+        "treatment": "Drug_K"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P6826",
+        "treatment": "Drug_D"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P1675",
+        "treatment": "Drug_A"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P6080",
+        "treatment": "Drug_G"
+    },
+    {
+        "sample": "sample_4",
+        "patient": "P2647",
+        "treatment": "Drug_O"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P8468",
+        "treatment": "Drug_M"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P7321",
+        "treatment": "Drug_D"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P5488",
+        "treatment": "Drug_V"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P3375",
+        "treatment": "Drug_D"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P2948",
+        "treatment": "Drug_K"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P9810",
+        "treatment": "Drug_V"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P1578",
+        "treatment": "Drug_S"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P2850",
+        "treatment": "Drug_P"
+    },
+    {
+        "sample": "sample_5",
+        "patient": "P4615",
+        "treatment": "Drug_S"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P9607",
+        "treatment": "Drug_F"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P2603",
+        "treatment": "Drug_G"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P8204",
+        "treatment": "Drug_Q"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P3117",
+        "treatment": "Drug_P"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P6016",
+        "treatment": "Drug_C"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P6559",
+        "treatment": "Drug_X"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P9652",
+        "treatment": "Drug_G"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P1237",
+        "treatment": "Drug_P"
+    },
+    {
+        "sample": "sample_1",
+        "patient": "P8565",
+        "treatment": "Drug_C"
+    },
+    {
+        "sample": "sample_2",
+        "patient": "P1180",
+        "treatment": "Drug_J"
+    },
+    {
+        "sample": "sample_6",
+        "patient": "P8762",
+        "treatment": "Drug_A"
+    },
+    {
+        "sample": "sample_3",
+        "patient": "P8736",
+        "treatment": "Drug_E"
+    }
+]

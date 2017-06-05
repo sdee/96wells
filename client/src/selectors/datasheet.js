@@ -5,7 +5,7 @@ var Miso = require("miso.dataset");
 const dataList = state => state.app.googlesheet;
 
 export const getColumns = createSelector(
-	[googlesheet],
+	[dataList],
 	googlesheet => (
 		console.log(googlesheet)
 	)

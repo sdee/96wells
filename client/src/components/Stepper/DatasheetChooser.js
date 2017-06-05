@@ -65,9 +65,9 @@ class DatasheetChooser extends Component {
 								onChange={this.handleChange}
 								style={{marginLeft:'20px', topPadding:'0px', topMargin:'0px'}}
 								>
-								<MenuItem value={'empty'} primaryText="None" />
-								<MenuItem value={'balanced'} primaryText="Balanced (default)" />
-								<MenuItem value={'fullplate'} primaryText="Full Plate" />
+								<MenuItem value={'balanced'} primaryText="Basic with 6 samples" />
+								<MenuItem value={'spread'} primaryText="8 samples" />
+								<MenuItem value={'clinical'} primaryText="Clinical Example" />
 							</SelectField>
 						</Paper>
 					</Row>

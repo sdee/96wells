@@ -11,18 +11,15 @@ class StepInterface extends Component {
 
 	showContent(currentStep) {
 		let content;
-		console.log("curr step");
-		console.log(currentStep);
 
-		switch(currentStep) {
-			case 0:
-			content = <DatasheetField />;
-			break;
+		switch (currentStep) {
+		case 0:
+		content = <DatasheetField />;
+		break;
 
-			case 1:
-			content = <LayoutForm />;
-			break;
-
+		case 1:
+		content = <LayoutForm />;
+		break;
 		};
 		return content;
 	}

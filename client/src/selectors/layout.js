@@ -53,7 +53,7 @@ const unoccupiedWells = plategrid => reject(allWells(), ([row, col]) => isOccupi
 
 const availableWells = (plategrid, attribute) => reject(unoccupiedWells(plategrid), ([row, col]) => hasLikeNeighbors(row, col, plategrid, attribute));
 
-function * nextUnoccupiedWell(plategrid, numWells) {
+function* nextUnoccupiedWell(plategrid, numWells) {
 	let i = 0;
 	while (i < numWells + 1) {
 		const unoccupied = unoccupiedWells(plategrid);
@@ -62,19 +62,19 @@ function * nextUnoccupiedWell(plategrid, numWells) {
 	}
 }
 
-function * nextAvailableWell(plategrid, attribute) {
+function* nextAvailableWell(plategrid, attribute) {
 	const available = availableWells(plategrid, attribute);
 	while (available.length > 0) {
 		yield available.shift();
 	}
 }
 
-function * nextRandomWell(plategrid) {
+function* nextRandomWell(plategrid) {
 	const unoccupied = shuffle(unoccupiedWells(plategrid));
 	yield sample(unoccupied);
 }
 
-function * nextSample(samples) {
+function* nextSample(samples) {
 	let i = 0;
 	while (true) {
 		yield samples[i % samples.length];
@@ -85,7 +85,7 @@ function * nextSample(samples) {
 export const listOrder = createSelector(
 	[dataList, getNumRows, getNumCols, getNumWells, layout],
 	(dlist, rows, cols, numWells) => {
-		let listOrderGrid = getEmptyLayout(rows, cols);
+		const listOrderGrid = getEmptyLayout(rows, cols);
 		dlist.forEach((datarow) => {
 			const [row, col] = nextUnoccupiedWell(listOrderGrid, numWells).next().value;
 			listOrderGrid[row][col] = datarow;
@@ -109,13 +109,14 @@ export const roundRobinLayout = createSelector(
 	(data, samples, rows, cols, numWells) => {
 		const RRGrid = getEmptyLayout(rows, cols);
 		let count = 0;
-		let assignedIds = [];
-		let rotateSample = nextSample(samples);
+		const assignedIds = [];
+		samples.sort();
+		const rotateSample = nextSample(samples);
 		while (count < data.length) {
-			let currSample = rotateSample.next().value;
-			let datarow = data
-										.filter((x) => x['sample'] === currSample)
-										.filter((x) => !contains(assignedIds, x.idx));
+			const currSample = rotateSample.next().value;
+			const datarow = data
+										.filter(x => x['sample'] === currSample)
+										.filter(x => !contains(assignedIds, x.idx));
 			if (datarow) {
 				const [row, col] = nextUnoccupiedWell(RRGrid, numWells).next().value;
 				const datum = datarow.pop();
@@ -140,7 +141,7 @@ export const roundRobinLayout = createSelector(
 
 export const getDescription = createSelector(
 	[layout],
-	layout => {
+	(layout) => {
 		switch (layout) {
 		case 'listorder':
 		return 'Places sample left to right, top to bottom based on the order in the imported data set.'
@@ -163,7 +164,7 @@ export const calculateLayout = createSelector(
 		listOrder,
 		randomLayout,
 		roundRobinLayout,
-		state =>  state.plate.layout === 'random' ? Math.random() : 1 ], //final function forces reload when layout is random
+		state => state.plate.layout === 'random' ? Math.random() : 1 ], // final function forces reload when layout is random
 		(dataList, layout, rows, cols, listorder, rando, roundrobin) => {
 		switch (layout) {
 		case 'listorder':
