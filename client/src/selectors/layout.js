@@ -94,6 +94,7 @@ export const roundRobinLayout = createSelector(
 		const RRGrid = getEmptyLayout(rows, cols);
 		let count = 0;
 		const assignedIds = [];
+		samples.sort();
 		const rotateSample = nextSample(samples);
 		while (count < data.length) {
 			const currSample = rotateSample.next().value;
