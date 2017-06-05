@@ -149,6 +149,8 @@ export const getDescription = createSelector(
 		return 'Places each experiment at a random well position.';
 		case 'roundrobin':
 			return 'Places experiments one at a time, alternating between samples.';
+		case 'spreadsample':
+			return 'Spread samples out so that neighboring experiments do not share same sample.'
 		default:
 		return 'Choose a layout.'
 		}
@@ -164,8 +166,9 @@ export const calculateLayout = createSelector(
 		listOrder,
 		randomLayout,
 		roundRobinLayout,
+		spreadSampleLayout,
 		state => state.plate.layout === 'random' ? Math.random() : 1 ], // final function forces reload when layout is random
-		(dataList, layout, rows, cols, listorder, rando, roundrobin) => {
+		(dataList, layout, rows, cols, listorder, rando, roundrobin, spreadsample) => {
 		switch (layout) {
 		case 'listorder':
 			return listorder;
@@ -173,6 +176,8 @@ export const calculateLayout = createSelector(
 			return rando;
 		case 'roundrobin':
 			return roundrobin;
+		case 'spreadsample':
+			return spreadsample
 		default:
 			return 'listorder'
 	}

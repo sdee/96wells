@@ -24,7 +24,7 @@ function selectData(dataset) {
 			return spreadExample;
 		}
 		case 'clinical': {
-			return clinicalExample
+			return clinicalExample;
 		}
 		case 'default': {
 			return balancedTest;
