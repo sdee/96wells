@@ -2,6 +2,8 @@ import { LOAD_DATA, LOAD_GOOGLE_SUCCESS, SELECT_STEP } from '../actions';
 
 const fullPlate = require('../../../data/full_plate.json');
 const balancedTest = require('../../../data/balanced_test.json');
+const clinicalExample = require('../../../data/clinical_example.json');
+const spreadExample = require('../../../data/spread_test.json');
 
 const initialState = {
 	datasource: 'balanced', // source of sample list
@@ -17,6 +19,12 @@ function selectData(dataset) {
 		}
 		case 'fullplate': {
 			return fullPlate;
+		}
+		case 'spread': {
+			return spreadExample;
+		}
+		case 'clinical': {
+			return clinicalExample
 		}
 		case 'default': {
 			return balancedTest;
