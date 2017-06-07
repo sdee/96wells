@@ -15,7 +15,8 @@ const wellSource = {
 function collect(connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
+    isDragging: monitor.isDragging(),
+		connectDragPreview: connect.dragPreview()
   };
 }
 
@@ -30,6 +31,7 @@ class Well extends Component {
 		const j = this.props.j;
 		const color = this.props.color;
 		const connectDragSource = this.props.connectDragSource;
+		const connectDragPreview = this.props.connectDragPreview;
 		const isDragging = this.props.isDragging;
 		const spacing = 73;
 		const opacity = 0.4;
@@ -37,41 +39,46 @@ class Well extends Component {
 			console.log("dragging "+this.props.id)
 		}
 
-		return (
-			connectDragSource(
-				<g transform="translate(55,55)">
-					{ j === 0 ? (
-						<text
-							x={i * spacing}
-							fontFamily="helvetica"
-							textAnchor="middle"
-							fontSize="26px"
-							fontWeight="lighter"
+		return connectDragPreview(
+			<g>
+				{connectDragSource(
+					<g transform="translate(55,55)">
+						{ j === 0 ? (
+							<text
+								x={i * spacing}
+								fontFamily="helvetica"
+								textAnchor="middle"
+								fontSize="26px"
+								fontWeight="lighter"
 							>
-							{i + 1}
-						</text>
+								{i + 1}
+							</text>
 					)
 					: ('')
 				}
-				<circle
-					r="35"
-					cx={5 + i * spacing}
-					cy={45 + j * spacing}
-					fill={color}
-					fillOpacity={opacity}
-					/>
-				<text
-					x={i * spacing}
-					y={45 + j * spacing}
-					fontFamily="helvetica"
-					textAnchor="middle"
-					fontSize="12px"
-					fontWeight="bold"
+						<circle
+							r="35"
+							cx={5 + i * spacing}
+							cy={45 + j * spacing}
+							fill={color}
+							cursor="cell"
+							fillOpacity={isDragging ? opacity / 2 : opacity}
+						/>
+					<text
+						x={i * spacing}
+						y={45 + j * spacing}
+						fontFamily="helvetica"
+						textAnchor="middle"
+						fontSize="12px"
+						fontWeight="bold"
 					>
-					{this.props.labels.map((l, x) => <tspan x={5 + i * spacing} dy={(0.2 + (x * 0.9)).toString() + 'em'} key={'text' + i + '_' + j + l}>{l}</tspan>)}
-				</text>
+						{this.props.labels.map((l, x) => <tspan x={5 + i * spacing} dy={`${(0.2 + (x * 0.9)).toString()}em`} key={'text' + i + '_' + j + l}>{l}</tspan>)}
+					</text>
+					</g>
+		)
+	}
 			</g>
-		));
+	);
 	}
 }
 
