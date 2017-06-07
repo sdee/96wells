@@ -31,6 +31,7 @@ class PlateLayout extends Component {
 				</text>
 				{rowData.map((well, i) =>
 					<Well
+						id={`well_${i}_${j}`}
 						i={i}
 						j={j}
 						wellData={well}

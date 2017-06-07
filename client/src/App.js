@@ -10,6 +10,8 @@ import Container from './components/Container';
 import { loadData } from './actions';
 import {Grid, Row, Column} from 'react-cellblock';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { DragDropContext } from 'react-dnd';
+import MouseBackEnd from 'react-dnd-mouse-backend';
 
 export class App extends Component {
 	componentWillMount() {
@@ -45,4 +47,4 @@ const mapStateToProps = state => ({
 	app: state.app
 });
 
-export default connect(mapStateToProps)(App);
+export default DragDropContext(MouseBackEnd)(connect(mapStateToProps)(App));
