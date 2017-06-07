@@ -26,6 +26,8 @@
     "miso.dataset": "^0.4.1",
     "morgan": "^1.8.2",
     "react": "^15.5.3",
+    "react-dnd": "^2.4.0",
+    "react-dnd-mouse-backend": "^0.1.1",
     "react-dom": "^15.5.3",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",
