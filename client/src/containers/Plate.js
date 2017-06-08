@@ -6,9 +6,6 @@ import { calculateLayout, finalizeLayout } from '../selectors/layout';
 import { swapLocations } from '../actions';
 
 function handleDnd(sourceCoord, targetCoord, dispatch) {
-	console.log("handle dnd");
-	console.log(sourceCoord);
-	console.log(targetCoord);
 	dispatch(swapLocations(sourceCoord, targetCoord));
 }
 
@@ -16,6 +13,7 @@ const mapStateToProps = (state, ownProps) => ({
 	layout: state.plate.layout,
 	plateSize: state.plate.plateSize,
 	dataList: state.app.dataList,
+	customizable: state.app.currentStep === 2,
 	samples: getSamples(state),
 	colorMap: getColorMap(state),
 	attributes: getAttributes(state),

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Well from './Well';
+import MoveableWell from './MoveableWell';
 import PropTypes from 'prop-types';
 
 class PlateLayout extends Component {
@@ -15,7 +16,7 @@ class PlateLayout extends Component {
 
 	}
 
-	makeRow(rowData, j) {
+	makeRow(rowData, j, customizable) {
 		const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P'];
 		return (
 			<g>
@@ -36,11 +37,16 @@ class PlateLayout extends Component {
 						j,
 						wellData: well,
 						color: this.props.colorMap.get(well.sample),
-						labels: this.props.wellLabels.get(well.idx),
-						sample: well.sample,
-						swapWells: this.props.swapWells
+						labels: this.props.wellLabels.get(well.idx)
+						// swapWells: this.props.swapWells
 					};
-					return <Well {...wellProps} />
+					let renderWell = '';
+					if (customizable) {
+						renderWell = <MoveableWell {...wellProps} swapWells={this.props.swapWells} />;
+					} else {
+						renderWell = <Well {...wellProps} />;
+					}
+					return renderWell;
 				}
 				)}
 			</g>
@@ -52,7 +58,7 @@ class PlateLayout extends Component {
 			<div style={{ marginLeft: '20px', marginTop: '0px', marginBottom: '0px', padding: '0px', display: 'flow' }}>
 				<svg width="1000" height="800">
 					<g className="plate">
-						{this.props.grid.map((e, index) => this.makeRow(e, index))}
+						{this.props.grid.map((e, index) => this.makeRow(e, index, this.props.customizable))}
 					</g>
 				</svg>
 			</div>
