@@ -11,6 +11,7 @@ export const SELECT_STEP = 'SELECT_STEP';
 export const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION';
 export const POST_NOTIFICATION = 'POST_NOTIFICATION';
 export const SWAP_LOCATIONS = 'SWAP_LOCATIONS';
+export const CLEAR_USER_CHANGES = 'CLEAR_USER_CHANGES';
 
 /*
 *Action creators
@@ -53,4 +54,8 @@ export function clearNotification() {
 
 export function swapLocations(source, target) {
 	return { type: SWAP_LOCATIONS, source, target };
+}
+
+export function clearUserChanges() {
+	return { type: CLEAR_USER_CHANGES };
 }

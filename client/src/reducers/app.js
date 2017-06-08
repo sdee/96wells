@@ -50,8 +50,6 @@ export const app = (state = initialState, action) => {
 	}
 
 		case SELECT_STEP: {
-			console.log("select step");
-			console.log(action.step);
 			return Object.assign({}, state, {
 				currentStep: action.step
 			});
