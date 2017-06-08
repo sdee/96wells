@@ -1,4 +1,5 @@
-import { CHANGE_LAYOUT, SHOW_LAYER, SHOW_SAMPLE } from '../actions';
+import { CHANGE_LAYOUT, SHOW_LAYER, SHOW_SAMPLE, SWAP_LOCATIONS, CLEAR_USER_CHANGES } from '../actions';
+import { isEqual } from 'underscore';
 
 const initialState = {
 	name: 'name',
@@ -6,7 +7,8 @@ const initialState = {
 	datasource: 'test1', // source of sample list
 	layout: 'listorder', // algorithm for placing samples in wells,
 	visibleAttribute: '',
-	showSample: true
+	showSample: true,
+	userChanges: []
 };
 
 const plate = (state = initialState, action) => {
@@ -34,6 +36,22 @@ const plate = (state = initialState, action) => {
 	case SHOW_SAMPLE: {
 		return Object.assign({}, state, {
 			showSample: action.showSample
+		});
+	}
+
+	case SWAP_LOCATIONS: {
+		const userChangeList = state.userChanges;
+		if (!isEqual(action.source, action.target)) {
+			userChangeList.push([action.source, action.target]);
+		}
+		return Object.assign({}, state, {
+			userChanges: userChangeList
+		});
+	}
+
+	case CLEAR_USER_CHANGES: {
+		return Object.assign({}, state, {
+			userChanges: []
 		});
 	}
 

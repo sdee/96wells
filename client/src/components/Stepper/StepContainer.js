@@ -7,7 +7,6 @@ import {Grid, Row, Column} from 'react-cellblock';
 function StepContainer({ location, params }) {
 	return  (
 		<div>
-
 			<Row>
 				<Stepper step={params['stepId']} />
 			</Row>

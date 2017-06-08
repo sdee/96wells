@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { DragSource, DropTarget } from 'react-dnd';
 
 class Well extends Component {
 
@@ -8,13 +9,18 @@ class Well extends Component {
 	}
 
 	render() {
-		const i = this.props.i;
-		const j = this.props.j;
-		const color = this.props.color;
-		const spacing = 73;
-		const opacity = 0.4;
 
-		return (
+		const { i,
+			j,
+			color,
+			fade,
+			draggable
+			}
+			= this.props;
+		const spacing = 73;
+		const opacity = fade ? 0.2 : 0.4;
+
+		return(
 			<g transform="translate(55,55)">
 				{ j === 0 ? (
 					<text
@@ -26,14 +32,15 @@ class Well extends Component {
 					>
 						{i + 1}
 					</text>
-					)
-					: ('')
-				}
+				)
+				: ('')
+			}
 				<circle
 					r="35"
 					cx={5 + i * spacing}
 					cy={45 + j * spacing}
 					fill={color}
+					cursor={draggable ? 'cell' : 'default'}
 					fillOpacity={opacity}
 				/>
 				<text
@@ -44,13 +51,12 @@ class Well extends Component {
 					fontSize="12px"
 					fontWeight="bold"
 				>
-					{this.props.labels.map((l, x) => <tspan x={5 + i * spacing} dy={(0.2 + (x * 0.9)).toString() + 'em'} key={'text' + i + '_' + j + l}>{l}</tspan>)}
+				{this.props.labels.map((l, x) => <tspan x={5 + i * spacing} dy={`${(0.2 + (x * 0.9)).toString()}em`} key={`text${  i  }_${  j}${l}`}>{l}</tspan>)}
 				</text>
 			</g>
 		);
 	}
 }
-
 Well.propTypes = {
 	i: PropTypes.number,
 	j: PropTypes.number,

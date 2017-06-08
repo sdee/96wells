@@ -10,6 +10,8 @@ export const SET_GOOGLE_SHEET = 'LOAD_GOOGLE_SHEET';
 export const SELECT_STEP = 'SELECT_STEP';
 export const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION';
 export const POST_NOTIFICATION = 'POST_NOTIFICATION';
+export const SWAP_LOCATIONS = 'SWAP_LOCATIONS';
+export const CLEAR_USER_CHANGES = 'CLEAR_USER_CHANGES';
 
 /*
 *Action creators
@@ -48,4 +50,12 @@ export function postNotification(message) {
 
 export function clearNotification() {
 	return { type: CLEAR_NOTIFICATION };
+}
+
+export function swapLocations(source, target) {
+	return { type: SWAP_LOCATIONS, source, target };
+}
+
+export function clearUserChanges() {
+	return { type: CLEAR_USER_CHANGES };
 }

@@ -5,6 +5,9 @@ import { getSampleList } from '../selectors/samples';
 export const dataList = state => state.app.dataList;
 export const plateSize = state => state.plate.plateSize;
 export const layout = state => state.plate.layout;
+export const userChanges = state => state.plate.userChanges;
+export const userChangesLen = state => state.plate.userChanges.length;
+
 
 export const sizes = {
 	'96wells': [8, 12],
@@ -122,7 +125,7 @@ export const roundRobinLayout = createSelector(
 				const datum = datarow.pop();
 				RRGrid[row][col] = datum;
 				assignedIds.push(datum.idx);
-				count+=1;
+				count += 1;
 			}
 		}
 		return RRGrid;
@@ -179,7 +182,22 @@ export const calculateLayout = createSelector(
 		case 'spreadsample':
 			return spreadsample;
 		default:
-			return 'listorder'
+			return 'listorder';
+		}
+		}
+);
+
+export const finalizeLayout = createSelector(
+	[calculateLayout, userChanges, userChangesLen],
+	(layout, userChanges) => {
+		const userGrid = JSON.parse(JSON.stringify(layout));
+		userChanges.forEach(([[col1, row1], [col2, row2]]) => {
+			const datarow1 = userGrid[row1][col1];
+			const datarow2 = userGrid[row2][col2];
+			userGrid[row1][col1] = datarow2;
+			userGrid[row2][col2] = datarow1;
+		});
+		return userGrid;
 	}
-	}
+
 );

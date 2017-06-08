@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import LayoutForm from '../../containers/LayoutForm';
-import DatasheetField from '../../containers/DatasheetField'
+import DatasheetField from '../../containers/DatasheetField';
+import LayoutCustomization from '../../containers/LayoutCustomization';
 
 class StepInterface extends Component {
 
@@ -14,13 +15,18 @@ class StepInterface extends Component {
 
 		switch (currentStep) {
 		case 0:
-		content = <DatasheetField />;
-		break;
+			content = <DatasheetField />;
+			break;
 
 		case 1:
-		content = <LayoutForm />;
-		break;
-		};
+			content = <LayoutForm />;
+			break;
+
+		case 2:
+			content = <LayoutCustomization />;
+			break;
+		}
+
 		return content;
 	}
 
