@@ -1,5 +1,5 @@
 import { CHANGE_LAYOUT, SHOW_LAYER, SHOW_SAMPLE, SWAP_LOCATIONS } from '../actions';
-import { calculateLayout } from '../selectors/layout';
+import { isEqual } from 'underscore';
 
 const initialState = {
 	name: 'name',
@@ -41,13 +41,16 @@ const plate = (state = initialState, action) => {
 
 	case SWAP_LOCATIONS: {
 		console.log("swap locations");
+		console.log(state.userChanges.length);
 		console.log(state.userChanges);
 		console.log(action.source);
 		console.log(action.target);
-		const userChanges = state.userChanges;
-		userChanges.push([action.source, action.target]);
+		const userChangeList = state.userChanges;
+		if (!isEqual(action.source, action.target)) {
+			userChangeList.push([action.source, action.target]);
+		}
 		return Object.assign({}, state, {
-			userChanges: userChanges
+			userChanges: userChangeList
 		});
 	}
 

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import PlateLayout from '../components/PlateLayout/PlateLayout';
 import { getSamples, getAttributes, getColorMap } from '../selectors/samples';
 import { getWellLabels } from '../selectors/labels';
-import { calculateLayout } from '../selectors/layout';
+import { calculateLayout, finalizeLayout } from '../selectors/layout';
 import { swapLocations } from '../actions';
 
 function handleDnd(sourceCoord, targetCoord, dispatch) {
@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => ({
 	colorMap: getColorMap(state),
 	attributes: getAttributes(state),
 	visibleAttributes: state.plate.visibleAttributes,
-	grid: calculateLayout(state),
+	grid: finalizeLayout(state),
 	wellLabels: getWellLabels(state)
 });
 
