@@ -38,6 +38,7 @@ class PlateLayout extends Component {
 						color={this.props.colorMap.get(well.sample)}
 						labels={this.props.wellLabels.get(well.idx)}
 						sample={well.sample}
+						swapWells={this.props.swapWells}
 					/>
 
 				)}

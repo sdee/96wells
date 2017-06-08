@@ -1,4 +1,5 @@
-import { CHANGE_LAYOUT, SHOW_LAYER, SHOW_SAMPLE } from '../actions';
+import { CHANGE_LAYOUT, SHOW_LAYER, SHOW_SAMPLE, SWAP_LOCATIONS } from '../actions';
+import { calculateLayout } from '../selectors/layout';
 
 const initialState = {
 	name: 'name',
@@ -6,7 +7,8 @@ const initialState = {
 	datasource: 'test1', // source of sample list
 	layout: 'listorder', // algorithm for placing samples in wells,
 	visibleAttribute: '',
-	showSample: true
+	showSample: true,
+	userChanges: []
 };
 
 const plate = (state = initialState, action) => {
@@ -34,6 +36,18 @@ const plate = (state = initialState, action) => {
 	case SHOW_SAMPLE: {
 		return Object.assign({}, state, {
 			showSample: action.showSample
+		});
+	}
+
+	case SWAP_LOCATIONS: {
+		console.log("swap locations");
+		console.log(state.userChanges);
+		console.log(action.source);
+		console.log(action.target);
+		const userChanges = state.userChanges;
+		userChanges.push([action.source, action.target]);
+		return Object.assign({}, state, {
+			userChanges: userChanges
 		});
 	}
 

@@ -3,6 +3,14 @@ import PlateLayout from '../components/PlateLayout/PlateLayout';
 import { getSamples, getAttributes, getColorMap } from '../selectors/samples';
 import { getWellLabels } from '../selectors/labels';
 import { calculateLayout } from '../selectors/layout';
+import { swapLocations } from '../actions';
+
+function handleDnd(sourceCoord, targetCoord, dispatch) {
+	console.log("handle dnd");
+	console.log(sourceCoord);
+	console.log(targetCoord);
+	dispatch(swapLocations(sourceCoord, targetCoord));
+}
 
 const mapStateToProps = (state, ownProps) => ({
 	layout: state.plate.layout,
@@ -17,7 +25,9 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-
+	swapWells: (source, target) => {
+		handleDnd(source, target, dispatch);
+	}
 });
 
 const Plate = connect(

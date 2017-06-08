@@ -24,7 +24,7 @@ const wellTarget = {
 		return;
 	 }
 	 //
-	//  props.moveCard(dragCoord, hoverCoord);
+	 props.swapWells(dragCoord, hoverCoord);
 	 monitor.getItem().coord = hoverCoord;
  }
 };
