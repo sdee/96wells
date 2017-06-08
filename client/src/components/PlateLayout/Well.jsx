@@ -17,13 +17,10 @@ const wellTarget = {
 	drop(props, monitor, component) {
 	const dragCoord = monitor.getItem().coord;
 	const hoverCoord = [props.i, props.j];
-
-	 console.log("hover "+hoverCoord);
 	 // Don't replace items with themselves
 	 if (dragCoord === hoverCoord) {
 		return;
 	 }
-	 //
 	 props.swapWells(dragCoord, hoverCoord);
 	 monitor.getItem().coord = hoverCoord;
  }
@@ -54,17 +51,20 @@ class SVGWell extends Component {
 	}
 
 	render() {
-		const i = this.props.i;
-		const j = this.props.j;
-		const color = this.props.color;
-		const connectDragSource = this.props.connectDragSource;
-		const connectDragPreview = this.props.connectDragPreview;
-		const connectDropTarget = this.props.connectDropTarget;
-		const isDragging = this.props.isDragging;
+
+		const { i,
+						j,
+						color,
+						connectDragSource,
+						connectDragPreview,
+						connectDropTarget,
+						isDragging }
+						= this.props;
+
 		const spacing = 73;
 		const opacity = 0.4;
 		if (isDragging) {
-			console.log("dragging "+this.props.id)
+			console.log('dragging ' + this.props.id)
 		}
 
 		return connectDragPreview(

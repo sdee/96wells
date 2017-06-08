@@ -182,25 +182,18 @@ export const calculateLayout = createSelector(
 		case 'spreadsample':
 			return spreadsample;
 		default:
-			return 'listorder'
+			return 'listorder';
 		}
-	}
+		}
 );
 
 export const finalizeLayout = createSelector(
 	[calculateLayout, userChanges, userChangesLen],
 	(layout, userChanges) => {
-		console.log("finalize layout");
-		console.log("layout id"+layout[0][0].idx);
 		const userGrid = JSON.parse(JSON.stringify(layout));
-		console.log("id"+userGrid[0][0].idx);
-		console.log(userChanges.length);
-		console.log("-----------");
 		userChanges.forEach(([[col1, row1], [col2, row2]]) => {
-			let datarow1 = userGrid[row1][col1];
-			let datarow2 = userGrid[row2][col2];
-			console.log("origin: "+datarow1.idx+":"+[col1, row1]);
-			console.log("dest: "+datarow2.idx+":"+[col2, row2]);
+			const datarow1 = userGrid[row1][col1];
+			const datarow2 = userGrid[row2][col2];
 			userGrid[row1][col1] = datarow2;
 			userGrid[row2][col2] = datarow1;
 		});
