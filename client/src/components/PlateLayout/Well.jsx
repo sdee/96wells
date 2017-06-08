@@ -14,7 +14,7 @@ const wellSource = {
 };
 
 const wellTarget = {
-	hover(props, monitor, component) {
+	drop(props, monitor, component) {
 	const dragCoord = monitor.getItem().coord;
 	const hoverCoord = [props.i, props.j];
 
