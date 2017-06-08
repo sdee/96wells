@@ -29,18 +29,19 @@ class PlateLayout extends Component {
 				>
 					{letters[j]}
 				</text>
-				{rowData.map((well, i) =>
-					<Well
-						id={`well_${i}_${j}`}
-						i={i}
-						j={j}
-						wellData={well}
-						color={this.props.colorMap.get(well.sample)}
-						labels={this.props.wellLabels.get(well.idx)}
-						sample={well.sample}
-						swapWells={this.props.swapWells}
-					/>
-
+				{rowData.map((well, i) => {
+					const wellProps = {
+						id: `well_${i}_${j}`,
+						i,
+						j,
+						wellData: well,
+						color: this.props.colorMap.get(well.sample),
+						labels: this.props.wellLabels.get(well.idx),
+						sample: well.sample,
+						swapWells: this.props.swapWells
+					};
+					return <Well {...wellProps} />
+				}
 				)}
 			</g>
 		);
