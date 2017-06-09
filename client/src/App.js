@@ -18,7 +18,6 @@ export class App extends Component {
 		const { dispatch } = this.props;
 		dispatch(loadData("balanced"));
 	}
-
 	render() {
 		return (
 			<MuiThemeProvider>
