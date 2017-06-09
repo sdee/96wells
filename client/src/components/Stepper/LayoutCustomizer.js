@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
-import { Grid, Row, Cell} from 'react-inline-grid';
+import { Grid, Row, Cell } from 'react-inline-grid';
 import RaisedButton from 'material-ui/RaisedButton';
 
 class LayoutCustomizer extends Component {

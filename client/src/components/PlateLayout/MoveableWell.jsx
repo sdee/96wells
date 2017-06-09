@@ -57,7 +57,7 @@ class DnDWell extends Component {
 						connectDropTarget,
 						isDragging,
 						swapWells,
-						labels}
+						labels }
 						= this.props;
 		const opacity = 0.4;
 		return connectDragPreview(
