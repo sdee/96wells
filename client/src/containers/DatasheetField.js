@@ -59,6 +59,7 @@ function useSampleKey(dispatch) {
 }
 
 function handleDataSetChange(value, dispatch) {
+	console.log("data change!!!");
 	dispatch(loadData(value));
 	dispatch(postNotification(`Loaded new data set: ${value}`));
 }

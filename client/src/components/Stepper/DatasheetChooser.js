@@ -10,7 +10,7 @@ import MenuItem from 'material-ui/MenuItem';
 class DatasheetChooser extends Component {
 
 	render() {
-		const handleChange = (event, index, value) => this.props.onDataSetChange(value);
+		const handleChange = (event, index, value) => {this.props.onDataSetChange(value)};
 		const style = {
 			height: 130,
 			width: 500,
