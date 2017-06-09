@@ -40,7 +40,7 @@ class StepInterface extends Component {
 }
 
 StepInterface.propTypes = {
-	currentStep: PropTypes.Number
+	currentStep: PropTypes.number
 };
 
 StepInterface.defaultProps = {

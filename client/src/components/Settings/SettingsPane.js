@@ -62,7 +62,7 @@ class SettingsPane extends Component {
 
 SettingsPane.propTypes = {
 	attributes: PropTypes.array,
-	visibleAttribute: PropTypes.String,
+	visibleAttribute: PropTypes.string,
 	handleAttrVisChange: PropTypes.func.isRequired,
 	handleSampleVisChange: PropTypes.func.isRequired,
 	showSample: PropTypes.bool,
