@@ -48,7 +48,6 @@ class DnDWell extends Component {
 	}
 
 	render() {
-
 		const { i,
 						j,
 						color,
@@ -64,7 +63,14 @@ class DnDWell extends Component {
 			<g>
 				{connectDragSource(connectDropTarget(
 					<g>
-						<Well i={i} j={j} color={color} fade={isDragging} labels={labels} draggable={Boolean(true)} />
+						<Well
+							i={i}
+							j={j}
+							color={color}
+							fade={isDragging}
+							labels={labels}
+							draggable={Boolean(true)}
+						/>
 					</g>
 				))
 				}
@@ -73,9 +79,23 @@ class DnDWell extends Component {
 	}
 }
 
+DnDWell.propTypes = {
+	i: PropTypes.number.isRequired,
+	j: PropTypes.number.isRequired,
+	labels: PropTypes.array.isRequired,
+	color: PropTypes.string,
+	connectDragSource: PropTypes.func.isRequired,
+	connectDragPreview: PropTypes.func.isRequired,
+	connectDropTarget: PropTypes.func.isRequired,
+	isDragging: PropTypes.bool.isRequired,
+	swapWells: PropTypes.func.isRequired
+};
+
+DnDWell.defaultProps = {
+	color: '#21f0b6'
+};
+
 const DragSourceDecorator = DragSource('Well', wellSource, dragCollect);
-
 const DropTargetDecorator = DropTarget('Well', wellTarget, dropCollect);
-
 const MoveableWell = DropTargetDecorator(DragSourceDecorator(DnDWell));
 module.exports = MoveableWell;

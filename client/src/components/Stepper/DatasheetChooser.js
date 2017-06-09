@@ -9,8 +9,8 @@ import MenuItem from 'material-ui/MenuItem';
 
 class DatasheetChooser extends Component {
 
-	handleChange = (event, index, value) => this.props.onDataSetChange(value);
 	render() {
+		const handleChange = (event, index, value) => this.props.onDataSetChange(value);
 		const style = {
 			height: 130,
 			width: 500,
@@ -31,40 +31,42 @@ class DatasheetChooser extends Component {
 		};
 
 		return (
-			<div style={{marginLeft:'20px', marginTop:'0px', marginBottom:'0px', padding:'0px'}}>
+			<div style={{ marginLeft: '20px', marginTop: '0px', marginBottom: '0px', padding: '0px' }}>
 				<Grid>
 					<Row>
 						<Paper zDepth={1} style={style}>
-							<form onSubmit={e => {e.preventDefault(); this.props.onSubmit(this.refs.key_field.getValue());}}>
+							<form onSubmit={e => { e.preventDefault(); this.props.onSubmit(this.refs.key_field.getValue()); }}>
 								<TextField
 									hintText="Enter Api Key for google sheet here"
 									floatingLabelText="Google Api Key"
-									floatingLabelFixed={true}
-									multiLine={true}
+									floatingLabelFixed={Boolean(true)}
+									multiLine={Boolean(true)}
 									value={this.props.googlesheet}
-									style={{marginLeft:'20px', topPadding:'0px', topMargin:'0px', width:'450px'}}
+									style={{ marginLeft: '20px', topPadding: '0px', topMargin: '0px', width: '450px' }}
 									ref="key_field"
-									/><br />
+								/><br />
 								<RaisedButton
 									label="Submit"
-									primary={true}
-									style={{marginLeft:'20px', topPadding:'0px', topMargin:'0px'}}
+									primary={Boolean(true)}
+									style={{ marginLeft: '20px', topPadding: '0px', topMargin: '0px' }}
 									type="submit"
-									value="Submit"/>
+									value="Submit"
+								/>
 								<RaisedButton
 									label="Use Sample Key"
-									style={{marginLeft:'20px', topPadding:'0px', topMargin:'0px'}}
-									onClick={this.props.useSampleKey}/>
+									style={{ marginLeft: '20px', topPadding: '0px', topMargin: '0px' }}
+									onClick={this.props.useSampleKey}
+								/>
 							</form>
 						</Paper>
-						<div style={{verticalAlign:'middle', height:'130px', paddingLeft:'20px', paddingRight: '0px'}}><br/><br/><br/>OR</div>
+						<div style={{ verticalAlign: 'middle', height: '130px', paddingLeft: '20px', paddingRight: '0px' }}><br /><br /><br />OR</div>
 						<Paper zDepth={1} style={style2}>
 							<SelectField
 								floatingLabelText="Load Sample Dataset"
 								value={this.props.datasource}
-								onChange={this.handleChange}
-								style={{marginLeft:'20px', topPadding:'0px', topMargin:'0px'}}
-								>
+								onChange={handleChange}
+								style={{ marginLeft: '20px', topPadding: '0px', topMargin: '0px' }}
+							>
 								<MenuItem value={'balanced'} primaryText="Basic with 6 samples" />
 								<MenuItem value={'spread'} primaryText="8 samples" />
 								<MenuItem value={'clinical'} primaryText="Clinical Example" />
@@ -78,6 +80,10 @@ class DatasheetChooser extends Component {
 }
 
 DatasheetChooser.propTypes = {
-	datasource: PropTypes.string
-}
+	datasource: PropTypes.string.isRequired,
+	googlesheet: PropTypes.string.isRequired,
+	useSampleKey: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
+	onDataSetChange: PropTypes.func.isRequired
+};
 export default DatasheetChooser;

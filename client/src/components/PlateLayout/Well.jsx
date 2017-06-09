@@ -58,10 +58,18 @@ class Well extends Component {
 	}
 }
 Well.propTypes = {
-	i: PropTypes.number,
-	j: PropTypes.number,
-	labels: PropTypes.array,
-	color: PropTypes.string
+	i: PropTypes.number.isRequired,
+	j: PropTypes.number.isRequired,
+	labels: PropTypes.array.isRequired,
+	color: PropTypes.string,
+	fade: PropTypes.bool,
+	draggable: PropTypes.bool
+};
+
+Well.defaultProps = {
+	color: '#21f0b6',
+	fade: false,
+	draggable: false
 };
 
 export default Well;

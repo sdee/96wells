@@ -15,8 +15,8 @@ class AppStepper extends Component {
 	}
 
 	render() {
-	const currentStep = this.props.currentStep;
-	const onChange = this.props.handleChange;
+		const currentStep = this.props.currentStep;
+		const onChange = this.props.handleChange;
 
 		return (
 			<div style={{ width: '100%', maxWidth: 700, marginLeft: '20px' }}>
@@ -47,8 +47,13 @@ class AppStepper extends Component {
 	}
 }
 
-// AppStepper.propTypes = {
-// 	currentStep: PropTypes.number
-// };
+AppStepper.propTypes = {
+	currentStep: PropTypes.number,
+	handleChange: PropTypes.func.isRequired
+};
+
+AppStepper.defaultProps = {
+	currentStep: 0
+};
 
 export default AppStepper;

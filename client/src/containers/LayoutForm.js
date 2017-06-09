@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { changeLayout, showLayer, showSample, postNotification, clearUserChanges } from '../actions';
 import LayoutSelector from '../components/Stepper/LayoutSelector';
 import { getAttributes } from '../selectors/samples';
-import { getDescription } from '../selectors/layout'
+import { getDescription } from '../selectors/layout';
 
 function handleLayoutChange(value, dispatch) {
 	dispatch(changeLayout(value));

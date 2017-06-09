@@ -21,7 +21,7 @@ class LayoutCustomizer extends Component {
 					<Row>
 						<Paper zDepth={1} style={style}>
 							<p>This step allows you to make manual modifications to the layout. To swap well positions, drag a well to the desired location.  </p>
-							<RaisedButton label="Clear All Changes" primary={true} onClick={this.props.handleClear} />
+							<RaisedButton label="Clear All Changes" primary={Boolean(true)} onClick={this.props.handleClear} />
 						</Paper>
 						<br />
 					</Row>
@@ -30,5 +30,9 @@ class LayoutCustomizer extends Component {
 		);
 	}
 }
+
+LayoutCustomizer.propTypes = {
+	handleClear: PropTypes.func.isRequired
+};
 
 export default LayoutCustomizer;

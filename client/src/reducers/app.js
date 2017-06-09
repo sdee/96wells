@@ -5,34 +5,33 @@ const balancedTest = require('../../../data/balanced_test.json');
 const spreadExample = require('../../../data/spread_test.json');
 const clinicalExample = require('../../../data/clinical_example.json');
 
-
 const initialState = {
 	datasource: 'balanced', // source of sample list
 	googlesheet: '',
 	dataList: [],
 	currentStep: 0
-}
+};
 
 function selectData(dataset) {
 	switch (dataset) {
-		case 'balanced': {
-			return balancedTest;
-		}
-		case 'fullplate': {
-			return fullPlate;
-		}
-		case 'spread': {
-			return spreadExample;
-		}
-		case 'clinical': {
-			return clinicalExample;
-		}
-		case 'default': {
-			return balancedTest;
-		}
-		case 'empty': {
-			return [];
-		}
+	case 'balanced': {
+		return balancedTest;
+	}
+	case 'fullplate': {
+		return fullPlate;
+	}
+	case 'spread': {
+		return spreadExample;
+	}
+	case 'clinical': {
+		return clinicalExample;
+	}
+	case 'default': {
+		return balancedTest;
+	}
+	case 'empty': {
+		return [];
+	}
 	}
 }
 
@@ -49,23 +48,23 @@ export const app = (state = initialState, action) => {
 		});
 	}
 
-		case SELECT_STEP: {
+	case SELECT_STEP: {
 			return Object.assign({}, state, {
 				currentStep: action.step
 			});
 		}
 
-		case LOAD_GOOGLE_SUCCESS: {
-			return Object.assign({}, state, {
+	case LOAD_GOOGLE_SUCCESS: {
+		return Object.assign({}, state, {
 				googlesheet: action.key,
 				dataList: action.resp,
 				datasource: 'googlesheet'
 			});
-		}
+	}
 
-		default: {
-			return state;
-		}
+	default: {
+		return state;
+	}
 	}
 };
 

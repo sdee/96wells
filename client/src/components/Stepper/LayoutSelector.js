@@ -6,9 +6,9 @@ import Paper from 'material-ui/Paper';
 import { Grid, Row } from 'react-inline-grid';
 
 class LayoutSelector extends Component {
-	handleChange = (event, index, value) => this.props.handleLayoutChange(value);
 
 	render() {
+		const handleChange = (event, index, value) => this.props.handleLayoutChange(value);
 		const style = {
 			height: 130,
 			width: 650,
@@ -17,7 +17,7 @@ class LayoutSelector extends Component {
 			display: 'inline-block'
 		};
 		return (
-			<div style={{marginLeft:'20px', topPadding:'0px', topMargin:'0px'}}>
+			<div style={{ marginLeft: '20px', topPadding: '0px', topMargin: '0px' }}>
 				<Paper zDepth={1} style={style}>
 					<Grid>
 						<Row>
@@ -25,14 +25,14 @@ class LayoutSelector extends Component {
 								floatingLabelText="Layout"
 								value={this.props.layout}
 								onChange={this.handleChange}
-								style={{marginLeft:'20px', topPadding:'0px', topMargin:'0px'}}
+								style={{ marginLeft: '20px', topPadding: '0px', topMargin: '0px' }}
 							>
-								<MenuItem value={"listorder"} primaryText="List Order" />
-								<MenuItem value={"roundrobin"} primaryText="Round Robin" />
-								<MenuItem value={"random"} primaryText="Random" />
-								<MenuItem value={"spreadsample"} primaryText="Spread Sample" />
+								<MenuItem value={'listorder'} primaryText="List Order" />
+								<MenuItem value={'roundrobin'} primaryText="Round Robin" />
+								<MenuItem value={'random'} primaryText="Random" />
+								<MenuItem value={'spreadsample'} primaryText="Spread Sample" />
 							</SelectField>
-							<p style={{marginLeft:'10px', verticalAlign:'middle', topMargin:'30px'}}><i>{this.props.description}</i> </p>
+							<p style={{ marginLeft: '10px', verticalAlign: 'middle', topMargin: '30px' }}><i>{this.props.description}</i> </p>
 						</Row>
 					</Grid>
 				</Paper>
@@ -42,8 +42,13 @@ class LayoutSelector extends Component {
 }
 
 LayoutSelector.propTypes = {
-	layout: PropTypes.string,
-	handleLayoutChange: PropTypes.func
+	layout: PropTypes.string.isRequired,
+	handleLayoutChange: PropTypes.func.isRequired,
+	description: PropTypes.string
 };
-//
+
+LayoutSelector.defaultProps = {
+	description: ''
+};
+
 export default LayoutSelector;

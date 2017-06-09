@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Grid, Row, Column } from 'react-cellblock';
 import StepContent from '../containers/StepContent';
 import VisibilityFilters from '../containers/VisibilityFilters';
 import Plate from '../containers/Plate';
 import Stepper from '../containers/Stepper';
 import Notifier from '../containers/Notifier';
 import { loadData } from '../actions';
-import {Grid, Row, Column} from 'react-cellblock';
 
 function Container(props) {
 	return (
@@ -28,5 +28,9 @@ function Container(props) {
 		</div>
 	);
 }
+
+Container.propTypes = {
+	children: PropTypes.element.isRequired
+};
 
 export default Container;

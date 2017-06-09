@@ -48,11 +48,11 @@ function handleSubmit(value, dispatch) {
 		});
 	}, 250);
 
-		dataPromise.then((successMessage) => {
-			dispatch(loadGoogleSuccess(googleData, gkey));
-			dispatch(postNotification("Successfully imported data from Google sheet."));
-		});
-	}
+	dataPromise.then((successMessage) => {
+		dispatch(loadGoogleSuccess(googleData, gkey));
+		dispatch(postNotification('Successfully imported data from Google sheet.'));
+	});
+}
 
 function useSampleKey(dispatch) {
 	handleSubmit('1Ewgyv4EayonkOHaa6Q8N_63jrjt7vQF-NFOCZRPQuU4', dispatch);

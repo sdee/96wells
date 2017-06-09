@@ -18,6 +18,7 @@ class PlateLayout extends Component {
 
 	makeRow(rowData, j, customizable) {
 		const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P'];
+		const { colorMap, wellLabels, swapWells } = this.props;
 		return (
 			<g>
 				<text
@@ -36,13 +37,12 @@ class PlateLayout extends Component {
 						i,
 						j,
 						wellData: well,
-						color: this.props.colorMap.get(well.sample),
-						labels: this.props.wellLabels.get(well.idx)
-						// swapWells: this.props.swapWells
+						color: colorMap.get(well.sample),
+						labels: wellLabels.get(well.idx)
 					};
 					let renderWell = '';
 					if (customizable) {
-						renderWell = <MoveableWell {...wellProps} swapWells={this.props.swapWells} />;
+						renderWell = <MoveableWell {...wellProps} swapWells={swapWells} />;
 					} else {
 						renderWell = <Well {...wellProps} />;
 					}
@@ -67,9 +67,15 @@ class PlateLayout extends Component {
 }
 
 PlateLayout.propTypes = {
-	colorMap: PropTypes.object,
-	wellLabels: PropTypes.object,
-	grid: PropTypes.array
+	colorMap: PropTypes.object.isRequired,
+	wellLabels: PropTypes.object.isRequired,
+	grid: PropTypes.array.isRequired,
+	customizable: PropTypes.bool,
+	swapWells: PropTypes.func.isRequired
+};
+
+PlateLayout.defaultProps = {
+	customizable: false
 };
 
 export default PlateLayout;

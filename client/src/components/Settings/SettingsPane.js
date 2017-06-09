@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {List, ListItem} from 'material-ui/List';
+import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 
 import Divider from 'material-ui/Divider';
@@ -24,24 +24,24 @@ class SettingsPane extends Component {
 			<Paper zDepth={1}>
 				<List>
 					<ListItem>
-						<Subheader inset={true}>Data Summary</Subheader>
-						{numExperiments} Experiments<br/>
+						<Subheader inset={Boolean(true)}>Data Summary</Subheader>
+						{numExperiments} Experiments<br />
 						{numSamples} Samples
 					</ListItem>
 				</List>
-				<Divider/>
+				<Divider />
 				<List>
-					<Subheader inset={true}>Sample Info</Subheader>
+					<Subheader inset={Boolean(true)}>Sample Info</Subheader>
 					<ListItem
-						leftCheckbox={<Checkbox checked={showSample} onCheck={handleSampleVisChange}/>}
+						leftCheckbox={<Checkbox checked={showSample} onCheck={handleSampleVisChange} />}
 						primaryText="Show sample name"
-						/>
+					/>
 				</List>
-				<Divider/>
+				<Divider />
 				<List>
-					<Subheader inset={true}>Overlay Attributes</Subheader>
+					<Subheader inset={Boolean(true)}>Overlay Attributes</Subheader>
 					{attributes.map(attribute =>
-						<div>
+						(<div>
 							<ListItem
 								leftCheckbox={
 									<Checkbox
@@ -52,7 +52,7 @@ class SettingsPane extends Component {
 									/>}
 								primaryText={attribute}
 							/>
-						</div>
+						</div>)
 					)}
 				</List>
 			</Paper>
@@ -61,7 +61,19 @@ class SettingsPane extends Component {
 }
 
 SettingsPane.propTypes = {
+	attributes: PropTypes.array,
+	visibleAttribute: PropTypes.String,
+	handleAttrVisChange: PropTypes.func.isRequired,
+	handleSampleVisChange: PropTypes.func.isRequired,
+	showSample: PropTypes.bool,
+	numExperiments: PropTypes.number.isRequired,
+	numSamples: PropTypes.number.isRequired
+};
 
+SettingsPane.defaultProps = {
+	attributes: [],
+	visibleAttribute: '',
+	showSample: true
 };
 
 export default SettingsPane;

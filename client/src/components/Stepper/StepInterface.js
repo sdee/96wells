@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LayoutForm from '../../containers/LayoutForm';
 import DatasheetField from '../../containers/DatasheetField';
@@ -30,7 +30,7 @@ class StepInterface extends Component {
 		return content;
 	}
 
-	render(){
+	render() {
 		return (
 			<div>
 				{this.showContent(this.props.currentStep)}
@@ -39,5 +39,12 @@ class StepInterface extends Component {
 	}
 }
 
-//
+StepInterface.propTypes = {
+	currentStep: PropTypes.Number
+};
+
+StepInterface.defaultProps = {
+	currentStep: 0
+};
+
 export default StepInterface;

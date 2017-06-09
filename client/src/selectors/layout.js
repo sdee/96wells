@@ -48,7 +48,7 @@ const hasLikeNeighbors = (row, col, plategrid, sample) => some(getWells(neighbor
 
 const getWells = (wells, plategrid) => wells.map(([row, col]) => plategrid[row][col]);
 
-const neighbors = (row, col) => reject([[row-1, col-1], [row-1, col], [row-1, col+1], [row, col-1], [row, col+1], [row+1, col-1], [row+1, col], [row+1, col+1]], ([row, col]) => row <0 || col < 0 || row > 7 || col > 11 );
+const neighbors = (row, col) => reject([[row - 1, col - 1], [row - 1, col], [row - 1, col + 1], [row, col - 1], [row, col + 1], [row + 1, col - 1], [row + 1, col], [row + 1, col + 1]], ([row, col]) => row < 0 || col < 0 || row > 7 || col > 11);
 
 const occupiedWells = plategrid => filter(allWells(), ([row, col]) => isOccupied(row, col, plategrid));
 
