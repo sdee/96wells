@@ -24,7 +24,7 @@ class LayoutSelector extends Component {
 							<SelectField
 								floatingLabelText="Layout"
 								value={this.props.layout}
-								onChange={this.handleChange}
+								onChange={handleChange}
 								style={{ marginLeft: '20px', topPadding: '0px', topMargin: '0px' }}
 							>
 								<MenuItem value={'listorder'} primaryText="List Order" />
