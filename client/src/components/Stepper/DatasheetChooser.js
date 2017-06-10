@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
-import { Grid, Row, Cell } from 'react-inline-grid';
+import { Grid, Row } from 'react-inline-grid';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 

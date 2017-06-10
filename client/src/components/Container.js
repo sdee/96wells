@@ -1,12 +1,9 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Row, Column } from 'react-cellblock';
-import StepContent from '../containers/StepContent';
 import VisibilityFilters from '../containers/VisibilityFilters';
 import Plate from '../containers/Plate';
-import Stepper from '../containers/Stepper';
 import Notifier from '../containers/Notifier';
-import { loadData } from '../actions';
 
 function Container(props) {
 	return (

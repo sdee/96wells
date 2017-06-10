@@ -55,7 +55,6 @@ class DnDWell extends Component {
 						connectDragPreview,
 						connectDropTarget,
 						isDragging,
-						swapWells,
 						labels }
 						= this.props;
 		const opacity = 0.4;
@@ -70,6 +69,7 @@ class DnDWell extends Component {
 							fade={isDragging}
 							labels={labels}
 							draggable={Boolean(true)}
+							opacity={opacity / 2}
 						/>
 					</g>
 				))

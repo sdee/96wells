@@ -1,8 +1,7 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import StepContent from '../../containers/StepContent';
 import Stepper from '../../containers/Stepper';
-import { Grid, Row, Column } from 'react-cellblock';
+import { Row, Column } from 'react-cellblock';
 
 function StepContainer({ location, params }) {
 	return (

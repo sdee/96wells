@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import PlateLayout from '../components/PlateLayout/PlateLayout';
 import { getSamples, getAttributes, getColorMap } from '../selectors/samples';
 import { getWellLabels } from '../selectors/labels';
-import { calculateLayout, finalizeLayout } from '../selectors/layout';
+import { finalizeLayout } from '../selectors/layout';
 import { swapLocations } from '../actions';
 
 function handleDnd(sourceCoord, targetCoord, dispatch) {

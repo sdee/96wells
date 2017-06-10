@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
-
 import Divider from 'material-ui/Divider';
-import Drawer from 'material-ui/Drawer';
 import Checkbox from 'material-ui/Checkbox';
-
 import Paper from 'material-ui/Paper';
 
 

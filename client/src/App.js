@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import StepContent from './containers/StepContent';
 import VisibilityFilters from './containers/VisibilityFilters';
 import Plate from './containers/Plate';
-import Stepper from './containers/Stepper';
 import Notifier from './containers/Notifier';
-import Container from './components/Container';
 import { loadData } from './actions';
 import { Grid, Row, Column } from 'react-cellblock';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -45,7 +42,7 @@ export class App extends Component {
 
 App.propTypes = {
 	children: PropTypes.element.isRequired,
-	dispatch: PropTypes.function.isRequired
+	dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
