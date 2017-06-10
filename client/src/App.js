@@ -8,15 +8,16 @@ import Stepper from './containers/Stepper';
 import Notifier from './containers/Notifier';
 import Container from './components/Container';
 import { loadData } from './actions';
-import {Grid, Row, Column} from 'react-cellblock';
+import { Grid, Row, Column } from 'react-cellblock';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { DragDropContext } from 'react-dnd';
 import MouseBackEnd from 'react-dnd-mouse-backend';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
 	componentWillMount() {
 		const { dispatch } = this.props;
-		dispatch(loadData("balanced"));
+		dispatch(loadData('balanced'));
 	}
 	render() {
 		return (
@@ -41,6 +42,11 @@ export class App extends Component {
 		);
 	}
 }
+
+App.propTypes = {
+	children: PropTypes.element.isRequired,
+	dispatch: PropTypes.function.isRequired
+};
 
 const mapStateToProps = state => ({
 	app: state.app
