@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { clearUserChanges } from '../actions';
-import LayoutCustomizer from '../components/Stepper/LayoutCustomizer';
+import LayoutCustomizer from '../components/Stepper/Steps/LayoutCustomizer';
 
 function handleClearUserChanges(dispatch) {
 	dispatch(clearUserChanges());
