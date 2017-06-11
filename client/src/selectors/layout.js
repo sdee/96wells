@@ -8,7 +8,6 @@ export const layout = state => state.plate.layout;
 export const userChanges = state => state.plate.userChanges;
 export const userChangesLen = state => state.plate.userChanges.length;
 
-
 export const sizes = {
 	'96wells': [8, 12],
 	'284wells': [24, 16],
