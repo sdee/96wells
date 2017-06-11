@@ -22,8 +22,6 @@ export const csvFile = createSelector(
 				attributes.forEach((a) => {
 					exportRow.push(d[a] || '');
 				});
-				// console.log("ROW");
-				// console.log(row);
 				exportRow.push(well);
 				csv.push(exportRow);
 			});
