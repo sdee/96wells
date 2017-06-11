@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 import { getAttributes } from '../selectors/samples';
 import { finalizeLayout } from '../selectors/layout';
-//include id in export?
 
 export const dataList = state => state.app.dataList;
 export const layout = state => state.plate.layout;
