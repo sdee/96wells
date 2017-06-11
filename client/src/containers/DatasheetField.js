@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import DatasheetChooser from '../components/Stepper/DatasheetChooser';
+import DatasheetChooser from '../components/Stepper/Steps/DatasheetChooser';
 import { loadGoogleSuccess, loadData, postNotification } from '../actions';
 
 const Miso = require("miso.dataset");
