@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import LayoutForm from '../../containers/LayoutForm';
 import DatasheetField from '../../containers/DatasheetField';
 import LayoutCustomization from '../../containers/LayoutCustomization';
+import Exporter from '../../containers/Exporter';
 
 class StepInterface extends Component {
 
@@ -25,7 +26,15 @@ class StepInterface extends Component {
 		case 2:
 			content = <LayoutCustomization />;
 			break;
+
+		case 3:
+			content = <Exporter />;
+			break;
+
 		}
+
+
+
 
 		return content;
 	}
