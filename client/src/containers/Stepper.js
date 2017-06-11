@@ -10,6 +10,8 @@ function handleChange(value, dispatch) {
 		dispatch(postNotification('Selected an automated layout.'));
 	} else if (value === 2) {
 		dispatch(postNotification('Customize layout'));
+	} else if (value === 3) {
+		dispatch(postNotification('Export data.'));
 	}	else {
 		dispatch(postNotification('Coming soon!'));
 	}

@@ -33,9 +33,6 @@ class StepInterface extends Component {
 
 		}
 
-
-
-
 		return content;
 	}
 
