@@ -1,25 +1,32 @@
 import { createSelector } from 'reselect';
 import { getAttributes } from '../selectors/samples';
+import { finalizeLayout } from '../selectors/layout';
 //include id in export?
 
 export const dataList = state => state.app.dataList;
 export const layout = state => state.plate.layout;
 
-// export const attributes = state => getAttributes(state);
-
 export const csvFile = createSelector(
-	[dataList, getAttributes, layout],
-	(dataList, attributes) => {
+	[dataList, getAttributes, finalizeLayout],
+	(dlist, attributes, grid) => {
 		const csv = [];
-		const cols = ['Sample'];
-		csv.push(cols.concat(attributes));
-		dataList.forEach((d) => {
-			const row = [];
-			row.push(d.sample);
-			attributes.forEach((a) => {
-				row.push(d[a] || '');
+		let cols = ['Sample'].concat(attributes);
+		cols.push('Well');
+		csv.push(cols);
+		const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P'];
+		grid.forEach((row, rowIndex) => {
+			row.forEach((d, colIndex) => {
+				const exportRow = [];
+				const well = letters[rowIndex] + String(colIndex);
+				exportRow.push(d.sample);
+				attributes.forEach((a) => {
+					exportRow.push(d[a] || '');
+				});
+				// console.log("ROW");
+				// console.log(row);
+				exportRow.push(well);
+				csv.push(exportRow);
 			});
-			csv.push(row);
 		});
 		return csv;
 	});
