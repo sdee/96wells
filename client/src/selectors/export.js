@@ -16,7 +16,7 @@ export const csvFile = createSelector(
 		grid.forEach((row, rowIndex) => {
 			row.forEach((d, colIndex) => {
 				const exportRow = [];
-				const well = letters[rowIndex] + String(colIndex);
+				const well = letters[rowIndex] + String(colIndex + 1);
 				exportRow.push(d.sample);
 				attributes.forEach((a) => {
 					exportRow.push(d[a] || '');
