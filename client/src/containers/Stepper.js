@@ -7,7 +7,7 @@ function handleChange(value, dispatch) {
 	if (value === 0) {
 		dispatch(postNotification('Import data from a Google sheet or choose a test set.'));
 	}	else if (value === 1) {
-		dispatch(postNotification('Selected an automated layout.'));
+		dispatch(postNotification('Select an automated layout.'));
 	} else if (value === 2) {
 		dispatch(postNotification('Customize layout'));
 	} else if (value === 3) {
