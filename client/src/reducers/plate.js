@@ -4,7 +4,6 @@ import { isEqual } from 'underscore';
 const initialState = {
 	name: 'name',
 	plateSize: '96wells', // number of wells
-	datasource: 'test1', // source of sample list
 	layout: 'listorder', // algorithm for placing samples in wells,
 	visibleAttribute: '',
 	showSample: true,
