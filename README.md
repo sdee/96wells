@@ -1,6 +1,8 @@
 # 96wells
 
-**Demo:** https://microplate.herokuapp.com/
+Full demo: https://microplate.herokuapp.com/
+
+![Screenshot](/96wells.gif "Screenshot")
 
 The goal of this project is to automate the placement of samples on 96 well plates<sup>[1](#myfootnote1)</sup>. Samples can be loaded as a list along with metadata for each samples. 
 
@@ -26,7 +28,6 @@ Upcoming features:
 * Additional plate sizes (eg 384 wells)
 * Support for multiple plates
 
-![Screenshot](/96wells.gif "Screenshot")
 
 Colors are from http://www.paletton.com/, customized for visualizations. 
 
