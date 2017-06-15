@@ -10,13 +10,13 @@ const initialState = {
 	userChanges: []
 };
 
-const plate = (state = initialState, action) => {
-	switch (action.type) {
-	case CHANGE_LAYOUT: {
-		return Object.assign({}, state, {
-			layout: action.layout
-		});
-	}
+	const plate = (state = initialState, action) => {
+		switch (action.type) {
+		case CHANGE_LAYOUT: {
+			return Object.assign({}, state, {
+				layout: action.layout
+			});
+		}
 
 	case SHOW_LAYER: {
 		const attribute = action.layer;

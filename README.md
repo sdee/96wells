@@ -16,14 +16,17 @@ Features:
 * Automatically assign colors to samples, showing how samples are distributed across the plate.
 * Ability to overlay wells with attributes parsed from sample list (any column that is not Sample Name)
 * Import data via Google Sheets
+* Optional step for manually editing well locations
+* Easy export as .csv or .tsv
 
 Upcoming features:
 
-* Screen for manually editing well locations
-* Easy export
-* Additional plate sizes (eg 384 wells)
 
-![Screenshot](/example.png "Screenshot")
+* Templates for layout (assign plate regions for controls, sample types, etc)
+* Additional plate sizes (eg 384 wells)
+* Support for multiple plates
+
+![Screenshot](/96wells.gif "Screenshot")
 
 Colors are from http://www.paletton.com/, customized for visualizations. 
 
