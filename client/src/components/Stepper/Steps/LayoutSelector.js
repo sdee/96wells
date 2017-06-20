@@ -8,7 +8,7 @@ import { Grid, Row } from 'react-inline-grid';
 class LayoutSelector extends Component {
 
 	render() {
-		const handleChange = (event, index, value) => {this.props.handleLayoutChange(value); this.setState({ key: Math.random() }); this.forceUpdate()}; 
+		const handleChange = (event, index, value) => {this.setState({ key: Math.random() }); this.forceUpdate(); this.props.handleLayoutChange(value);}; 
 		const style = {
 			height: 130,
 			width: 650,
