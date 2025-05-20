@@ -1,7 +1,5 @@
 # 96wells
 
-Full demo: https://microplate.herokuapp.com/
-
 The goal of this project is to automate the placement of samples on 96 well plates<sup>[1](#myfootnote1)</sup>. Samples can be loaded as a list along with metadata for each samples. 
 
 Layouts can be used to optimize for constraints such as ordering samples by time points and spacing samples out to avoid contamination. 
